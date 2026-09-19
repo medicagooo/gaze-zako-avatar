@@ -1,3 +1,4 @@
 .brand-mark{flex-shrink:0;font-size:25px}
 @media(max-width:700px){.brand{font-size:18px;gap:9px;max-width:calc(100% - 115px)}.brand-mark{font-size:21px}.brand-sub{font-size:8px}.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;gap:5px}.tab{padding:9px 4px;white-space:normal;overflow-wrap:anywhere}.tile-label{min-height:44px}}
 @media(max-width:380px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}.tile-label{min-height:49px}.brand{font-size:17px}.brand-mark{width:34px;height:36px}.brand-sub{font-size:7px}}
+.reference-presets{max-width:1200px;margin:20px auto 0;padding:0 24px;display:flex;gap:10px;flex-wrap:wrap}.reference-presets button{font-size:13px;background:#fff}

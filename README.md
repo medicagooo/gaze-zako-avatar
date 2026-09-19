@@ -18,7 +18,8 @@ Open `index.html` in a modern browser. For stable history storage, use the same 
 
 ## Behavior
 
-- Eight hairstyles, five ear choices including none, eight hair accessory choices including none, seven facewear choices including none, eight backgrounds.
+- Eight hairstyles, five ear choices including none, ten hair accessory choices including none, seven facewear choices including none, eight backgrounds. Optional small mouth under Facewear, default off.
+- Crystal bow and moon rose maid presets set coordinated colors and accessories. These are original vector interpretations, not exact copies of the reference images.
 - Fixed square composition: enlarged head leans clockwise and peeks from the lower-left corner. All character layers move together while the background remains fixed. Rabbit ears use a smaller scale for top clearance. Previously saved history options also use the new framing. Color palettes plus custom colors, optional different eye colors. Eyepatch side refers to screen coordinates.
 - PNG: 512, 1024 or 2048 pixels. SVG: standalone vector shapes with no raster image, font or remote references. Transparent export contains no checkerboard.
 - Preview changes are temporary. Create saves validated options in localStorage (`gaze-zako-avatar.history.v1`). Identical visible configurations are deduplicated. History can be restored, downloaded or deleted. Clearing all history requires confirmation.
@@ -29,7 +30,7 @@ Open `index.html` in a modern browser. For stable history storage, use the same 
 
 `app.js:renderAvatar` is the sole renderer used by current preview, sticker tiles, saved history and both exports. SVG paths are original artwork drawn for this project. `validConfig` restricts stored numeric choices and hex colors before rendering. `persist` updates visible history only after storage succeeds. `download` rasterizes exactly the same SVG onto a transparent canvas for PNG.
 
-`hair.js:illustratedHair` provides the layered front locks and side strands called by `renderAvatar`. Both scripts are required in the build. All details remain closed editable vector paths. The facial group lifts eyes, blush, glasses and eyepatch together; accessory anchors remain on the crown. Ear/crown variants reserve additional top clearance. The default demonstration is blue shoulder-length hair, dark eyes and black background, with no ears/accessories. Existing saved selections are preserved.
+`hair.js:illustratedHair` provides the layered front locks and side strands called by `renderAvatar`. `accessories.js:referenceAccessory` provides rear/front ensemble passes, with tails behind the hair and ornaments in front. All three scripts are required in the build. The character rotates 17 degrees; eyes, blush, optional mouth, glasses and eyepatch share the lifted facial group. Ear/crown variants reserve additional top clearance. The default demonstration is blue shoulder-length hair, dark eyes and black background, with no ears/accessories. Existing saved selections are preserved; missing mouth flags normalize to false.
 
 Artwork uses fixed anchors with rear hair, ears, face, front hair, eyes/blush, facewear and accessory layers. Add new choices by extending `LIMITS`, all three translated name lists and the renderer together. Never interpolate unvalidated stored strings into SVG/HTML.
 

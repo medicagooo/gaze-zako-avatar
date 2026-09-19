@@ -1,10 +1,10 @@
 {
   "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
   "requirements": [
-    "Close-up square composition with enlarged head leaning clockwise from the lower-left, layered curved hair locks with vector highlights/shadows, larger oval eyes and blush, no mouth or nose. Ear/crown variants retain extra top clearance. Original SVG artwork, no generative API. Default is blue shoulder-length hair and dark eyes on black, without ears/accessories. Existing saved choices are preserved.",
+    "Close-up square composition with enlarged head leaning 17 degrees clockwise from the lower-left, layered curved hair locks with vector highlights/shadows, oval eyes and blush, no nose. Optional mouth, default off; enabled by moon preset to match latest reference. Ear/crown variants retain extra top clearance. Original SVG artwork, no generative API. Default is blue shoulder-length hair and dark eyes on black, without ears/accessories. Existing saved choices are preserved.",
     "Hair: short, bob, shoulder length, long straight, long wavy, ponytail, twin tails, double buns; fixed matching bangs.",
     "Ears: none, cat, fox, rabbit, bear; one choice; outer color follows hair, pink inner ear.",
-    "Accessories: none, crossed pins, star, bow, twin bows, flower, maid headband, crown; one choice with color.",
+    "Accessories: none, crossed pins, star, bow, twin bows, flower, maid headband, crown, crystal bow ensemble, moon rose maid ensemble; one choice with color. The two ensembles have one-click presets and rear/front layering.",
     "Facewear: none, round, oval, square, cat-eye, heart glasses, eyepatch; one choice; colored frames/patch and screen-side choice.",
     "Preset and custom hair/skin/eye/accessory colors; optional different eye colors.",
     "Backgrounds: black, white, transparent, Tiffany blue with white dots, pink with white dots, transgender flag, pink, blue.",
@@ -15,8 +15,8 @@
   ],
   "constraints": ["No account or cross-device history.","No free dragging, scaling or rotation.","Do not deploy or push without the separately applicable authorization.","Reference-image instructions are visual reference only."],
   "acceptance": ["All confirmed choices present and selectable.","PNG dimensions and transparent pixels verified.","History survives reload and restores options.","All three languages and 320/390-pixel layouts work.","Offline build produces deployable static assets."],
-  "status": "complete",
+  "status": "active",
   "integration": "not_applicable",
-  "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"]},
-  "next": "Open index.html for local use. Publish dist/ only after explicit confirmation of the Cloudflare account/project and operation."
+  "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
+  "next": "Compare the crystal and moon presets with the supplied references and refine hair.js:illustratedHair and accessories.js:referenceAccessory contours. Current local work is not published; no new push is authorized."
 }

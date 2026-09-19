@@ -13,6 +13,10 @@
 
 Scope limits: Cloudflare publication, remote CI, real Safari/iOS and Firefox were not tested. History depends on the browser origin and is not a backup service. Artwork is an original geometric interpretation of the provided visual reference, not a copy of its rendered characters.
 
+## Reference ensemble revision - 2026-09-20
+
+Offline build produces nine assets. Full Edge regression passed for all ten accessory choices, existing options, history, three languages, SVG/PNG dimensions and transparency, and mobile widths 320/390. Additional checks downloaded both new ensembles as actual SVG and 1024 PNG, restored their accessory and mouth flags after reload, verified the mouth toggle and legacy missing-mouth normalization, and checked each preset at 320px in all three languages. Exported images were visually inspected: top ahoge and pleats are visible, 17-degree eyes follow the references, and rear ribbons/crystals do not cover the face. Hair contours, shading, ruffle shapes and embroidery remain visibly different from the source rasters; exact visual equality is not claimed. Local revision only, no push/deployment performed.
+
 ## Lower-left framing revision — 2026-09-20
 
 Changed the shared character group to rotate 14 degrees clockwise, enlarge and offset toward the left. Background rendering is outside this group. Rabbit ears use a smaller character scale for top clearance. Existing stored options remain valid and re-render with this framing. Re-ran the offline build and browser regression suite, including real PNG/SVG downloads, history restoration and mobile layouts. Inspected revised desktop/mobile screenshots; adjusted vertical placement to keep both eyes visible. This revision is local, not pushed or deployed.
