@@ -34,4 +34,6 @@ Open `index.html` in a modern browser. For stable history storage, use the same 
 
 Artwork uses fixed anchors with rear hair, ears, face, front hair, eyes/blush, facewear and accessory layers. Add new choices by extending `LIMITS`, all three translated name lists and the renderer together. Never interpolate unvalidated stored strings into SVG/HTML.
 
+Current framing raises the face and exposes more forehead/cheek by shortening front hair around its crown anchor. Hair and ear tips may intentionally extend above the square canvas. Facial details and facewear move up together; saved options re-render with this composition.
+
 UI line icons are adapted from Lucide (ISC license; see `LICENSE-ICONS`).

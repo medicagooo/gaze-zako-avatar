@@ -31,9 +31,9 @@ function bow(x,y,c,scale=1){return `<g transform="translate(${x} ${y}) scale(${s
 function star(x,y,c){return `<g transform="translate(${x} ${y})">${path('M0-40 12-13 42-10 20 11 25 42 0 27-26 42-21 11-43-10-12-13Z',c)}</g>`;}
 function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryColor,f=s.faceColor;
  // Transform the entire character, never the background, so every sticker and export
- // shares the lower-left peek. Tall rabbit ears retain clearance. Saved options also
+ // shares the lower-left peek. Hair and ear tips may crop at the top. Saved options also
  // use this composition; history contains no raster snapshots or position overrides.
- const framing=s.ears===3?'translate(-145 20) scale(1.07) rotate(17 500 700)':s.ears===2?'translate(-225 -75) scale(1.27) rotate(17 500 700)':s.ears===1?'translate(-245 -175) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -245) scale(1.38) rotate(17 500 700)':'translate(-268 -281) scale(1.25) rotate(17 500 700)';
+ const framing=s.ears===3?'translate(-145 -50) scale(1.07) rotate(17 500 700)':s.ears===2?'translate(-225 -145) scale(1.27) rotate(17 500 700)':s.ears===1?'translate(-245 -245) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -315) scale(1.38) rotate(17 500 700)':'translate(-268 -351) scale(1.25) rotate(17 500 700)';
  let out=background(s)+`<g data-character="lower-left" transform="${framing}">`;
  // All silhouettes share a face anchor; alternate rear/front paths keep accessories aligned.
  const rear=[
@@ -51,10 +51,11 @@ if(s.ears===1||s.ears===2){const tall=s.ears===2;out+=path(`M194 581Q136 410 ${t
 if(s.ears===3){out+=path('M260 463Q129 161 213 52Q297 16 339 415Z',h)+path('M650 419Q696 7 782 60Q877 137 742 468Z',h)+path('M266 380Q198 132 224 98Q259 84 296 376Z','#e9a7b9')+path('M694 381Q729 98 766 103Q805 137 738 382Z','#e9a7b9');}
 if(s.ears===4){out+=ellipse(222,373,110,113,h)+ellipse(778,373,110,113,h)+ellipse(222,374, 60,65,'#e9a7b9')+ellipse(778,374,60,65,'#e9a7b9');}
 // Enlarge cheeks independently of facial details; all previews and exports share this contour.
-out+=ellipse(500,831,390,375,s.skinColor);
-out+=`<g transform="translate(-30 10) scale(1.06 .97)">${illustratedHair(s.hair,h)}</g>`;
+out+=ellipse(500,811,390,395,s.skinColor);
+// Shorten locks around the crown to expose more forehead while retaining accessory anchors.
+out+=`<g transform="translate(-30 33) scale(1.06 .90)">${illustratedHair(s.hair,h)}</g>`;
 // Keep the original facewear anchors; lift the entire facial-detail group together.
-out+='<g transform="translate(0 -68)">';
+out+='<g transform="translate(0 -88)">';
 out+=ellipse(360,833,43,72,s.eyeColor)+ellipse(644,846,43,72,s.hetero?s.rightEye:s.eyeColor);
 out+=ellipse(275,920,50,29,'#f7b9c2','opacity=".65"')+ellipse(683,938,44,29,'#f7b9c2','opacity=".65"');
 if(s.mouth)out+='<path d="M462 928Q475 948 494 937Q508 929 522 940Q541 952 552 931" fill="none" stroke="#dba3a8" stroke-width="5" stroke-linecap="round"/>';
