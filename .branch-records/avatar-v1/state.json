@@ -1,7 +1,7 @@
 {
   "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
   "requirements": [
-    "Face silhouette radii are 355 by 375 at center 500,831; facial detail anchors stay fixed. Front hair uses translate(-30,10) scale(1.06,.97) to widen the opening. Enlarged cheek outline applies to preview, history and both exports.",
+    "Face silhouette radii are 390 by 375 at center 500,831; facial detail anchors stay fixed. Front hair uses translate(-30,10) scale(1.06,.97); right locks progressively move outward below the crown through illustratedHair:openCheek and the cap contour. Wider visible cheek applies to preview, history and both exports. Reference equality remains unverified.",
     "Close-up square composition with enlarged head leaning 17 degrees clockwise from the lower-left, layered curved hair locks with vector highlights/shadows, oval eyes and blush, no nose. Optional mouth, default off; enabled by moon preset to match latest reference. Ear/crown variants retain extra top clearance. Original SVG artwork, no generative API. Default is blue shoulder-length hair and dark eyes on black, without ears/accessories. Existing saved choices are preserved.",
     "Hair: short, bob, shoulder length, long straight, long wavy, ponytail, twin tails, double buns; fixed matching bangs.",
     "Ears: none, cat, fox, rabbit, bear; one choice; outer color follows hair, pink inner ear.",

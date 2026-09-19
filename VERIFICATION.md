@@ -1,5 +1,7 @@
 # Verification — 2026-09-20
 
+Reference-width follow-up: horizontal radius increased again to 390 (height 375); right cap contour and side locks widened below the crown. Exported crystal preset inspected to verify fuller visible cheek and unchanged eyes. Both presets passed PNG/SVG download, restore and mobile/language checks after the final contour adjustment. Exact width identity is not quantitatively verified.
+
 Face enlargement revision: face radii changed to 355/375, with slightly wider front-hair framing and unchanged eye anchors. Offline build and reference-preset checks passed (actual PNG/SVG downloads, restore, mouth compatibility, three languages at 320px). Inspected the enlarged face and hair junctions in exported images. Local only.
 
 - Windows native, Node.js, PowerShell, headless Microsoft Edge through Playwright.

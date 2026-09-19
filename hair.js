@@ -3,7 +3,9 @@
 // a closed vector shape, so palette changes and standalone SVG export stay exact.
 function illustratedHair(style, color) {
   const base = color, shade = tone(color, -22), deep = tone(color, -38), shine = tone(color, 14);
-  let art = path('M156 793C110 602 135 410 340 334C553 249 776 350 832 532C879 678 847 825 799 951L724 975C789 808 727 654 686 570C594 465 334 471 258 625C221 713 216 793 230 851Z', shade);
+  let art = path('M156 793C110 602 135 410 340 334C553 249 776 350 832 532C929 678 917 825 879 951L804 975C859 808 767 654 716 570C594 465 334 471 258 625C221 713 216 793 230 851Z', shade);
+  // Move side locks progressively outward below the crown; bangs/eyes retain their anchors.
+  const openCheek = svg => `<g transform="matrix(1 0 .12 1 -39.6 0)">${svg}</g>`;
   const swept = [
     ['M505 331C359 309 189 413 164 611C151 686 156 737 177 774C166 626 273 612 371 492C337 568 285 631 250 660C387 619 481 508 505 331Z', base],
     ['M496 337C414 404 394 490 421 616C434 673 464 702 496 714L480 650C509 702 548 719 588 730L578 677L604 695C652 612 659 434 543 349Z', base],
@@ -25,12 +27,14 @@ function illustratedHair(style, color) {
     ]) art += path(d,c);
   } else {
     const transform=style===0?'translate(0 -12)':style===5?'translate(0 -6)':'translate(0 0)';
-    art += `<g transform="${transform}">${swept.map(([d,c])=>path(d,c)).join('')}</g>`;
+    art += `<g transform="${transform}">${swept.map(([d,c],i)=>[2,5,7].includes(i)?openCheek(path(d,c)):path(d,c)).join('')}</g>`;
   }
   if ([2,3,4,6].includes(style)) {
+    art += '<g transform="matrix(1 0 .12 1 -39.6 0)">';
     art += path('M795 586C869 724 792 864 822 978C831 1019 859 1056 894 1079C831 1080 803 1038 787 1007L802 1082C724 1031 743 953 749 886C710 942 695 975 659 982C742 899 771 749 750 662Z',base);
     art += path('M798 669C830 785 779 891 791 977C764 926 786 838 784 795C776 880 743 944 708 957C759 876 780 778 775 699Z',shade);
     art += path('M807 988C815 1026 846 1061 869 1070C831 1066 805 1031 794 1010Z',deep);
+    art += '</g>';
   }
   if (style===4) {
     art+=path('M811 706C861 755 807 820 830 870C860 929 831 987 804 1015C874 985 891 924 857 872C833 832 892 772 842 727Z',shine);
