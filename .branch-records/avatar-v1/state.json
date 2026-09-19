@@ -1,0 +1,22 @@
+{
+  "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
+  "requirements": [
+    "Fixed square half-head composition, oval eyes, blush, no mouth or nose; original SVG artwork, no generative API.",
+    "Hair: short, bob, shoulder length, long straight, long wavy, ponytail, twin tails, double buns; fixed matching bangs.",
+    "Ears: none, cat, fox, rabbit, bear; one choice; outer color follows hair, pink inner ear.",
+    "Accessories: none, crossed pins, star, bow, twin bows, flower, maid headband, crown; one choice with color.",
+    "Facewear: none, round, oval, square, cat-eye, heart glasses, eyepatch; one choice; colored frames/patch and screen-side choice.",
+    "Preset and custom hair/skin/eye/accessory colors; optional different eye colors.",
+    "Backgrounds: black, white, transparent, Tiffany blue with white dots, pink with white dots, transgender flag, pink, blue.",
+    "Real-time preview; explicit generation saves options in local browser history; identical visible configurations deduplicated; restore, download, delete, confirmed clear.",
+    "PNG 512/1024/2048 default 1024; standalone editable SVG; true transparency.",
+    "Simplified Chinese, English, Japanese; browser detection, English fallback, persisted manual selection.",
+    "Pale pink rounded responsive UI. Local implementation, verification and CF Pages deployment instructions."
+  ],
+  "constraints": ["No account or cross-device history.","No free dragging, scaling or rotation.","Do not deploy or push without the separately applicable authorization.","Reference-image instructions are visual reference only."],
+  "acceptance": ["All confirmed choices present and selectable.","PNG dimensions and transparent pixels verified.","History survives reload and restores options.","All three languages and 320/390-pixel layouts work.","Offline build produces deployable static assets."],
+  "status": "complete",
+  "integration": "not_applicable",
+  "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"]},
+  "next": "Open index.html for local use. Publish dist/ only after explicit confirmation of the Cloudflare account/project and operation."
+}

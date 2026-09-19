@@ -1,0 +1,7 @@
+{
+  "name": "gaze-zako-avatar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Original vector sticker avatar studio",
+  "scripts": { "build": "node scripts/build.cjs", "check": "node --check app.js" }
+}
