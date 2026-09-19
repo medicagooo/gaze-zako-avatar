@@ -33,7 +33,7 @@ function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryCol
  // Transform the entire character, never the background, so every sticker and export
  // shares the lower-left peek. Hair and ear tips may crop at the top. Saved options also
  // use this composition; history contains no raster snapshots or position overrides.
- const framing=s.ears===3?'translate(-145 -50) scale(1.07) rotate(17 500 700)':s.ears===2?'translate(-225 -145) scale(1.27) rotate(17 500 700)':s.ears===1?'translate(-245 -245) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -315) scale(1.38) rotate(17 500 700)':'translate(-268 -351) scale(1.25) rotate(17 500 700)';
+ const framing=s.ears===3?'translate(-145 5) scale(1.07) rotate(17 500 700)':s.ears===2?'translate(-225 -90) scale(1.27) rotate(17 500 700)':s.ears===1?'translate(-245 -190) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -260) scale(1.38) rotate(17 500 700)':'translate(-268 -296) scale(1.25) rotate(17 500 700)';
  let out=background(s)+`<g data-character="lower-left" transform="${framing}">`;
  // All silhouettes share a face anchor; alternate rear/front paths keep accessories aligned.
  const rear=[
@@ -55,7 +55,7 @@ out+=ellipse(500,811,390,395,s.skinColor);
 // Shorten locks around the crown to expose more forehead while retaining accessory anchors.
 out+=`<g transform="translate(-30 33) scale(1.06 .90)">${illustratedHair(s.hair,h)}</g>`;
 // Keep the original facewear anchors; lift the entire facial-detail group together.
-out+='<g transform="translate(0 -88)">';
+out+='<g transform="translate(0 -68)">';
 out+=ellipse(360,833,43,72,s.eyeColor)+ellipse(644,846,43,72,s.hetero?s.rightEye:s.eyeColor);
 out+=ellipse(275,920,50,29,'#f7b9c2','opacity=".65"')+ellipse(683,938,44,29,'#f7b9c2','opacity=".65"');
 if(s.mouth)out+='<path d="M462 928Q475 948 494 937Q508 929 522 940Q541 952 552 931" fill="none" stroke="#dba3a8" stroke-width="5" stroke-linecap="round"/>';

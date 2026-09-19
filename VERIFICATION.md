@@ -1,5 +1,7 @@
 # Verification — 2026-09-20
 
+Height correction v8: lowered v7 character by 55 canvas units and restored facial offset -68. Wider cheeks and shorter bangs retained. Offline build and both reference-preset export/history/mobile checks passed; exported composition visually inspected. Local only.
+
 Higher face revision: all framing moved up 70, facial detail offset changed from -68 to -88, face radii 390/395 at 500,811, front hair vertically shortened around crown. Both reference presets passed actual exports and persistence/mobile checks. Full browser regression and ear/accessory contact sheet checked; intentional top cropping is allowed by the latest request. Local only.
 
 Reference-width follow-up: horizontal radius increased again to 390 (height 375); right cap contour and side locks widened below the crown. Exported crystal preset inspected to verify fuller visible cheek and unchanged eyes. Both presets passed PNG/SVG download, restore and mobile/language checks after the final contour adjustment. Exact width identity is not quantitatively verified.
