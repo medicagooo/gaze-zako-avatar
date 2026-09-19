@@ -19,7 +19,7 @@ Open `index.html` in a modern browser. For stable history storage, use the same 
 ## Behavior
 
 - Eight hairstyles, five ear choices including none, eight hair accessory choices including none, seven facewear choices including none, eight backgrounds.
-- Fixed square composition. Color palettes plus custom colors, optional different eye colors. Eyepatch side refers to screen coordinates.
+- Fixed square composition: enlarged head leans clockwise and peeks from the lower-left corner. All character layers move together while the background remains fixed. Rabbit ears use a smaller scale for top clearance. Previously saved history options also use the new framing. Color palettes plus custom colors, optional different eye colors. Eyepatch side refers to screen coordinates.
 - PNG: 512, 1024 or 2048 pixels. SVG: standalone vector shapes with no raster image, font or remote references. Transparent export contains no checkerboard.
 - Preview changes are temporary. Create saves validated options in localStorage (`gaze-zako-avatar.history.v1`). Identical visible configurations are deduplicated. History can be restored, downloaded or deleted. Clearing all history requires confirmation.
 - History is local to browser/origin. Browser-data deletion loses it. There is no cross-device synchronization. Storage failures are surfaced, and damaged stored data is not silently overwritten.

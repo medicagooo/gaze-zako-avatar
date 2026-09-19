@@ -1,7 +1,7 @@
 {
   "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
   "requirements": [
-    "Fixed square half-head composition, oval eyes, blush, no mouth or nose; original SVG artwork, no generative API.",
+    "Fixed square composition with enlarged head leaning clockwise and peeking from the lower-left corner, oval eyes, blush, no mouth or nose; original SVG artwork, no generative API. Tall rabbit ears use a smaller scale to retain top clearance.",
     "Hair: short, bob, shoulder length, long straight, long wavy, ponytail, twin tails, double buns; fixed matching bangs.",
     "Ears: none, cat, fox, rabbit, bear; one choice; outer color follows hair, pink inner ear.",
     "Accessories: none, crossed pins, star, bow, twin bows, flower, maid headband, crown; one choice with color.",

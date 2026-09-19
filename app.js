@@ -24,7 +24,12 @@ function ellipse(x,y,rx,ry,fill,extra=''){return `<ellipse cx="${x}" cy="${y}" r
 function background(s){const colors=['#202023','#ffffff','none','#81d8d0','#f4b5d0',null,'#f4bfd4','#b7d9ef'];if(s.background===5)return ['#5bcefa','#f5a9b8','#ffffff','#f5a9b8','#5bcefa'].map((c,i)=>`<rect y="${i*200}" width="1000" height="200" fill="${c}"/>`).join('');let out=`<rect width="1000" height="1000" fill="${colors[s.background]}"/>`;if([3,4].includes(s.background)){for(let y=45;y<1000;y+=112)for(let x=(Math.floor(y/112)%2?85:30);x<1000;x+=112)out+=ellipse(x,y,10,10,'#ffffff');}return out;}
 function bow(x,y,c,scale=1){return `<g transform="translate(${x} ${y}) scale(${scale})">${path('M0 0Q-95-80-95-28Q-112 42-16 17L0 4Q85 67 91 22Q118-48 25-15Z',c)}${ellipse(0,2,18,22,tone(c,-18))}</g>`;}
 function star(x,y,c){return `<g transform="translate(${x} ${y})">${path('M0-40 12-13 42-10 20 11 25 42 0 27-26 42-21 11-43-10-12-13Z',c)}</g>`;}
-function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),light=tone(h,10),a=s.accessoryColor,f=s.faceColor;let out=background(s);
+function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),light=tone(h,10),a=s.accessoryColor,f=s.faceColor;
+ // Transform the entire character, never the background, so every sticker and export
+ // shares the lower-left peek. Tall rabbit ears retain clearance. Saved options also
+ // use this composition; history contains no raster snapshots or position overrides.
+ const framing=s.ears===3?'translate(-100 0) scale(.98) rotate(14 500 700)':'translate(-150 -190) scale(1.2) rotate(14 500 700)';
+ let out=background(s)+`<g data-character="lower-left" transform="${framing}">`;
  // All silhouettes share a face anchor; alternate rear/front paths keep accessories aligned.
  const rear=[
  'M185 965Q96 703 208 480Q325 283 548 322Q836 338 834 677L904 917 778 881 785 1000H190Z',
@@ -65,7 +70,7 @@ if(s.accessory===4)out+=bow(ax-30,578,a,.64)+bow(1000-ax+30,581,a,.64);
 if(s.accessory===5){for(let i=0;i<5;i++)out+=ellipse(ax+Math.cos(i*Math.PI*2/5)*29,562+Math.sin(i*Math.PI*2/5)*29,23,23,a);out+=ellipse(ax,562,17,17,'#eac975');}
 if(s.accessory===6){out+=`<path d="M242 478Q493 215 755 478" fill="none" stroke="${tone(a,-30)}" stroke-width="52"/>`;for(let i=0;i<9;i++){const x=258+i*60,y=326+Math.pow((x-498)/240,2)*120;out+=ellipse(x,y,39,42,a);}out+=bow(245,468,shadow,.65)+bow(754,468,shadow,.65);}
 if(s.accessory===7)out+=path('M405 324 382 224 447 262 495 185 547 262 614 224 589 324Z',a)+path('M409 306H586V331H409Z',tone(a,-22))+ellipse(495,273,12,15,'#e69eb8');
-return `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="gaze zako avatar avatar">${out}</svg>`;
+return `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="gaze zako avatar">${out}</g></svg>`;
 }
 function swatches(key,label){const colors=PALETTES[key]||PALETTES.eyeColor;return `<div class="color-section"><label class="color-title" for="color-${key}">${label}</label><div class="swatches">${colors.map(c=>`<button class="swatch ${state[key]===c?'active':''}" style="--swatch:${c}" data-color-key="${key}" data-color="${c}" title="${label}: ${c}" aria-label="${label}: ${c}" aria-pressed="${state[key]===c}"></button>`).join('')}<input class="custom-color" id="color-${key}" type="color" value="${state[key]}" data-custom="${key}" title="${t('custom')}"><span class="color-hex">${state[key].toUpperCase()}</span></div></div>`;}
 function renderPanel(){const listKey=tab==='hair'?'hairNames':tab==='ears'?'earNames':tab==='accessory'?'accessoryNames':tab==='face'?'faceNames':'backgroundNames';let html=`<div class="panel-heading"><h2>${t(tab)}</h2>${LIMITS[tab]?`<span class="count">${String(LIMITS[tab]).padStart(2,'0')}</span>`:''}</div>`;

@@ -12,3 +12,7 @@
 - Desktop and mobile screenshots inspected. Narrow-screen tiles adjusted to three columns, category navigation wraps to two rows.
 
 Scope limits: Cloudflare publication, remote CI, real Safari/iOS and Firefox were not tested. History depends on the browser origin and is not a backup service. Artwork is an original geometric interpretation of the provided visual reference, not a copy of its rendered characters.
+
+## Lower-left framing revision — 2026-09-20
+
+Changed the shared character group to rotate 14 degrees clockwise, enlarge and offset toward the left. Background rendering is outside this group. Rabbit ears use a smaller character scale for top clearance. Existing stored options remain valid and re-render with this framing. Re-ran the offline build and browser regression suite, including real PNG/SVG downloads, history restoration and mobile layouts. Inspected revised desktop/mobile screenshots; adjusted vertical placement to keep both eyes visible. This revision is local, not pushed or deployed.
