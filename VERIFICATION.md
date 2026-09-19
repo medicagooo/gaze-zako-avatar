@@ -1,5 +1,7 @@
 # Verification — 2026-09-20
 
+Face enlargement revision: face radii changed to 355/375, with slightly wider front-hair framing and unchanged eye anchors. Offline build and reference-preset checks passed (actual PNG/SVG downloads, restore, mouth compatibility, three languages at 320px). Inspected the enlarged face and hair junctions in exported images. Local only.
+
 - Windows native, Node.js, PowerShell, headless Microsoft Edge through Playwright.
 - `npm --offline run build`: passed, seven static deployable assets in `dist/`, no dependency download.
 - `npm --offline run check`: passed.

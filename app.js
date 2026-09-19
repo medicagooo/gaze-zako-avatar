@@ -50,8 +50,9 @@ out+=path(rear[s.hair],shadow);
 if(s.ears===1||s.ears===2){const tall=s.ears===2;out+=path(`M194 581Q136 410 ${tall?'115 163':'139 276'}Q305 300 357 437Z`,h)+path(`M806 581Q864 410 ${tall?'885 163':'861 276'}Q695 300 643 437Z`,h);out+=path(`M207 505  ${tall?'157 225':'177 328'} 299 432Z`,'#e9a7b9')+path(`M793 505 ${tall?'843 225':'823 328'} 701 432Z`,'#e9a7b9');}
 if(s.ears===3){out+=path('M260 463Q129 161 213 52Q297 16 339 415Z',h)+path('M650 419Q696 7 782 60Q877 137 742 468Z',h)+path('M266 380Q198 132 224 98Q259 84 296 376Z','#e9a7b9')+path('M694 381Q729 98 766 103Q805 137 738 382Z','#e9a7b9');}
 if(s.ears===4){out+=ellipse(222,373,110,113,h)+ellipse(778,373,110,113,h)+ellipse(222,374, 60,65,'#e9a7b9')+ellipse(778,374,60,65,'#e9a7b9');}
-out+=ellipse(500,831,321,348,s.skinColor);
-out+=illustratedHair(s.hair,h);
+// Enlarge cheeks independently of facial details; all previews and exports share this contour.
+out+=ellipse(500,831,355,375,s.skinColor);
+out+=`<g transform="translate(-30 10) scale(1.06 .97)">${illustratedHair(s.hair,h)}</g>`;
 // Keep the original facewear anchors; lift the entire facial-detail group together.
 out+='<g transform="translate(0 -68)">';
 out+=ellipse(360,833,43,72,s.eyeColor)+ellipse(644,846,43,72,s.hetero?s.rightEye:s.eyeColor);
