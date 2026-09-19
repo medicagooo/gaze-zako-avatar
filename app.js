@@ -13,7 +13,25 @@ TEXT.zh.mouth='小嘴';TEXT.en.mouth='Small mouth';TEXT.ja.mouth='小さな口';
 DEFAULT.mouth=false;
 TEXT.en.accessoryNames.push('Crystal bow ensemble','Moon rose maid ensemble');
 TEXT.ja.accessoryNames.push('氷晶リボンセット','月と薔薇のメイドセット');
-const LIMITS={hair:8,ears:5,accessory:10,face:7,background:8};
+TEXT.zh.accessoryNames.push('同侧双蝴蝶结','侧边丝带发夹','骨形发夹','蝴蝶结与波浪夹','交叠长发夹','荷叶发带与交叉夹');
+TEXT.en.accessoryNames.push('Stacked bows','Side ribbon clips','Bone clip','Bows and wave clips','Crossed bar clips','Ruffled band and pins');
+TEXT.ja.accessoryNames.push('重ねリボン','サイドリボンピン','ボーンピン','リボンと波形ピン','クロスバーピン','フリルバンドとピン');
+const LIMITS={hair:8,ears:5,accessory:16,face:7,background:8};
+const PRESETS={
+ crystal:{hair:2,accessory:8,hairColor:'#acd2f2',accessoryColor:'#6998d5',eyeColor:'#23263e'},
+ moon:{hair:2,accessory:9,hairColor:'#8886a5',accessoryColor:'#514975',eyeColor:'#23263e',mouth:true},
+ white:{hair:5,accessory:15,hairColor:'#f5f3f2',accessoryColor:'#41404c',eyeColor:'#85b7cd'},
+ lilac:{hair:6,ears:1,accessory:11,hairColor:'#d2bce6',accessoryColor:'#fafaff',eyeColor:'#9875bd'},
+ dark:{hair:0,ears:1,accessory:4,hairColor:'#464352',accessoryColor:'#b84e59',eyeColor:'#dd815e'},
+ glasses:{hair:0,accessory:10,face:1,hairColor:'#f0f1f4',accessoryColor:'#484656',faceColor:'#bdae9e',eyeColor:'#76a7c5'},
+ pink:{hair:6,ears:4,accessory:12,hairColor:'#efb4ca',accessoryColor:'#fffaff',eyeColor:'#82afd0'},
+ blue:{hair:0,accessory:10,hairColor:'#c2d2ed',accessoryColor:'#454453',eyeColor:'#7fb2d1'},
+ purple:{hair:6,ears:1,accessory:13,hairColor:'#77688e',accessoryColor:'#ecc8e7',eyeColor:'#a487c9'},
+ maid:{hair:3,accessory:6,hairColor:'#ecd6ac',accessoryColor:'#fffaf5',eyeColor:'#83b6d0'},
+ rabbit:{hair:6,ears:3,accessory:4,hairColor:'#45414c',accessoryColor:'#d67883',eyeColor:'#d78565'},
+ silver:{hair:0,accessory:14,hairColor:'#c3c1cb',accessoryColor:'#55545f',eyeColor:'#83b3d1'}
+};
+const PRESET_NAMES={zh:['冰晶','月亮女仆','白发发带','紫发猫耳','黑发猫耳','白发眼镜','粉发熊耳','蓝发双结','紫发波浪夹','金发女仆','黑发兔耳','银发长夹'],en:['Crystal','Moon maid','White band','Lilac cat','Dark cat','White glasses','Pink bear','Blue bows','Purple clips','Blonde maid','Dark rabbit','Silver clips'],ja:['氷晶','月メイド','白髪バンド','紫髪猫耳','黒髪猫耳','白髪メガネ','桃髪くま耳','青髪リボン','紫髪ピン','金髪メイド','黒髪うさ耳','銀髪ピン']};
 const PALETTES={hairColor:['#f5f1ed','#e7dff0','#b6c9e4','#efbfd0','#efd7a0','#bb8d6b','#846172','#484250','#262732'],skinColor:['#fff0e5','#f8dfcb','#efc7aa','#d7a27f','#b67e5d','#885940','#593d32'],eyeColor:['#6ca9c5','#8b73ac','#75a18c','#d18163','#dba345','#a36383','#635364','#343844'],accessoryColor:['#fff9fc','#f0abc8','#a9cde5','#c3b5df','#f0d18c','#8cbcb2','#635364'],faceColor:['#635364','#c49a7c','#d393ad','#a6bdcc','#f3dfb3','#fff9fc','#25252c']};
 const STORAGE='gaze-zako-avatar.history.v1';
 let lang='en',state={...DEFAULT},tab='hair',size=1024,history=[],storageBlocked=false;
@@ -33,7 +51,7 @@ function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryCol
  // Transform the entire character, never the background, so every sticker and export
  // shares the lower-left peek. Hair and ear tips may crop at the top. Saved options also
  // use this composition; history contains no raster snapshots or position overrides.
- const framing=s.ears===3?'translate(-145 5) scale(1.07) rotate(17 500 700)':s.ears===2?'translate(-225 -90) scale(1.27) rotate(17 500 700)':s.ears===1?'translate(-245 -190) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -260) scale(1.38) rotate(17 500 700)':'translate(-268 -296) scale(1.25) rotate(17 500 700)';
+ const framing=s.ears===3?'translate(-145 25) scale(1.07) rotate(17 500 700)':s.ears===2?'translate(-225 -70) scale(1.27) rotate(17 500 700)':s.ears===1?'translate(-245 -170) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -240) scale(1.38) rotate(17 500 700)':'translate(-268 -276) scale(1.25) rotate(17 500 700)';
  let out=background(s)+`<g data-character="lower-left" transform="${framing}">`;
  // All silhouettes share a face anchor; alternate rear/front paths keep accessories aligned.
  const rear=[
@@ -75,7 +93,7 @@ out+=referenceAccessory(s,'front');
 return `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="gaze zako avatar">${out}</g></svg>`;
 }
 function swatches(key,label){const colors=PALETTES[key]||PALETTES.eyeColor;return `<div class="color-section"><label class="color-title" for="color-${key}">${label}</label><div class="swatches">${colors.map(c=>`<button class="swatch ${state[key]===c?'active':''}" style="--swatch:${c}" data-color-key="${key}" data-color="${c}" title="${label}: ${c}" aria-label="${label}: ${c}" aria-pressed="${state[key]===c}"></button>`).join('')}<input class="custom-color" id="color-${key}" type="color" value="${state[key]}" data-custom="${key}" title="${t('custom')}"><span class="color-hex">${state[key].toUpperCase()}</span></div></div>`;}
-function renderPanel(){document.querySelector('[data-preset="crystal"]').textContent=TEXT[lang].accessoryNames[8];document.querySelector('[data-preset="moon"]').textContent=TEXT[lang].accessoryNames[9];const listKey=tab==='hair'?'hairNames':tab==='ears'?'earNames':tab==='accessory'?'accessoryNames':tab==='face'?'faceNames':'backgroundNames';let html=`<div class="panel-heading"><h2>${t(tab)}</h2>${LIMITS[tab]?`<span class="count">${String(LIMITS[tab]).padStart(2,'0')}</span>`:''}</div>`;
+function renderPanel(){document.querySelector('#reference-presets').innerHTML=Object.entries(PRESETS).map(([key,config],i)=>`<button data-preset="${key}" title="${PRESET_NAMES[lang][i]}">${renderAvatar({...DEFAULT,...config})}<span>${PRESET_NAMES[lang][i]}</span></button>`).join('');const listKey=tab==='hair'?'hairNames':tab==='ears'?'earNames':tab==='accessory'?'accessoryNames':tab==='face'?'faceNames':'backgroundNames';let html=`<div class="panel-heading"><h2>${t(tab)}</h2>${LIMITS[tab]?`<span class="count">${String(LIMITS[tab]).padStart(2,'0')}</span>`:''}</div>`;
 if(LIMITS[tab])html+=`<div class="tiles">${TEXT[lang][listKey].map((name,i)=>{let sample={...state,[tab]:i};if(tab==='hair')sample={...sample,accessory:0,ears:0,face:0};if(tab==='ears')sample.accessory=0;return `<button class="tile ${state[tab]===i?'active':''}" data-option="${i}" aria-pressed="${state[tab]===i}"><div class="tile-visual">${tab==='background'?`<svg viewBox="0 0 1000 1000" aria-hidden="true">${i===2?'<defs><pattern id="checker" width="200" height="200" patternUnits="userSpaceOnUse"><rect width="200" height="200" fill="white"/><path d="M0 0H100V100H0ZM100 100H200V200H100Z" fill="#e9e4e8"/></pattern></defs><rect width="1000" height="1000" fill="url(#checker)"/>':background(sample)}</svg>`:renderAvatar(sample)}</div><span class="tile-label">${name}</span></button>`;}).join('')}</div>`;
 if(tab==='hair')html+=swatches('hairColor',t('hairColor'));
 if(tab==='skin')html+=swatches('skinColor',t('skinColor'));
@@ -97,5 +115,5 @@ document.querySelector('#app').addEventListener('click',e=>{const b=e.target.clo
 document.querySelector('#app').addEventListener('input',e=>{const key=e.target.dataset.custom;if(key){state[key]=e.target.value;document.querySelector('#preview').innerHTML=renderAvatar(state);e.target.nextElementSibling.textContent=e.target.value.toUpperCase();document.querySelectorAll(`[data-color-key="${key}"]`).forEach(b=>{b.classList.toggle('active',b.dataset.color===state[key]);b.setAttribute('aria-pressed',b.dataset.color===state[key]);});}});
 document.querySelector('#app').addEventListener('change',e=>{if(['hetero','mouth'].includes(e.target.id)){state[e.target.id]=e.target.checked;update();}if(e.target.id==='size')size=Number(e.target.value);});
 document.querySelector('#confirm').addEventListener('close',()=>{if(document.querySelector('#confirm').returnValue==='confirm'&&persist([])){renderHistory();toast('cleared');}});
-document.querySelector('#reference-presets').addEventListener('click',e=>{const preset=e.target.closest('[data-preset]')?.dataset.preset;if(!preset)return;state={...DEFAULT,hair:2,accessory:preset==='moon'?9:8,hairColor:preset==='moon'?'#8886a5':'#acd2f2',accessoryColor:preset==='moon'?'#514975':'#6998d5',eyeColor:'#23263e',skinColor:'#fff0e9',mouth:preset==='moon',background:0};update();});
+document.querySelector('#reference-presets').addEventListener('click',e=>{const preset=e.target.closest('[data-preset]')?.dataset.preset;if(!PRESETS[preset])return;state={...DEFAULT,...PRESETS[preset]};update();});
 loadHistory();render();

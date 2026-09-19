@@ -2,6 +2,7 @@
 // Reference-inspired ensembles have rear and front passes so ribbon tails never
 // cover the face. All shapes stay inside the same character transform as the hair.
 function referenceAccessory(s, layer) {
+  if (s.accessory >= 10) return layer === 'front' ? sampleAccessory(s) : '';
   const moon = s.accessory === 9;
   if (s.accessory !== 8 && !moon) return '';
   const color = s.accessoryColor, dark = tone(color, -30), pale = tone(color, 30);
@@ -42,4 +43,20 @@ function referenceAccessory(s, layer) {
     out += `<g transform="translate(907 621) rotate(-12)">${path('M17-38C-33-54-63 7-24 34C-2 50 27 36 37 17C1 34-22-7 17-38Z','#e7c980')}<g transform="translate(13 -7) scale(.43)">${star(0,0,'#f2d992')}</g></g>`;
   }
   return out;
+}
+
+// IDs append to existing choices so saved avatars retain their original accessories.
+function sampleAccessory(s) {
+  const c=s.accessoryColor;
+  if(s.accessory===10) return bow(288,511,c,.4)+bow(302,564,c,.4);
+  if(s.accessory===11) return bow(246,431,c,.55)+`<g stroke="${c}" stroke-width="10" stroke-linecap="round"><path d="M234 485 283 490M240 513 288 518"/></g>`;
+  if(s.accessory===12) return `<g transform="translate(278 513) rotate(-14)">${path('M-37-16Q-55-36-61-13Q-73 8-47 13L-21 11 21 11 47 13Q73 8 61-13Q55-36 37-16Z',c)}</g>`;
+  if(s.accessory===13) return bow(237,540,c,.35)+bow(760,552,c,.35)+`<g fill="none" stroke="${c}" stroke-width="7" stroke-linecap="round"><path d="M710 481l16-13 15 14 17-12M719 510l16-13 15 14 17-12"/></g>`;
+  if(s.accessory===14) return path('M698 471 724 459 752 554 727 563Z',c)+path('M684 525 782 510 789 532 691 548Z',c)+ellipse(730,547,17,18,c);
+  if(s.accessory===15) {
+    let out='<path d="M579 322Q750 362 798 530" fill="none" stroke="'+c+'" stroke-width="27"/>';
+    for(let i=0;i<8;i++)out+=ellipse(599+i*26,330+i*i*3,22,29,c,`transform="rotate(${-25+i*10} ${599+i*26} ${330+i*i*3})"`);
+    return out+`<g stroke="${c}" stroke-width="11"><path d="M261 497 318 519M267 529 310 481"/></g>`;
+  }
+  return '';
 }

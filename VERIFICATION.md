@@ -1,5 +1,7 @@
 # Verification — 2026-09-20
 
+Sample materials v9: framing lowered another 20 units. Offline build passed. All 12 presets validated, saved, reloaded and restored with exact configuration equality; 16 accessory choices rendered. Three languages at 320/390/1440 passed width checks. Full regression passed PNG dimensions, standalone SVG, transparent-background pixels, history/dedup/clear, corrupt/quota handling and no browser errors. Inspected 12-avatar contact sheet and desktop editor. Original vector approximations support corresponding combinations, not pixel-identical copies. Not pushed or deployed.
+
 Height correction v8: lowered v7 character by 55 canvas units and restored facial offset -68. Wider cheeks and shorter bangs retained. Offline build and both reference-preset export/history/mobile checks passed; exported composition visually inspected. Local only.
 
 Higher face revision: all framing moved up 70, facial detail offset changed from -68 to -88, face radii 390/395 at 500,811, front hair vertically shortened around crown. Both reference presets passed actual exports and persistence/mobile checks. Full browser regression and ear/accessory contact sheet checked; intentional top cropping is allowed by the latest request. Local only.

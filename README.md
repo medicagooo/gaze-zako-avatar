@@ -18,7 +18,8 @@ Open `index.html` in a modern browser. For stable history storage, use the same 
 
 ## Behavior
 
-- Eight hairstyles, five ear choices including none, ten hair accessory choices including none, seven facewear choices including none, eight backgrounds. Optional small mouth under Facewear, default off.
+- Eight hairstyles, five ear choices including none, sixteen hair accessory choices including none, seven facewear choices including none, eight backgrounds. Optional small mouth under Facewear, default off.
+- Twelve localized thumbnail presets include the ten reference-sheet combinations. Selecting a preset replaces current editable options; Create saves it to history. New accessories append IDs 10-15 without reassigning old IDs. `PRESETS` in app.js supplies configurations; `sampleAccessory` in accessories.js supplies new vector shapes.
 - Crystal bow and moon rose maid presets set coordinated colors and accessories. These are original vector interpretations, not exact copies of the reference images.
 - Fixed square composition: enlarged head leans clockwise and peeks from the lower-left corner. All character layers move together while the background remains fixed. Rabbit ears use a smaller scale for top clearance. Previously saved history options also use the new framing. Color palettes plus custom colors, optional different eye colors. Eyepatch side refers to screen coordinates.
 - PNG: 512, 1024 or 2048 pixels. SVG: standalone vector shapes with no raster image, font or remote references. Transparent export contains no checkerboard.
