@@ -7,7 +7,7 @@ const TEXT = {
  en:{title:'Your avatar',edit:'Customize',hair:'Hair',skin:'Skin',eyes:'Eyes',ears:'Ears',accessory:'Accessories',face:'Facewear',background:'Background',generate:'Create avatar',history:'Your collection',empty:'No avatars yet',clear:'Clear history',restore:'Edit',remove:'Delete',random:'Randomize',reset:'Reset',color:'Color',hairColor:'Hair color',skinColor:'Skin tone',eyeColor:'Eye color',leftEye:'Screen-left eye',rightEye:'Screen-right eye',hetero:'Different eye colors',side:'Covered eye',left:'Screen left',right:'Screen right',custom:'Custom color',saved:'Avatar saved to your collection',duplicate:'This avatar is already in your collection',restored:'Avatar restored for editing',cleared:'History cleared',storageError:'Unable to save history. Check browser storage or privacy settings.',corrupt:'Some history could not be read. Original data was preserved.',downloadError:'Download failed. Please try again.',confirmClear:'Clear your entire avatar history?',cancel:'Cancel',confirm:'Clear',download:'Download',size:'PNG size',footer:'gaze zako avatar · Avatar Studio',hairNames:['Short','Bob','Shoulder length','Long straight','Long wavy','Ponytail','Twin tails','Double buns'],earNames:['None','Cat','Fox','Rabbit','Bear'],accessoryNames:['None','Crossed pins','Star clip','Bow','Twin bows','Flower','Maid headband','Crown'],faceNames:['None','Round glasses','Oval glasses','Square glasses','Cat-eye glasses','Heart glasses','Eyepatch'],backgroundNames:['Black','White','Transparent','Tiffany + dots','Pink + dots','Transgender flag','Pink','Blue']},
  ja:{title:'マイアバター',edit:'カスタマイズ',hair:'髪型',skin:'肌',eyes:'目',ears:'耳',accessory:'髪飾り',face:'顔アクセ',background:'背景',generate:'アバターを作成',history:'作成履歴',empty:'まだアバターがありません',clear:'履歴を全削除',restore:'編集',remove:'削除',random:'ランダム',reset:'リセット',color:'カラー',hairColor:'髪の色',skinColor:'肌の色',eyeColor:'目の色',leftEye:'画面左の目',rightEye:'画面右の目',hetero:'オッドアイ',side:'隠す目',left:'画面左',right:'画面右',custom:'カスタムカラー',saved:'履歴に保存しました',duplicate:'同じアバターが履歴にあります',restored:'編集を再開できます',cleared:'履歴を削除しました',storageError:'保存できません。ブラウザーの空き容量やプライバシー設定をご確認ください。',corrupt:'一部の履歴を読み込めませんでした。元のデータは保持されています。',downloadError:'ダウンロードに失敗しました。もう一度お試しください。',confirmClear:'すべての作成履歴を削除しますか？',cancel:'キャンセル',confirm:'削除',download:'ダウンロード',size:'PNG サイズ',footer:'gaze zako avatar · アバタースタジオ',hairNames:['ショート','ボブ','ミディアム','ロングストレート','ロングウェーブ','ポニーテール','ツインテール','お団子'],earNames:['なし','猫耳','狐耳','うさ耳','くま耳'],accessoryNames:['なし','クロスピン','星のピン','リボン','ツインリボン','お花','メイドカチューシャ','王冠'],faceNames:['なし','丸メガネ','楕円メガネ','四角メガネ','キャットアイ','ハートメガネ','眼帯'],backgroundNames:['黒','白','透明','ティファニー＋水玉','ピンク＋水玉','トランスジェンダーフラッグ','ピンク','ブルー']}
 };
-const DEFAULT={hair:6,hairColor:'#e7dff0',skinColor:'#fff0e5',eyeColor:'#8b73ac',rightEye:'#6ca9c5',hetero:false,ears:0,accessory:4,accessoryColor:'#fff9fc',face:0,faceColor:'#635364',side:'left',background:3};
+const DEFAULT={hair:2,hairColor:'#a9ceef',skinColor:'#fff0e8',eyeColor:'#242b3b',rightEye:'#6ca9c5',hetero:false,ears:0,accessory:0,accessoryColor:'#fff9fc',face:0,faceColor:'#635364',side:'left',background:0};
 const LIMITS={hair:8,ears:5,accessory:8,face:7,background:8};
 const PALETTES={hairColor:['#f5f1ed','#e7dff0','#b6c9e4','#efbfd0','#efd7a0','#bb8d6b','#846172','#484250','#262732'],skinColor:['#fff0e5','#f8dfcb','#efc7aa','#d7a27f','#b67e5d','#885940','#593d32'],eyeColor:['#6ca9c5','#8b73ac','#75a18c','#d18163','#dba345','#a36383','#635364','#343844'],accessoryColor:['#fff9fc','#f0abc8','#a9cde5','#c3b5df','#f0d18c','#8cbcb2','#635364'],faceColor:['#635364','#c49a7c','#d393ad','#a6bdcc','#f3dfb3','#fff9fc','#25252c']};
 const STORAGE='gaze-zako-avatar.history.v1';
@@ -24,11 +24,11 @@ function ellipse(x,y,rx,ry,fill,extra=''){return `<ellipse cx="${x}" cy="${y}" r
 function background(s){const colors=['#202023','#ffffff','none','#81d8d0','#f4b5d0',null,'#f4bfd4','#b7d9ef'];if(s.background===5)return ['#5bcefa','#f5a9b8','#ffffff','#f5a9b8','#5bcefa'].map((c,i)=>`<rect y="${i*200}" width="1000" height="200" fill="${c}"/>`).join('');let out=`<rect width="1000" height="1000" fill="${colors[s.background]}"/>`;if([3,4].includes(s.background)){for(let y=45;y<1000;y+=112)for(let x=(Math.floor(y/112)%2?85:30);x<1000;x+=112)out+=ellipse(x,y,10,10,'#ffffff');}return out;}
 function bow(x,y,c,scale=1){return `<g transform="translate(${x} ${y}) scale(${scale})">${path('M0 0Q-95-80-95-28Q-112 42-16 17L0 4Q85 67 91 22Q118-48 25-15Z',c)}${ellipse(0,2,18,22,tone(c,-18))}</g>`;}
 function star(x,y,c){return `<g transform="translate(${x} ${y})">${path('M0-40 12-13 42-10 20 11 25 42 0 27-26 42-21 11-43-10-12-13Z',c)}</g>`;}
-function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),light=tone(h,10),a=s.accessoryColor,f=s.faceColor;
+function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryColor,f=s.faceColor;
  // Transform the entire character, never the background, so every sticker and export
  // shares the lower-left peek. Tall rabbit ears retain clearance. Saved options also
  // use this composition; history contains no raster snapshots or position overrides.
- const framing=s.ears===3?'translate(-100 0) scale(.98) rotate(14 500 700)':'translate(-150 -190) scale(1.2) rotate(14 500 700)';
+ const framing=s.ears===3?'translate(-145 20) scale(1.07) rotate(14 500 700)':s.ears===2?'translate(-225 -75) scale(1.27) rotate(14 500 700)':s.ears===1?'translate(-245 -175) scale(1.3) rotate(14 500 700)':s.accessory===7?'translate(-245 -245) scale(1.38) rotate(14 500 700)':'translate(-245 -310) scale(1.38) rotate(14 500 700)';
  let out=background(s)+`<g data-character="lower-left" transform="${framing}">`;
  // All silhouettes share a face anchor; alternate rear/front paths keep accessories aligned.
  const rear=[
@@ -45,30 +45,22 @@ if(s.ears===1||s.ears===2){const tall=s.ears===2;out+=path(`M194 581Q136 410 ${t
 if(s.ears===3){out+=path('M260 463Q129 161 213 52Q297 16 339 415Z',h)+path('M650 419Q696 7 782 60Q877 137 742 468Z',h)+path('M266 380Q198 132 224 98Q259 84 296 376Z','#e9a7b9')+path('M694 381Q729 98 766 103Q805 137 738 382Z','#e9a7b9');}
 if(s.ears===4){out+=ellipse(222,373,110,113,h)+ellipse(778,373,110,113,h)+ellipse(222,374, 60,65,'#e9a7b9')+ellipse(778,374,60,65,'#e9a7b9');}
 out+=ellipse(500,831,321,348,s.skinColor);
-const fronts=[
- 'M167 708Q124 393 424 329Q730 258 835 549L851 781Q737 725 711 602L685 701Q587 647 539 521Q527 675 435 743L396 573Q338 694 240 769L257 638Z',
- 'M149 775Q95 392 422 324Q783 262 856 610L851 861 758 895 728 615Q638 650 561 599L535 535 512 621Q383 656 286 614L254 897 159 860Z',
- 'M160 806Q97 430 381 336Q701 245 821 528L839 828 746 967Q782 746 703 597Q640 739 575 754Q545 644 488 531Q450 715 334 769L348 571Q270 689 252 914Z',
- 'M143 1000 154 641Q158 368 423 324Q755 275 843 575L876 1000 759 1000 731 613Q648 750 603 767L557 552Q514 718 445 760L422 565Q346 704 284 759L251 1000Z',
- 'M158 1000Q99 936 166 843Q104 741 172 617Q143 357 434 322Q753 281 831 565Q881 658 825 769Q909 866 835 1000L753 1000Q819 876 748 791L713 607Q640 759 580 776L534 540Q470 734 358 773L368 574Q255 713 263 830Q330 920 252 1000Z',
- 'M168 784Q105 462 353 349Q683 234 825 511L848 779Q741 708 711 572L676 716Q563 662 517 501Q415 731 253 779L278 633Z',
- 'M159 822Q118 470 338 353Q653 229 812 492Q866 609 840 824L763 900 715 600Q668 733 605 758Q514 697 477 532Q429 682 339 750L356 558Q265 689 245 902Z',
- 'M164 811Q103 478 351 348Q677 242 822 513L837 827 753 797 711 598Q665 702 595 741L538 524Q463 709 351 763L367 548Q266 652 245 819Z'];
-out+=path(fronts[s.hair],h);
-out+=path('M253 532Q323 364 483 357Q317 424 253 532Z',light)+path('M761 532Q710 395 598 361Q735 386 795 552Z',shadow);
-if([0,5,6,7].includes(s.hair))out+=path('M496 340Q447 202 552 250Q581 278 542 307Q564 259 526 264Q480 265 521 340Z',h);
-out+=ellipse(360,833,40,65,s.eyeColor,'transform="rotate(15 360 833)"')+ellipse(644,846,40,65,s.hetero?s.rightEye:s.eyeColor,'transform="rotate(15 644 846)"');
-out+=ellipse(275,908,45,25,'#f5b7bd','opacity=".7" transform="rotate(12 275 908)"')+ellipse(725,922,45,25,'#f5b7bd','opacity=".7" transform="rotate(12 725 922)"');
+out+=illustratedHair(s.hair,h);
+// Keep the original facewear anchors; lift the entire facial-detail group together.
+out+='<g transform="translate(0 -68)">';
+out+=ellipse(360,833,43,72,s.eyeColor)+ellipse(644,846,43,72,s.hetero?s.rightEye:s.eyeColor);
+out+=ellipse(275,920,50,29,'#f7b9c2','opacity=".65"')+ellipse(683,938,44,29,'#f7b9c2','opacity=".65"');
 const frame='fill="none" stroke="'+f+'" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"';
 if(s.face>0&&s.face<6){out+=`<g ${frame}>`;if(s.face===1)out+='<circle cx="357" cy="835" r="87"/><circle cx="646" cy="846" r="87"/>';if(s.face===2)out+='<ellipse cx="357" cy="835" rx="96" ry="71"/><ellipse cx="646" cy="846" rx="96" ry="71"/>';if(s.face===3)out+='<rect x="268" y="761" width="178" height="149" rx="25"/><rect x="557" y="772" width="178" height="149" rx="25"/>';if(s.face===4)out+='<path d="M256 751Q366 769 444 801Q449 924 350 918Q273 912 256 751ZM748 762Q638 780 560 812Q555 935 654 929Q731 923 748 762Z"/>';if(s.face===5)out+='<path d="M358 777C294 697 221 814 358 921C495 814 422 697 358 777ZM646 788C582 708 509 825 646 932C783 825 710 708 646 788Z"/>';out+='<path d="M446 827Q501 798 557 836M269 813 233 793M733 830 767 810"/></g>';}
 if(s.face===6){const x=s.side==='left'?360:644,y=s.side==='left'?833:846;out+=`<path d="M240 731 772 917" stroke="${f}" stroke-width="15"/>`+path(`M${x-74} ${y-69}Q${x} ${y-87} ${x+74} ${y-69}L${x+69} ${y+30}Q${x} ${y+114} ${x-69} ${y+30}Z`,f);}
+out+='</g>';
 const ax=[300,288,285,284,287,295,265,293][s.hair];
 if(s.accessory===1)out+=`<g stroke="${a}" stroke-width="17" stroke-linecap="round"><path d="M${ax-40} 566l81 51m-77 5 75-69"/></g>`;
 if(s.accessory===2)out+=star(ax,575,a);
 if(s.accessory===3)out+=bow(730,467,a,1.12);
 if(s.accessory===4)out+=bow(ax-30,578,a,.64)+bow(1000-ax+30,581,a,.64);
 if(s.accessory===5){for(let i=0;i<5;i++)out+=ellipse(ax+Math.cos(i*Math.PI*2/5)*29,562+Math.sin(i*Math.PI*2/5)*29,23,23,a);out+=ellipse(ax,562,17,17,'#eac975');}
-if(s.accessory===6){out+=`<path d="M242 478Q493 215 755 478" fill="none" stroke="${tone(a,-30)}" stroke-width="52"/>`;for(let i=0;i<9;i++){const x=258+i*60,y=326+Math.pow((x-498)/240,2)*120;out+=ellipse(x,y,39,42,a);}out+=bow(245,468,shadow,.65)+bow(754,468,shadow,.65);}
+if(s.accessory===6){out+=`<path d="M209 493C295 254 647 234 789 493" fill="none" stroke="${tone(a,-35)}" stroke-width="35"/>`;for(let i=0;i<9;i++){const angle=(-160+i*17.5)*Math.PI/180,x=499+299*Math.cos(angle),y=492+199*Math.sin(angle);out+=`<g transform="translate(${x} ${y}) rotate(${angle*180/Math.PI+90})">${path('M-32 9-39-53Q-35-69-14-65L18-65Q39-65 40-48L31 9Z',a)}${path('M22-63Q34-60 36-45L30 9H17Z',tone(a,-17))}</g>`;}out+=bow(218,483,shadow,.6)+bow(783,483,shadow,.6);}
 if(s.accessory===7)out+=path('M405 324 382 224 447 262 495 185 547 262 614 224 589 324Z',a)+path('M409 306H586V331H409Z',tone(a,-22))+ellipse(495,273,12,15,'#e69eb8');
 return `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="gaze zako avatar">${out}</g></svg>`;
 }

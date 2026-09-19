@@ -16,3 +16,7 @@ Scope limits: Cloudflare publication, remote CI, real Safari/iOS and Firefox wer
 ## Lower-left framing revision — 2026-09-20
 
 Changed the shared character group to rotate 14 degrees clockwise, enlarge and offset toward the left. Background rendering is outside this group. Rabbit ears use a smaller character scale for top clearance. Existing stored options remain valid and re-render with this framing. Re-ran the offline build and browser regression suite, including real PNG/SVG downloads, history restoration and mobile layouts. Inspected revised desktop/mobile screenshots; adjusted vertical placement to keep both eyes visible. This revision is local, not pushed or deployed.
+
+## Layered illustration revision — 2026-09-20
+
+Added `hair.js:illustratedHair` and included it in the eight-asset static build. Replaced flat front silhouettes with curved overlapping locks, highlights and shadows; enlarged eyes, moved all facewear with eyes, refined the pleated headband, and switched initial demonstration to blue hair/black background. Existing saved selections still validate. Offline build and full Edge regression suite passed after changes. Inspected desktop/mobile previews and an eight-variant contact sheet covering hair, cat/fox/rabbit ears, glasses, eyepatch, crown and maid headband. Adjusted right blush onto the face and ear clearance. Artwork remains original editable vectors, not a pixel-exact recreation of either supplied image. Not pushed or deployed.

@@ -29,6 +29,8 @@ Open `index.html` in a modern browser. For stable history storage, use the same 
 
 `app.js:renderAvatar` is the sole renderer used by current preview, sticker tiles, saved history and both exports. SVG paths are original artwork drawn for this project. `validConfig` restricts stored numeric choices and hex colors before rendering. `persist` updates visible history only after storage succeeds. `download` rasterizes exactly the same SVG onto a transparent canvas for PNG.
 
+`hair.js:illustratedHair` provides the layered front locks and side strands called by `renderAvatar`. Both scripts are required in the build. All details remain closed editable vector paths. The facial group lifts eyes, blush, glasses and eyepatch together; accessory anchors remain on the crown. Ear/crown variants reserve additional top clearance. The default demonstration is blue shoulder-length hair, dark eyes and black background, with no ears/accessories. Existing saved selections are preserved.
+
 Artwork uses fixed anchors with rear hair, ears, face, front hair, eyes/blush, facewear and accessory layers. Add new choices by extending `LIMITS`, all three translated name lists and the renderer together. Never interpolate unvalidated stored strings into SVG/HTML.
 
 UI line icons are adapted from Lucide (ISC license; see `LICENSE-ICONS`).
