@@ -37,5 +37,9 @@ for(const language of ['zh','en','ja']){
  assert.equal(run(`PRESET_NAMES.${language}.length`),run('Object.keys(PRESETS).length'));
 }
 // New hair must compose with every existing ornament, including hair-anchor consumers.
-for(let accessory=0;accessory<run('LIMITS.accessory');accessory++)assert.ok(!/undefined|NaN/.test(run(`renderAvatar({...DEFAULT,hair:12,accessory:${accessory}})`)));
+for(const hair of [12,13,14])for(let accessory=0;accessory<run('LIMITS.accessory');accessory++)assert.ok(!/undefined|NaN/.test(run(`renderAvatar({...DEFAULT,hair:${hair},accessory:${accessory}})`)));
+for(const key of ['blueBonnet','sakuraRibbon','gemElf','shrineRibbon','mintSailor'])assert.ok(run(`validConfig({...DEFAULT,...PRESETS.${key}})`));
+assert.notEqual(run('fingerprint({...DEFAULT,face:11,side:"left"})'),run('fingerprint({...DEFAULT,face:11,side:"right"})'));
+assert.notEqual(run('renderAvatar({...DEFAULT,face:11,side:"left"})'),run('renderAvatar({...DEFAULT,face:11,side:"right"})'));
+for(const language of ['zh','en','ja'])assert.equal(run(`TEXT.${language}.backgroundNames.length`),run('LIMITS.background'));
 console.log('Expression migration, validation, distinct artwork and shared ear framing passed.');

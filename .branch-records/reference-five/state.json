@@ -1,0 +1,10 @@
+{
+  "purpose":"Add reusable vector materials and five editable presets inspired by the five supplied avatar images.",
+  "requirements":["Append two layered hairstyles, seven ornaments including standalone blossom and circlet, reversible compass eyepatch, mist-blue and sakura-night backgrounds, and five localized presets.","Preserve all existing material IDs, defaults, framing and saved history. Presets and materials share SVG/PNG rendering.","Interpret reference features as editable vector artwork; do not embed reference raster images or claim pixel identity."],
+  "constraints":["Local implementation and commit only; no push or deployment requested.","Existing pale-pink UI and Chinese/English/Japanese support remain."],
+  "acceptance":["Five new presets selectable in all languages.","New materials compose without invalid SVG, restore from history, and export PNG/SVG.","Desktop/mobile visual inspection and offline build pass."],
+  "status":"complete",
+  "integration":"verified",
+  "evidence":{"paths":["app.js","hair.js","accessories.js","scripts/check-expressions.cjs","VERIFICATION.md"],"implementation_date":"2026-09-20","main_integration_date":"2026-09-20","deployment_date":null,"branch":"main","checks":"Offline build; append-only IDs and name counts; all new-hair/ornament combinations; five actual PNG and SVG downloads; 19 trilingual presets; history reload/restore; eyepatch side deduplication; desktop and mobile screenshots; no JS errors.","preview":"C:/Users/medic/Documents/Codex/2026-09-20/d-proj/outputs/reference-five-presets.png","visual_gap":"Original SVG interpretations preserve reference motifs, not pixel-identical recreations."},
+  "next":"No implementation work remaining. Push/deployment requires a new explicit user request."
+}

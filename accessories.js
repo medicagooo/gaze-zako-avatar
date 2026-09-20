@@ -1,7 +1,57 @@
 'use strict';
+// Shared by the blossom ornament and the fixed, non-rotating sakura background.
+function sakuraFlower(x,y,color,scale=1){
+  return `<g transform="translate(${x} ${y}) scale(${scale})">${[0,72,144,216,288].map(angle=>`<g transform="rotate(${angle})">${path('M0 0C-31-9-45-41-18-64L-7-56 3-68C32-43 29-13 0 0Z',color,'stroke="#d0b6bd" stroke-width="2"')}<path d="M0-8 0-42" stroke="#d6c781" stroke-width="3"/>${ellipse(0,-40,3.5,3.5,'#d6c781')}</g>`).join('')}${ellipse(0,0,11,11,'#e1cf83')}</g>`;
+}
+
+function gemCirclet(color){
+  const silver='#dfdeea',edge='#9393aa';
+  return `<g data-ornament="circlet" stroke="${edge}" stroke-width="3" stroke-linejoin="round">${path('M322 398Q407 350 484 381L485 276Q552 280 581 339Q602 296 655 302L608 384Q697 379 772 442L716 429Q632 402 553 483Q456 385 322 421ZM510 383 552 437 597 395 557 364Z',silver,'fill-rule="evenodd"')}${path('M553 464 580 527 550 602 524 533Z',color)}${path('M553 474 552 548 531 532Z',tone(color,48),'stroke="none"')}${path('M552 548 573 528 550 589Z',tone(color,-27),'stroke="none"')}</g>`;
+}
+
+// IDs 22-28 use rear passes for hats/ribbons and front passes for pins/circlets.
+// All ornament colors derive from accessoryColor; no external image dependencies.
+function referenceFiveAccessory(s,layer){
+ const id=s.accessory,c=s.accessoryColor,dark=tone(c,-28),pale=tone(c,24),white='#fff8f4';
+ const tails=(x,y,flip=1)=>`<g transform="translate(${x} ${y}) scale(${flip} 1)">${path('M0 0Q108 180 78 415L25 368-12 407Q30 201-30 15Z',c)}${path('M3 19Q64 183 47 338L33 315Q52 167 3 19Z',pale)}</g>`;
+ if(id===22){
+  if(layer==='rear')return path('M163 487Q91 258 284 205Q562 105 779 295Q853 384 869 615L790 585Q616 318 264 397Z',c)+path('M670 328Q803 419 842 565L854 912 795 955 791 600Z',pale)+tails(806,535);
+  const flower=`<g transform="translate(279 358) rotate(-14)">${[-90,0,90,180].map(angle=>`<g transform="rotate(${angle})">${path('M0 0Q-53-38 0-111Q57-39 0 0Z',c)}${path('M0-7Q-26-35 0-66Q23-32 0-7Z',dark)}</g>`).join('')}${ellipse(0,0,17,18,dark)}</g>`;
+  return path('M174 435Q257 269 430 280Q571 268 648 344Q677 374 703 385L825 437 849 518','none','stroke="#e7f3ff" stroke-width="16" stroke-linecap="round"')+flower+`<g transform="translate(833 527) rotate(3)">${path('M0-7Q-72-85-65-15Q-95 63-8 27Q71 87 66 10Q77-64 0-7Z',c,`stroke="${dark}" stroke-width="3"`)}${ellipse(-21,6,5,6,'#ffffff')}${ellipse(24,6,5,6,'#ffffff')}<path d="M-5 18q5 10 10 0q5 10 10 0" fill="none" stroke="white" stroke-width="2"/></g>`;
+ }
+ if(id===23){
+  if(layer==='rear')return tails(221,507,-1)+tails(784,497)+bow(475,292,c,1.38);
+  return path('M221 514Q242 317 486 314Q721 314 793 533','none',`stroke="${c}" stroke-width="13"`)+sakuraFlower(796,534,'#fff3f4',1.03)+bow(229,486,c,.48);
+ }
+ if(id===24){
+  if(layer==='rear')return bow(217,386,c,1.08)+bow(802,418,c,1.06)+tails(193,458,-1)+tails(828,473)+path('M121 618 162 687 118 752 164 828 143 850 94 751 140 686 102 633ZM873 620 851 686 895 752 866 838 889 815 915 751 874 685 894 630Z','#dcf9ff');
+  return gemCirclet(c);
+ }
+ if(id===25){
+  if(layer==='rear'){
+   const wing=(flip)=>`<g transform="translate(500 389) scale(${flip} 1)">${path('M-8 7Q-151-109-360-99L-375-17-359 51-373 105-335 192-116 99Z',white)}${path('M-9 9Q-167-85-320-87L-330-24-316 50-325 106-296 166-110 89Z',c)}<path d="M-292-74-268-45-289-19-263 10-281 39-253 69-270 100-244 133" fill="none" stroke="${white}" stroke-width="11"/>${[-46,12,70].map(y=>ellipse(-306+(y+46)/7,y,5,5,white)).join('')}</g>`;
+   return wing(1)+wing(-1)+tails(204,509,-1)+tails(802,509);
+  }
+  const cuff=(x,y)=>`<g transform="translate(${x} ${y})">${path('M-42-65-30-83-15-69 0-85 16-69 34-78 43-57 35 54 46 69 19 82 3 69-17 84-42 73-34 48Z',white)}${path('M-38-48H38L29 48H-30Z',c)}<path d="M-30 27H30" stroke="${white}" stroke-width="7"/></g>`;
+  return cuff(205,799)+cuff(829,815);
+ }
+ if(id===26){
+  if(layer==='rear'){
+   const striped=(x,y,flip)=>`<g transform="translate(${x} ${y}) scale(${flip} 1)">${path('M0 5Q-86-151-124-119Q-156-64-51 31Q-146 34-137 113Q-52 119 1 44L50 250 79 197Q45 77 10 17Z',c)}${path('M-129-83Q-82-70-43 12L-57 20Q-102-47-134-52ZM-132 65Q-78 48-21 29L-28 45Q-79 70-133 86ZM24 81 38 81 64 176 55 193Z',white)}</g>`;
+   return striped(211,465,1)+striped(817,548,-1);
+  }
+  return `<g transform="translate(0 55) rotate(-12 444 308)">${path('M307 327 312 245Q334 202 442 198Q542 201 565 241L572 325Z',c)}${path('M312 286Q439 261 568 287L570 304Q439 281 310 307Z',white)}${ellipse(439,220,111,29,pale)}<g transform="translate(442 258)" stroke="#efd28a" stroke-width="7" fill="none"><circle cy="-25" r="9"/><path d="M0-16V30M-29 8Q0 56 29 8M-15-7H15M-29 8-31 24M29 8 31 24"/></g></g>`;
+ }
+ if(layer==='rear')return '';
+ if(id===27)return sakuraFlower(788,523,c,1.05);
+ if(id===28)return gemCirclet(c);
+ return '';
+}
+
 // Reference-inspired ensembles have rear and front passes so ribbon tails never
 // cover the face. All shapes stay inside the same character transform as the hair.
 function referenceAccessory(s, layer) {
+  if (s.accessory >= 22) return referenceFiveAccessory(s, layer);
   if (s.accessory >= 10) return layer === 'front' ? sampleAccessory(s) : '';
   const moon = s.accessory === 9;
   if (s.accessory !== 8 && !moon) return '';

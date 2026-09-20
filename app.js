@@ -20,7 +20,7 @@ TEXT.ja.accessoryNames.push('氷晶リボンセット','月と薔薇のメイド
 TEXT.zh.accessoryNames.push('同侧双蝴蝶结','侧边丝带发夹','骨形发夹','蝴蝶结与波浪夹','交叠长发夹','荷叶发带与交叉夹');
 TEXT.en.accessoryNames.push('Stacked bows','Side ribbon clips','Bone clip','Bows and wave clips','Crossed bar clips','Ruffled band and pins');
 TEXT.ja.accessoryNames.push('重ねリボン','サイドリボンピン','ボーンピン','リボンと波形ピン','クロスバーピン','フリルバンドとピン');
-const LIMITS={hair:13,ears:8,accessory:22,face:11,background:8};
+const LIMITS={hair:15,ears:8,accessory:29,face:12,background:10};
 // Optional schema additions: missing fields migrate without rejecting v1 history.
 const EXPRESSION_LIMITS={mouthStyle:11,pupil:11};
 const EXTRA_NAMES={zh:{hairNames:['侧分短发','姬发式','双辫子','蓬松卷发'],earNames:['垂耳','精灵耳','圆鼠耳'],accessoryNames:['月牙发夹','樱桃发夹','珍珠发箍','翅膀发夹'],faceNames:['无框眼镜','墨镜','创可贴'],mouthNames:['小虎牙','吐舌','不开心'],pupilNames:['十字星瞳','环形瞳','闭眼微笑'],skinNames:['瓷白','浅杏','暖蜜','小麦','焦糖','古铜','深棕'],share:'分享',copyLink:'复制本站链接',shareImage:'系统分享图片',shareHint:'下载头像后，在聊天中选择图片并粘贴本站链接。',copied:'本站链接已复制',shareFallback:'可下载图片并复制链接后分享',close:'关闭'},en:{hairNames:['Side part','Hime cut','Braids','Fluffy curls'],earNames:['Floppy','Elf','Mouse'],accessoryNames:['Crescent clip','Cherry clip','Pearl band','Wing clip'],faceNames:['Rimless glasses','Sunglasses','Bandage'],mouthNames:['Fang','Tongue out','Frown'],pupilNames:['Cross sparkle','Ring','Closed smile'],skinNames:['Porcelain','Light peach','Honey','Wheat','Caramel','Bronze','Deep brown'],share:'Share',copyLink:'Copy site link',shareImage:'Share image',shareHint:'Download your avatar, then attach it in chat and paste the site link.',copied:'Site link copied',shareFallback:'Download the image and copy the link to share',close:'Close'},ja:{hairNames:['横分け','姫カット','三つ編み','ふわふわカール'],earNames:['垂れ耳','エルフ耳','丸い耳'],accessoryNames:['三日月ピン','さくらんぼ','パールバンド','羽のピン'],faceNames:['縁なしメガネ','サングラス','ばんそうこう'],mouthNames:['八重歯','舌出し','への字'],pupilNames:['十字の瞳','リング','笑顔の閉じ目'],skinNames:['陶器色','薄桃色','はちみつ','小麦色','キャラメル','ブロンズ','深い茶色'],share:'シェア',copyLink:'サイトリンクをコピー',shareImage:'画像を共有',shareHint:'アバターをダウンロードしてチャットに添付し、サイトリンクを貼り付けてください。',copied:'リンクをコピーしました',shareFallback:'画像の保存とリンクのコピーで共有できます',close:'閉じる'}};
@@ -34,6 +34,12 @@ for(const [language,names]of Object.entries({zh:['侧分碎齐刘海','下半框
  ['hairNames','faceNames','pupilNames','accessoryNames'].forEach((key,i)=>TEXT[language][key].push(names[i]));
 }
 Object.assign(DEFAULT,{hair:2,hairColor:'#acd2f2',accessory:8,accessoryColor:'#6998d5',eyeColor:'#23263e',background:4,mouth:true,mouthStyle:2,pupil:3});
+// Reference additions are append-only: indices are persisted in local history.
+for(const [language,names]of Object.entries({
+ zh:{hairNames:['轻羽碎长发','弧形层次长发'],accessoryNames:['软帽与蓝花','樱花缎带套饰','宝石额饰与长缎带','红白荷叶大结','航海帽与条纹双结','五瓣樱花','菱晶银额饰'],faceNames:['罗盘星纹眼罩'],backgroundNames:['雾蓝','樱夜鸟居']},
+ en:{hairNames:['Feathered layers','Curved long layers'],accessoryNames:['Flower bonnet','Sakura ribbons','Circlet and ribbons','Frilled shrine bow','Sailor cap and bows','Sakura blossom','Silver gem circlet'],faceNames:['Compass eyepatch'],backgroundNames:['Misty blue','Sakura shrine night']},
+ ja:{hairNames:['羽毛ロング','丸みレイヤー'],accessoryNames:['花飾りボンネット','桜リボンセット','宝石額飾りとリボン','紅白フリルリボン','水兵帽としまリボン','五弁の桜','銀の宝石額飾り'],faceNames:['羅針盤の眼帯'],backgroundNames:['霧の青','夜桜と鳥居']}
+}))for(const [key,values]of Object.entries(names))TEXT[language][key].push(...values);
 const PRESETS={
  crystal:{hair:2,accessory:8,hairColor:'#acd2f2',accessoryColor:'#6998d5',eyeColor:'#23263e'},
  moon:{hair:2,accessory:9,hairColor:'#8886a5',accessoryColor:'#514975',eyeColor:'#23263e',mouth:true,mouthStyle:1},
@@ -55,6 +61,16 @@ PRESETS.lilacRibbon={hair:6,ears:1,accessory:20,hairColor:'#d9c2e3',skinColor:'#
 PRESET_NAMES.zh.push('紫猫白缎');PRESET_NAMES.en.push('Lilac ribbons');PRESET_NAMES.ja.push('紫猫リボン');
 PRESETS.sageGlasses={hair:12,ears:0,accessory:21,face:10,hairColor:'#c9ada1',skinColor:'#ffede4',eyeColor:'#858d71',accessoryColor:'#faf8ff',faceColor:'#303d60',pupil:10,background:1,hetero:false};
 PRESET_NAMES.zh.push('茶发青瞳');PRESET_NAMES.en.push('Sage glasses');PRESET_NAMES.ja.push('茶髪セージアイ');
+Object.assign(PRESETS,{
+ blueBonnet:{hair:13,ears:0,accessory:22,hairColor:'#e1effb',accessoryColor:'#98cfe8',eyeColor:'#80b9d3',background:8},
+ sakuraRibbon:{hair:13,ears:0,accessory:23,hairColor:'#f2f0f7',accessoryColor:'#b7474d',eyeColor:'#d9787e',background:1},
+ gemElf:{hair:14,ears:6,accessory:24,hairColor:'#f2d6a4',accessoryColor:'#43b8e7',eyeColor:'#78b8d3',background:1},
+ shrineRibbon:{hair:6,ears:0,accessory:25,hairColor:'#604a50',accessoryColor:'#b9485b',eyeColor:'#a74f66',background:9},
+ mintSailor:{hair:14,ears:0,accessory:26,face:11,side:'right',hairColor:'#d1efed',accessoryColor:'#505c80',faceColor:'#505c80',eyeColor:'#d59350',pupil:10,background:0}
+});
+PRESET_NAMES.zh.push('雾蓝花帽','白樱红缎','金发晶灵','红白樱夜','薄荷航海');
+PRESET_NAMES.en.push('Blue bonnet','Sakura ribbons','Golden gem elf','Shrine ribbons','Mint sailor');
+PRESET_NAMES.ja.push('青花ボンネット','白桜リボン','金髪の晶霊','紅白夜桜','ミント水兵');
 for(const key of Object.keys(PRESETS))PRESETS[key]={mouth:false,mouthStyle:0,pupil:0,background:0,...PRESETS[key]};
 const PALETTES={hairColor:['#f5f1ed','#e7dff0','#b6c9e4','#efbfd0','#efd7a0','#bb8d6b','#846172','#484250','#262732'],skinColor:['#fff0e5','#f8dfcb','#efc7aa','#d7a27f','#b67e5d','#885940','#593d32'],eyeColor:['#6ca9c5','#8b73ac','#75a18c','#d18163','#dba345','#a36383','#635364','#343844'],accessoryColor:['#fff9fc','#f0abc8','#a9cde5','#c3b5df','#f0d18c','#8cbcb2','#635364'],faceColor:['#635364','#c49a7c','#d393ad','#a6bdcc','#f3dfb3','#fff9fc','#25252c']};
 const STORAGE='gaze-zako-avatar.history.v1';
@@ -68,7 +84,14 @@ function persist(next){if(storageBlocked){toast('corrupt');return false;}try{loc
 function tone(hex,amount){return '#'+hex.slice(1).match(/../g).map(x=>Math.max(0,Math.min(255,parseInt(x,16)+amount)).toString(16).padStart(2,'0')).join('');}
 function path(d,fill,extra=''){return `<path d="${d}" fill="${fill}" ${extra}/>`;}
 function ellipse(x,y,rx,ry,fill,extra=''){return `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}" ${extra}/>`;}
-function background(s){const colors=['#202023','#ffffff','none','#81d8d0','#f4b5d0',null,'#f4bfd4','#b7d9ef'];if(s.background===5)return ['#5bcefa','#f5a9b8','#ffffff','#f5a9b8','#5bcefa'].map((c,i)=>`<rect y="${i*200}" width="1000" height="200" fill="${c}"/>`).join('');let out=`<rect width="1000" height="1000" fill="${colors[s.background]}"/>`;if([3,4].includes(s.background)){for(let y=45;y<1000;y+=112)for(let x=(Math.floor(y/112)%2?85:30);x<1000;x+=112)out+=ellipse(x,y,10,10,'#ffffff');}return out;}
+function background(s){const colors=['#202023','#ffffff','none','#81d8d0','#f4b5d0',null,'#f4bfd4','#b7d9ef','#5e7b90','#39364f'];if(s.background===5)return ['#5bcefa','#f5a9b8','#ffffff','#f5a9b8','#5bcefa'].map((c,i)=>`<rect y="${i*200}" width="1000" height="200" fill="${c}"/>`).join('');let out=`<rect width="1000" height="1000" fill="${colors[s.background]}"/>`;if([3,4].includes(s.background)){for(let y=45;y<1000;y+=112)for(let x=(Math.floor(y/112)%2?85:30);x<1000;x+=112)out+=ellipse(x,y,10,10,'#ffffff');}
+ if(s.background===9){
+  out+=path('M145 130 222 123 164 1000H79ZM778 94 850 84 966 1000H872Z','#743e52')+path('M51 110Q481 117 934 31L941 84Q494 176 63 166ZM166 231 851 152 858 190 169 270Z','#8d485b');
+  out+=path('M311 485V303L244 306Q353 267 399 225Q454 274 546 272Q615 251 654 220Q709 260 784 268L742 311V481Z','#302d43');
+  for(const x of [68,923])out+=`<g transform="translate(${x} 335)"><rect x="-27" y="-16" width="54" height="81" fill="#f4bc88"/>${path('M-53-22 0-61 53-22 34-7H-35Z','#302b3e')}<path d="M-31-9V72H31V-9M0-8V71M0 71V147" fill="none" stroke="#493345" stroke-width="12"/></g>`;
+  for(let i=0;i<24;i++){const x=i%2?970-(i*37%115):(i*47%132),y=(i*83)%690;out+=sakuraFlower(x,y,i%3?'#e7a8bf':'#f5c3d1',.55);}
+  for(const [x,y]of [[322,136],[631,94],[834,343],[142,406],[583,389]])out+=path(`M${x} ${y}q-4-25 23-29q5 21-23 29Z`,'#f7bed2');
+ }return out;}
 function bow(x,y,c,scale=1){return `<g transform="translate(${x} ${y}) scale(${scale})">${path('M0 0Q-95-80-95-28Q-112 42-16 17L0 4Q85 67 91 22Q118-48 25-15Z',c)}${ellipse(0,2,18,22,tone(c,-18))}</g>`;}
 function star(x,y,c){return `<g transform="translate(${x} ${y})">${path('M0-40 12-13 42-10 20 11 25 42 0 27-26 42-21 11-43-10-12-13Z',c)}</g>`;}
 // Expression artwork stays in the facial-detail coordinate space, below facewear.
@@ -113,7 +136,7 @@ function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryCol
  'M243 537Q120 360 57 533Q-1 689 58 812L17 1000H194L266 662M742 530Q881 361 947 537Q1004 729 952 845L988 1000H820L727 656M154 1000 160 634Q168 334 477 313Q803 304 844 620L844 1000Z',
  'M230 466C-13 491 86 191 254 294Q365 310 314 460M743 464C1020 465 892 194 742 293Q640 319 692 459M149 1000 170 594Q196 307 506 316Q786 317 836 610L851 1000Z'];
 out+=referenceAccessory(s,'rear');
-out+=path(rear[s.hair]||rear[[0,3,6,4,3][s.hair-8]],shadow);
+out+=path(rear[s.hair]||rear[[0,3,6,4,3,3,3][s.hair-8]],shadow);
 if(s.ears===1||s.ears===2){const tall=s.ears===2;out+=path(`M194 581Q136 410 ${tall?'115 163':'139 276'}Q305 300 357 437Z`,h)+path(`M806 581Q864 410 ${tall?'885 163':'861 276'}Q695 300 643 437Z`,h);out+=path(`M207 505  ${tall?'157 225':'177 328'} 299 432Z`,'#e9a7b9')+path(`M793 505 ${tall?'843 225':'823 328'} 701 432Z`,'#e9a7b9');}
 if(s.ears===3){out+=path('M260 463Q129 161 213 52Q297 16 339 415Z',h)+path('M650 419Q696 7 782 60Q877 137 742 468Z',h)+path('M266 380Q198 132 224 98Q259 84 296 376Z','#e9a7b9')+path('M694 381Q729 98 766 103Q805 137 738 382Z','#e9a7b9');}
 if(s.ears===4){out+=ellipse(222,373,110,113,h)+ellipse(778,373,110,113,h)+ellipse(222,374, 60,65,'#e9a7b9')+ellipse(778,374,60,65,'#e9a7b9');}
@@ -136,7 +159,8 @@ if(s.face===7)out+=`<g fill="none" stroke="${f}" stroke-width="5"><ellipse cx="3
 if(s.face===8)out+=path('M267 779H443L431 879Q356 931 281 865ZM557 790H733L719 888Q643 942 571 876Z',f)+path('M442 812 558 823','none',`stroke="${f}" stroke-width="13"`)+path('M294 800 344 800 306 856ZM584 811 634 811 596 867Z',tone(f,45));
 if(s.face===9)out+=`<g transform="translate(676 924) rotate(-12)"><rect x="-48" y="-20" width="96" height="40" rx="12" fill="${f}"/><rect x="-17" y="-17" width="34" height="34" rx="5" fill="${tone(f,25)}"/>${[-31,31].map(x=>ellipse(x,0,3,3,tone(f,-40))).join('')}</g>`;
 if(s.face===10)out+=`<g ${frame}><path d="M257 840V893Q257 909 273 909H438Q454 909 454 893V840M549 853V906Q549 922 565 922H730Q746 922 746 906V853M454 861Q502 831 549 873"/></g>`;
-const ax=[300,288,285,284,287,295,265,293,300,284,265,287,284][s.hair];
+if(s.face===11){const x=s.side==='left'?360:644,y=s.side==='left'?833:846;out+=`<g data-facewear="compass"><path d="M235 770Q505 733 789 821" fill="none" stroke="${f}" stroke-width="12"/>`+path(`M${x-77} ${y-73}Q${x} ${y-90} ${x+77} ${y-73}L${x+68} ${y+39}Q${x} ${y+111} ${x-68} ${y+39}Z`,f)+`<g transform="translate(${x} ${y})"><circle r="48" fill="none" stroke="#efd083" stroke-width="8"/>${path('M0-76 12-13 64 0 12 13 0 76-12 13-64 0-12-13Z','#f4cd78')}</g></g>`;}
+const ax=[300,288,285,284,287,295,265,293,300,284,265,287,284,285,284][s.hair];
 out+='</g>';
 if(s.accessory===1)out+=`<g stroke="${a}" stroke-width="17" stroke-linecap="round"><path d="M${ax-40} 566l81 51m-77 5 75-69"/></g>`;
 if(s.accessory===2)out+=star(ax,575,a);
@@ -157,13 +181,13 @@ if(tab==='mouth')html+=expressionChoices('mouthStyle');
 if(tab==='eyes')html+=expressionChoices('pupil');
 if(tab==='eyes'){html+=swatches('eyeColor',state.hetero?t('leftEye'):t('eyeColor'))+`<label class="check-row"><input id="hetero" type="checkbox" ${state.hetero?'checked':''}>${t('hetero')}</label>`;if(state.hetero)html+=swatches('rightEye',t('rightEye'));}
 if(tab==='accessory'&&state.accessory)html+=swatches('accessoryColor',t('color'));
-if(tab==='face'&&state.face){html+=swatches('faceColor',t('color'));if(state.face===6)html+=`<div class="color-section"><span class="color-title">${t('side')}</span><div class="segmented">${['left','right'].map(x=>`<button data-side="${x}" aria-pressed="${state.side===x}" class="${state.side===x?'active':''}">${t(x)}</button>`).join('')}</div></div>`;}
+if(tab==='face'&&state.face){html+=swatches('faceColor',t('color'));if([6,11].includes(state.face))html+=`<div class="color-section"><span class="color-title">${t('side')}</span><div class="segmented">${['left','right'].map(x=>`<button data-side="${x}" aria-pressed="${state.side===x}" class="${state.side===x?'active':''}">${t(x)}</button>`).join('')}</div></div>`;}
 document.querySelector('#panel').innerHTML=html;}
 function renderHistory(){document.querySelector('#history-count').textContent=history.length;document.querySelector('#clear').disabled=!history.length;document.querySelector('#history-content').innerHTML=history.length?`<div class="history-grid">${history.map(item=>`<article class="history-item"><button class="history-image" data-restore="${item.id}" title="${t('restore')}" aria-label="${t('restore')}">${renderAvatar(item.config)}</button><div class="history-actions"><button data-history-download="${item.id}" data-format="svg" aria-label="${t('download')} SVG">SVG</button><button data-history-download="${item.id}" data-format="png" aria-label="${t('download')} PNG">PNG</button><button class="icon-button" data-remove="${item.id}" title="${t('remove')}" aria-label="${t('remove')}">${icon('trash')}</button></div></article>`).join('')}</div>`:`<div class="empty">${t('empty')}</div>`;}
 function render(){document.documentElement.lang={zh:'zh-CN',en:'en',ja:'ja'}[lang];document.title=`gaze zako avatar · ${t('title')}`;document.querySelector('#language').value=lang;document.querySelector('#app').innerHTML=`<div class="workspace"><section class="preview-column"><div class="section-heading"><div><p class="eyebrow">GAZE ZAKO / 01</p><h1>${t('title')}</h1></div><div class="preview-tools"><button class="icon-button" id="random" title="${t('random')}" aria-label="${t('random')}">${icon('random')}</button><button class="icon-button" id="reset" title="${t('reset')}" aria-label="${t('reset')}">${icon('reset')}</button></div></div><div class="preview" id="preview">${renderAvatar(state)}</div><button class="primary generate" id="generate">${icon('spark')}${t('generate')}</button>${shareControls()}<div class="download-row"><button data-download="svg" aria-label="${t('download')} SVG">${icon('download')}SVG</button><button data-download="png" aria-label="${t('download')} PNG">${icon('download')}PNG</button><select id="size" aria-label="${t('size')}">${[512,1024,2048].map(n=>`<option value="${n}" ${n===size?'selected':''}>${n} px</option>`).join('')}</select></div></section><section class="editor" aria-label="${t('edit')}"><nav class="tabs" aria-label="${t('edit')}">${['hair','skin','eyes','mouth','ears','accessory','face','background'].map(k=>`<button class="tab ${tab===k?'active':''}" data-tab="${k}" aria-pressed="${tab===k}">${t(k)}</button>`).join('')}</nav><div id="panel"></div></section></div><section class="history"><div class="history-heading"><h2>${t('history')}<span class="badge" id="history-count"></span></h2><button id="clear">${t('clear')}</button></div><div id="history-content"></div></section><footer>${t('footer')}</footer>`;renderPanel();renderHistory();document.querySelector('#confirm-title').textContent=t('confirmClear');document.querySelector('#cancel').textContent=t('cancel');document.querySelector('#confirm-action').textContent=t('confirm');}
 function update(){document.querySelector('#preview').innerHTML=renderAvatar(state);renderPanel();}
 let toastTimer;function toast(key){const el=document.querySelector('#toast');el.textContent=t(key);el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),3500);}
-function fingerprint(config){const s={...config};if(!s.hetero)s.rightEye=DEFAULT.rightEye;if(!s.accessory)s.accessoryColor=DEFAULT.accessoryColor;if(!s.face)s.faceColor=DEFAULT.faceColor;if(s.face!==6)s.side='left';return JSON.stringify(s);}
+function fingerprint(config){const s={...config};if(!s.hetero)s.rightEye=DEFAULT.rightEye;if(!s.accessory)s.accessoryColor=DEFAULT.accessoryColor;if(!s.face)s.faceColor=DEFAULT.faceColor;if(![6,11].includes(s.face))s.side='left';return JSON.stringify(s);}
 function save(){if(history.some(x=>fingerprint(x.config)===fingerprint(state))){toast('duplicate');return;}const entry={id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9),at:new Date().toISOString(),config:{...state}};if(persist([entry,...history])){renderHistory();toast('saved');}}
 function triggerDownload(blob,extension){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`gaze-zako-avatar-${Date.now()}.${extension}`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);}
 async function download(config,format){try{const svg=renderAvatar(config);if(format==='svg'){triggerDownload(new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),'svg');return;}const image=new Image(),url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));try{await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;image.src=url;});const canvas=document.createElement('canvas');canvas.width=canvas.height=size;canvas.getContext('2d').drawImage(image,0,0,size,size);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error();triggerDownload(blob,'png');}finally{URL.revokeObjectURL(url);}}catch{toast('downloadError');}}
