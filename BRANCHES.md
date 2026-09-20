@@ -8,7 +8,8 @@
     ".branch-records/publish-materials-readme/state.json",
     ".branch-records/round-face/state.json",
     ".branch-records/special-pig/state.json",
-    ".branch-records/pig-hair/state.json"
+    ".branch-records/pig-hair/state.json",
+    ".branch-records/pig-adaptive/state.json"
   ],
   "active": [],
   "pending": [
@@ -370,6 +371,19 @@
         "VERIFICATION.md"
       ],
       "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "pig-adaptive-20260920",
+      "date": "2026-09-20",
+      "business_change": "小猪发型切换为独立适配渲染：肤色、眼睛、嘴巴、耳朵、发饰、面饰使用小猪专用锚点；原生猪耳保持，其他耳朵以发卡叠加。",
+      "status": "implemented-local",
+      "request": "pig-adaptive:request-pig-adaptive-20260920",
+      "details": ".branch-records/pig-adaptive/state.json",
+      "evidence": [
+        "app.js",
+        "pig-reference.png",
+        ".branch-records/pig-adaptive/events.jsonl"
+      ]
     }
   ]
 }
