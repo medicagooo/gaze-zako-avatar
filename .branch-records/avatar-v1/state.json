@@ -1,6 +1,7 @@
 {
   "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
   "requirements": [
+    "V11: mouth choices use a dedicated top-level Mouth tab after Eyes. Pupil styles remain first in Eyes. Supersedes V10 Facewear placement only; options and history schema stay unchanged.",
     "V10 implemented: mouthStyle offers none, wavy, smile, cat smile, small O, open smile, pout, straight. Pupil offers solid, shine, round, slit, star, heart, diamond. Preserve old mouth=true as wavy and missing pupil as solid. Cat/fox/rabbit share translate(-245,-170) scale(1.3) rotate(17,500,700), superseding long-ear clearance shifts. Cropped ears permitted; previews/history/SVG/PNG use eyeShape and mouthShape.",
     "Face silhouette radii are 390 by 395 at center 500,811. Framing is 20 canvas units lower than v8; default translate(-268,-276), scale 1.25, rotation 17. Facial details use local y offset -68. Front hair uses translate(-30,33) scale(1.06,.90), exposing more forehead. Right locks move outward below the crown through illustratedHair:openCheek and the cap contour. Hair/ear tips may crop at the top. Applies to preview/history/exports; reference equality remains unverified.",
     "Close-up square composition with enlarged head leaning 17 degrees clockwise from the lower-left, layered curved hair locks with vector highlights/shadows, oval eyes and blush, no nose. Optional mouth shapes, default none; moon preset uses wavy. Cat/fox/rabbit have equal face framing; crown remains separate. Original SVG artwork, no generative API. Default is blue shoulder-length hair and dark eyes on black, without ears/accessories. Existing saved choices are preserved.",
@@ -20,5 +21,5 @@
   "status": "active",
   "integration": "not_applicable",
   "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
-  "next": "V10 local implementation and browser verification complete; commit and refresh local preview. Previous push verified at 7018b72f525f1046373cab043b68c03063cc12a3; no new push requested. Any future publication requires a new push request."
+  "next": "V10 expressions and V11 dedicated Mouth navigation verified locally, including the output preview copy. No new push requested. Previous remote push remains 7018b72f525f1046373cab043b68c03063cc12a3."
 }
