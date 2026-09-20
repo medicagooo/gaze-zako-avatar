@@ -20,7 +20,7 @@ TEXT.ja.accessoryNames.push('氷晶リボンセット','月と薔薇のメイド
 TEXT.zh.accessoryNames.push('同侧双蝴蝶结','侧边丝带发夹','骨形发夹','蝴蝶结与波浪夹','交叠长发夹','荷叶发带与交叉夹');
 TEXT.en.accessoryNames.push('Stacked bows','Side ribbon clips','Bone clip','Bows and wave clips','Crossed bar clips','Ruffled band and pins');
 TEXT.ja.accessoryNames.push('重ねリボン','サイドリボンピン','ボーンピン','リボンと波形ピン','クロスバーピン','フリルバンドとピン');
-const LIMITS={hair:15,ears:8,accessory:29,face:12,background:10};
+const LIMITS={hair:16,ears:8,accessory:29,face:12,background:10};
 // Optional schema additions: missing fields migrate without rejecting v1 history.
 const EXPRESSION_LIMITS={mouthStyle:11,pupil:11};
 const EXTRA_NAMES={zh:{hairNames:['侧分短发','姬发式','双辫子','蓬松卷发'],earNames:['垂耳','精灵耳','圆鼠耳'],accessoryNames:['月牙发夹','樱桃发夹','珍珠发箍','翅膀发夹'],faceNames:['无框眼镜','墨镜','创可贴'],mouthNames:['小虎牙','吐舌','不开心'],pupilNames:['十字星瞳','环形瞳','闭眼微笑'],skinNames:['瓷白','浅杏','暖蜜','小麦','焦糖','古铜','深棕'],share:'分享',copyLink:'复制本站链接',shareImage:'系统分享图片',shareHint:'下载头像后，在聊天中选择图片并粘贴本站链接。',copied:'本站链接已复制',shareFallback:'可下载图片并复制链接后分享',close:'关闭'},en:{hairNames:['Side part','Hime cut','Braids','Fluffy curls'],earNames:['Floppy','Elf','Mouse'],accessoryNames:['Crescent clip','Cherry clip','Pearl band','Wing clip'],faceNames:['Rimless glasses','Sunglasses','Bandage'],mouthNames:['Fang','Tongue out','Frown'],pupilNames:['Cross sparkle','Ring','Closed smile'],skinNames:['Porcelain','Light peach','Honey','Wheat','Caramel','Bronze','Deep brown'],share:'Share',copyLink:'Copy site link',shareImage:'Share image',shareHint:'Download your avatar, then attach it in chat and paste the site link.',copied:'Site link copied',shareFallback:'Download the image and copy the link to share',close:'Close'},ja:{hairNames:['横分け','姫カット','三つ編み','ふわふわカール'],earNames:['垂れ耳','エルフ耳','丸い耳'],accessoryNames:['三日月ピン','さくらんぼ','パールバンド','羽のピン'],faceNames:['縁なしメガネ','サングラス','ばんそうこう'],mouthNames:['八重歯','舌出し','への字'],pupilNames:['十字の瞳','リング','笑顔の閉じ目'],skinNames:['陶器色','薄桃色','はちみつ','小麦色','キャラメル','ブロンズ','深い茶色'],share:'シェア',copyLink:'サイトリンクをコピー',shareImage:'画像を共有',shareHint:'アバターをダウンロードしてチャットに添付し、サイトリンクを貼り付けてください。',copied:'リンクをコピーしました',shareFallback:'画像の保存とリンクのコピーで共有できます',close:'閉じる'}};
@@ -40,6 +40,7 @@ for(const [language,names]of Object.entries({
  en:{hairNames:['Feathered layers','Curved long layers'],accessoryNames:['Flower bonnet','Sakura ribbons','Circlet and ribbons','Frilled shrine bow','Sailor cap and bows','Sakura blossom','Silver gem circlet'],faceNames:['Compass eyepatch'],backgroundNames:['Misty blue','Sakura shrine night']},
  ja:{hairNames:['羽毛ロング','丸みレイヤー'],accessoryNames:['花飾りボンネット','桜リボンセット','宝石額飾りとリボン','紅白フリルリボン','水兵帽としまリボン','五弁の桜','銀の宝石額飾り'],faceNames:['羅針盤の眼帯'],backgroundNames:['霧の青','夜桜と鳥居']}
 }))for(const [key,values]of Object.entries(names))TEXT[language][key].push(...values);
+TEXT.zh.hairNames.push('小猪');TEXT.en.hairNames.push('Pig');TEXT.ja.hairNames.push('ぶた');
 const PRESETS={
  crystal:{hair:2,accessory:8,hairColor:'#acd2f2',accessoryColor:'#6998d5',eyeColor:'#23263e'},
  moon:{hair:2,accessory:9,hairColor:'#8886a5',accessoryColor:'#514975',eyeColor:'#23263e',mouth:true,mouthStyle:1},
@@ -119,6 +120,7 @@ function mouthShape(style){
  return `<g data-mouth="${style}" transform="translate(0 18)">${shapes[style]||''}</g>`;
 }
 function expressionChoices(key){const mouth=key==='mouthStyle',names=TEXT[lang][mouth?'mouthNames':'pupilNames'];return `<div class="color-section"><h3 class="color-title">${t(mouth?'mouth':'pupil')}</h3><div class="tiles">${names.map((name,i)=>`<button class="tile ${state[key]===i?'active':''}" data-expression="${key}" data-value="${i}" aria-pressed="${state[key]===i}"><div class="tile-visual"><svg viewBox="${mouth?'430 870 150 150':'-80 -85 160 170'}" aria-hidden="true"><rect x="-1000" y="-1000" width="3000" height="3000" fill="${state.skinColor}"/>${mouth?(i?mouthShape(i):'<path d="M480 915 526 961M526 915 480 961" stroke="#c8b9bf" stroke-width="4"/>'):eyeShape(0,0,state.eyeColor,i)}</svg></div><span class="tile-label">${name}</span></button>`).join('')}</div></div>`;}
+function pigEarClips(s){if(s.hair!==15||s.ears===0)return '';const c=s.hairColor,inner='#f2a9b6';const clip=(x,flip,shape,inside)=>`<g transform="translate(${x} 0) scale(${flip} 1)"><rect x="-70" y="443" width="140" height="28" rx="14" fill="${s.accessoryColor}"/><path d="M-45 455Q0 430 45 455" fill="none" stroke="${tone(s.accessoryColor,-30)}" stroke-width="7"/>${path(shape,c)}${inside?path(inside,inner):''}</g>`;const shapes={1:['M-41 442 0 320 41 442Z','M-27 429 0 353 27 429Z'],2:['M-49 445 0 266 49 445Z','M-32 429 0 307 32 429Z'],3:['M-36 450Q-65 282 0 245Q65 282 36 450Z','M-20 425Q-39 309 0 282Q39 309 20 425Z'],4:['M0 330A62 62 0 1 0 0 454A62 62 0 1 0 0 330Z','M0 361A30 30 0 1 0 0 421A30 30 0 1 0 0 361Z'],5:['M-38 448Q-88 344-18 307Q29 327 43 441Z','M-22 430Q-52 367-17 340Q13 351 25 429Z'],6:['M-45 448 0 295 45 448Z','M-27 432 0 334 27 432Z'],7:['M0 320A58 58 0 1 0 0 436A58 58 0 1 0 0 320Z','M0 349A28 28 0 1 0 0 405A28 28 0 1 0 0 349Z']};const [shape,inside]=shapes[s.ears]||shapes[1];return clip(315,1,shape,inside)+clip(685,-1,shape,inside);}
 function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryColor,f=s.faceColor;
  // Transform the entire character, never the background, so every sticker and export
  // shares the lower-left peek. Hair and ear tips may crop at the top. Saved options also
@@ -135,15 +137,18 @@ function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryCol
  'M135 1000Q55 947 124 865Q46 776 132 682Q81 570 197 447Q319 270 560 319Q835 318 867 587Q944 684 876 761Q966 869 879 911Q947 982 874 1000Z',
  'M681 435Q794 296 916 401Q1015 567 902 740Q829 847 952 1000H767Q681 824 786 633L698 566M174 1000Q117 708 194 516Q292 300 540 320Q804 330 844 617L810 1000Z',
  'M243 537Q120 360 57 533Q-1 689 58 812L17 1000H194L266 662M742 530Q881 361 947 537Q1004 729 952 845L988 1000H820L727 656M154 1000 160 634Q168 334 477 313Q803 304 844 620L844 1000Z',
- 'M230 466C-13 491 86 191 254 294Q365 310 314 460M743 464C1020 465 892 194 742 293Q640 319 692 459M149 1000 170 594Q196 307 506 316Q786 317 836 610L851 1000Z'];
+ 'M230 466C-13 491 86 191 254 294Q365 310 314 460M743 464C1020 465 892 194 742 293Q640 319 692 459M149 1000 170 594Q196 307 506 316Q786 317 836 610L851 1000Z',
+ 'M118 1000Q78 790 124 585Q176 350 500 315Q824 350 876 585Q922 790 882 1000Z'];
 out+=referenceAccessory(s,'rear');
-out+=path(rear[s.hair]||rear[[0,3,6,4,3,3,3][s.hair-8]],shadow);
+out+=path(s.hair===15?rear[8]:(rear[s.hair]||rear[[0,3,6,4,3,3,3][s.hair-8]]),s.hair===15?s.skinColor:shadow);
+if(s.hair===15)out+=pigEarClips(s);else{
 if(s.ears===1||s.ears===2){const tall=s.ears===2;out+=path(`M194 581Q136 410 ${tall?'115 163':'139 276'}Q305 300 357 437Z`,h)+path(`M806 581Q864 410 ${tall?'885 163':'861 276'}Q695 300 643 437Z`,h);out+=path(`M207 505  ${tall?'157 225':'177 328'} 299 432Z`,'#e9a7b9')+path(`M793 505 ${tall?'843 225':'823 328'} 701 432Z`,'#e9a7b9');}
 if(s.ears===3){out+=path('M260 463Q129 161 213 52Q297 16 339 415Z',h)+path('M650 419Q696 7 782 60Q877 137 742 468Z',h)+path('M266 380Q198 132 224 98Q259 84 296 376Z','#e9a7b9')+path('M694 381Q729 98 766 103Q805 137 738 382Z','#e9a7b9');}
 if(s.ears===4){out+=ellipse(222,373,110,113,h)+ellipse(778,373,110,113,h)+ellipse(222,374, 60,65,'#e9a7b9')+ellipse(778,374,60,65,'#e9a7b9');}
 if(s.ears===5){out+=path('M294 440Q154 235 109 472L127 720Q218 771 242 591ZM707 440Q858 235 902 472L882 720Q793 771 759 591Z',h)+path('M199 411Q129 432 162 664Q204 616 199 411ZM804 411Q872 432 841 664Q800 616 804 411Z','#e9a7b9');}
 if(s.ears===6){out+=path('M243 684 47 436Q64 726 260 775ZM754 684 953 436Q935 726 737 775Z',s.skinColor)+path('M211 687 91 503Q122 678 211 714ZM788 687 909 503Q878 678 788 714Z','#e9a7b9');}
 if(s.ears===7){out+=ellipse(203,338,140,142,h)+ellipse(797,338,140,142,h)+ellipse(203,338,95,99,'#e9a7b9')+ellipse(797,338,95,99,'#e9a7b9');}
+}
  // Keep crown and cheek width while shortening the chin; facial details are not scaled.
  // Earless framing moves the whole character down 90 canvas units for a cropped peek.
  // Preview, history and both export formats share this geometry.
@@ -163,7 +168,7 @@ if(s.face===8)out+=path('M267 779H443L431 879Q356 931 281 865ZM557 790H733L719 8
 if(s.face===9)out+=`<g transform="translate(676 924) rotate(-12)"><rect x="-48" y="-20" width="96" height="40" rx="12" fill="${f}"/><rect x="-17" y="-17" width="34" height="34" rx="5" fill="${tone(f,25)}"/>${[-31,31].map(x=>ellipse(x,0,3,3,tone(f,-40))).join('')}</g>`;
 if(s.face===10)out+=`<g ${frame}><path d="M257 840V893Q257 909 273 909H438Q454 909 454 893V840M549 853V906Q549 922 565 922H730Q746 922 746 906V853M454 861Q502 831 549 873"/></g>`;
 if(s.face===11){const x=s.side==='left'?360:644,y=s.side==='left'?833:846;out+=`<g data-facewear="compass"><path d="M235 770Q505 733 789 821" fill="none" stroke="${f}" stroke-width="12"/>`+path(`M${x-77} ${y-73}Q${x} ${y-90} ${x+77} ${y-73}L${x+68} ${y+39}Q${x} ${y+111} ${x-68} ${y+39}Z`,f)+`<g transform="translate(${x} ${y})"><circle r="48" fill="none" stroke="#efd083" stroke-width="8"/>${path('M0-76 12-13 64 0 12 13 0 76-12 13-64 0-12-13Z','#f4cd78')}</g></g>`;}
-const ax=[300,288,285,284,287,295,265,293,300,284,265,287,284,285,284][s.hair];
+const ax=[300,288,285,284,287,295,265,293,300,284,265,287,284,285,284,500][s.hair];
 out+='</g>';
 if(s.accessory===1)out+=`<g stroke="${a}" stroke-width="17" stroke-linecap="round"><path d="M${ax-40} 566l81 51m-77 5 75-69"/></g>`;
 if(s.accessory===2)out+=star(ax,575,a);

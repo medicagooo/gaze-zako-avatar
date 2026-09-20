@@ -4,7 +4,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, 'dist');
 fs.mkdirSync(output, { recursive: true });
-for (const name of ['index.html', 'site-avatar.svg', 'special-pig-avatar.png', 'app.js', 'hair.js', 'accessories.js', 'share.js', 'styles.css', 'responsive.css', '_headers', '_redirects', 'LICENSE-ICONS']) {
+for (const name of ['index.html', 'site-avatar.svg', 'app.js', 'hair.js', 'accessories.js', 'share.js', 'styles.css', 'responsive.css', '_headers', '_redirects', 'LICENSE-ICONS']) {
   fs.copyFileSync(path.join(root, name), path.join(output, name));
 }
-console.log('Built 12 static assets in dist/ (no network or package installation required).');
+console.log('Built 11 static assets in dist/ (no network or package installation required).');

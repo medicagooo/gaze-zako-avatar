@@ -2,6 +2,10 @@
 // Front-hair artwork shares the existing face and accessory anchors. Each lock is
 // a closed vector shape, so palette changes and standalone SVG export stay exact.
 function illustratedHair(style, color) {
+  if(style===15){
+    const pink='#ef9eaa';
+    return path('M-54 446Q-74 354 0 307Q74 354 54 446Z',color)+path('M-31 430Q-42 370 0 339Q42 370 31 430Z',pink)+path('M946 446Q966 354 892 307Q818 354 838 446Z',color)+path('M931 430Q942 370 900 339Q858 370 869 430Z',pink)+ellipse(500,918,102,65,pink)+ellipse(466,918,14,20,'#6f3d4e')+ellipse(534,918,14,20,'#6f3d4e')+path('M390 358Q428 283 490 342Q535 260 588 347Q628 294 670 368Q604 397 535 379Q465 402 390 358Z','#b84e82');
+  }
   // Feathered and curved reference cuts share long-hair anchors and rear layers.
   if(style===13||style===14){
     const shade=tone(color,-22),shine=tone(color,12);

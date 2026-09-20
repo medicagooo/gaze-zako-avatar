@@ -7,7 +7,8 @@
     ".branch-records/readme-i18n/state.json",
     ".branch-records/publish-materials-readme/state.json",
     ".branch-records/round-face/state.json",
-    ".branch-records/special-pig/state.json"
+    ".branch-records/special-pig/state.json",
+    ".branch-records/pig-hair/state.json"
   ],
   "active": [],
   "pending": [
@@ -16,6 +17,24 @@
   ],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
+    {
+      "status": "implemented",
+      "result": "Local implementation verified; pending authorized main push.",
+      "request": ".branch-records/pig-hair/events.jsonl#request-pig-hair-20260920",
+      "evidence": [
+        "app.js",
+        "hair.js",
+        "index.html",
+        "responsive.css",
+        "scripts/build.cjs"
+      ],
+      "id": "pig-hair",
+      "business_change": "Replace the standalone pig special card with an editable pig hair option. Pig ears remain visible; selected extra ears render as paired hair clips on the pig head, while ordinary hair/ear combinations remain unchanged.",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "details": ".branch-records/pig-hair/state.json",
+      "domain": "avatar-rendering"
+    },
     {
       "id": "special-pig",
       "date": "2026-09-20",

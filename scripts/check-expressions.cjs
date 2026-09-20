@@ -13,6 +13,7 @@ const run=code=>vm.runInContext(code,context);
 for(const [key,count]of Object.entries(run('LIMITS'))){
  for(let i=0;i<count;i++)assert.ok(!/undefined|NaN/.test(run(`renderAvatar({...DEFAULT,${key}:${i}})`)),`${key}:${i}`);
 }
+for(let ear=0;ear<run('LIMITS.ears');ear++)assert.ok(!/undefined|NaN/.test(run(`renderAvatar({...DEFAULT,hair:15,ears:${ear}})`)),`pig hair ears:${ear}`);
 assert.equal(run('PRESETS.white.pupil'),0);
 assert.equal(run('PRESETS.white.mouthStyle'),0);
 assert.equal(run('DEFAULT.background'),4);

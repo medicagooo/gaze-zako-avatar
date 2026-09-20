@@ -1,0 +1,33 @@
+{
+  "purpose": "Replace the temporary pig special card with an editable pig hair option and render selected animal ears as clips on the pig head.",
+  "requirements": [
+    "Remove the standalone special preset card.",
+    "Append pig as hair ID 15 while preserving all prior IDs and saved configurations.",
+    "Keep pig ears permanently visible; when ears is nonzero on pig hair, render the selected ear as paired hair clips on the head instead of replacing the pig ears.",
+    "Keep ordinary hair and ear rendering unchanged; pig remains compatible with eyes, mouth, facewear, accessories, colors, history and exports."
+  ],
+  "constraints": [
+    "No deployment beyond the authorized main push.",
+    "Use project-native SVG artwork without relying on the static preview PNG."
+  ],
+  "acceptance": [
+    "Hair count is 16 with localized pig name.",
+    "Pig hair renders without undefined or NaN for all ear choices.",
+    "Existing expression, registry and offline build checks pass."
+  ],
+  "status": "complete",
+  "integration": "unmerged",
+  "evidence": {
+    "implementation_date": "2026-09-20",
+    "main_integration_date": null,
+    "deployment_date": null,
+    "paths": [
+      "app.js",
+      "hair.js",
+      "index.html",
+      "responsive.css",
+      "scripts/build.cjs"
+    ]
+  },
+  "next": "Register push intent, commit and push main, then verify remote SHA."
+}
