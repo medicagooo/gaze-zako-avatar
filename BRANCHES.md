@@ -3,7 +3,7 @@
   "timezone": "Asia/Tokyo",
   "records": [".branch-records/avatar-v1/state.json"],
   "active": [],
-  "pending": [],
+  "pending": ["avatar-v1:push-library-v14-20260920"],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
     {"id":"avatar-lilac-v14","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-presets","business_change":"Add editable lavender twin-tail cat preset with white side bows and paired ribbon clips, violet solid eyes, no mouth and black background; append accessory ID 20.","status":"implemented","result":"Offline build, expression checks and browser selection/history/SVG/PNG/trilingual/mobile checks passed; original vector interpretation, not exact raster reproduction. Local only.","request":".branch-records/avatar-v1/events.jsonl#request-lilac-v14","evidence":["app.js","accessories.js"],"details":".branch-records/avatar-v1/state.json"},
