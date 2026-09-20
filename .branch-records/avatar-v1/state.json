@@ -24,5 +24,5 @@
   "status": "active",
   "integration": "not_applicable",
   "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
-  "next": "V15 implementation verified and synchronized to local preview; commit locally. No push authorized for V15. Previous push verified main a53d02a0ed237334ce7f6c6092b0147a08371aa6. Deployment remains unverified."
+  "next": "V15 committed at 81338a3. User authorized push and Pages inspection: execute push-sage-v15-20260920, verify remote SHA and inspect deployment/live assets without manual workflow dispatch."
 }

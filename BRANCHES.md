@@ -3,7 +3,7 @@
   "timezone": "Asia/Tokyo",
   "records": [".branch-records/avatar-v1/state.json"],
   "active": [],
-  "pending": [],
+  "pending": ["avatar-v1:push-sage-v15-20260920"],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
     {"id":"avatar-sage-v15","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-materials","business_change":"Add reference-inspired brown layered side-bang preset, lower-rim rectangular glasses, two-tone oval eyes and outlined white bow/double-bar accessory as independently selectable materials.","status":"implemented","result":"14 presets; new materials selectable in three languages. Offline build, new-hair/accessory combinations, history, SVG/PNG and 320/390 layouts verified. Original vector interpretation; local only.","request":".branch-records/avatar-v1/events.jsonl#request-sage-v15","evidence":["app.js","hair.js","accessories.js","scripts/check-expressions.cjs"],"details":".branch-records/avatar-v1/state.json"},
