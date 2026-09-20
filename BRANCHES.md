@@ -24,7 +24,8 @@
     "pig-hair:push-pig-ears-20260920",
     "pig-hair:push-pig-composition-20260920",
     "pig-hair:push-pig-reference-base-20260920",
-    "pig-hair:push-version-bump-pig-reference-20260920"
+    "pig-hair:push-version-bump-pig-reference-20260920",
+    "pig-adaptive-v2:push-pig-adaptive-v4-20260921"
   ],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
