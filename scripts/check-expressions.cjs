@@ -15,7 +15,7 @@ for(const [key,count]of Object.entries(run('LIMITS'))){
 }
 assert.equal(run('PRESETS.white.pupil'),0);
 assert.equal(run('PRESETS.white.mouthStyle'),0);
-assert.equal(run('DEFAULT.background'),5);
+assert.equal(run('DEFAULT.background'),4);
 assert.equal(run('DEFAULT.accessory'),8);
 assert.equal(run('validConfig({...DEFAULT,mouth:true,mouthStyle:undefined,pupil:undefined}).mouthStyle'),1);
 assert.equal(run('validConfig({...DEFAULT,mouthStyle:undefined,pupil:undefined}).pupil'),0);
