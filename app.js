@@ -11,15 +11,21 @@ const DEFAULT={hair:2,hairColor:'#a9ceef',skinColor:'#fff0e8',eyeColor:'#242b3b'
 TEXT.zh.accessoryNames.push('冰晶蝴蝶结套饰','月亮玫瑰女仆套饰');
 TEXT.zh.mouth='小嘴';TEXT.en.mouth='Small mouth';TEXT.ja.mouth='小さな口';
 DEFAULT.mouth=false;
+DEFAULT.mouthStyle=0;DEFAULT.pupil=0;
+Object.assign(TEXT.zh,{mouth:'嘴巴',pupil:'瞳孔样式',mouthNames:['无','波浪小嘴','微笑','猫嘴','小圆嘴','开心张嘴','嘟嘴','平嘴'],pupilNames:['纯色','高光','圆瞳','竖瞳','星形瞳','爱心瞳','菱形瞳']});
+Object.assign(TEXT.en,{mouth:'Mouth',pupil:'Pupil style',mouthNames:['None','Wavy','Smile','Cat smile','Small O','Open smile','Pout','Straight'],pupilNames:['Solid','Shine','Round','Slit','Star','Heart','Diamond']});
+Object.assign(TEXT.ja,{mouth:'口',pupil:'瞳の形',mouthNames:['なし','波形','ほほえみ','猫の口','小さな丸','開いた笑顔','とがらせた口','まっすぐ'],pupilNames:['単色','ハイライト','丸い瞳','縦長の瞳','星の瞳','ハートの瞳','ひし形の瞳']});
 TEXT.en.accessoryNames.push('Crystal bow ensemble','Moon rose maid ensemble');
 TEXT.ja.accessoryNames.push('氷晶リボンセット','月と薔薇のメイドセット');
 TEXT.zh.accessoryNames.push('同侧双蝴蝶结','侧边丝带发夹','骨形发夹','蝴蝶结与波浪夹','交叠长发夹','荷叶发带与交叉夹');
 TEXT.en.accessoryNames.push('Stacked bows','Side ribbon clips','Bone clip','Bows and wave clips','Crossed bar clips','Ruffled band and pins');
 TEXT.ja.accessoryNames.push('重ねリボン','サイドリボンピン','ボーンピン','リボンと波形ピン','クロスバーピン','フリルバンドとピン');
 const LIMITS={hair:8,ears:5,accessory:16,face:7,background:8};
+// Optional schema additions: missing fields migrate without rejecting v1 history.
+const EXPRESSION_LIMITS={mouthStyle:8,pupil:7};
 const PRESETS={
  crystal:{hair:2,accessory:8,hairColor:'#acd2f2',accessoryColor:'#6998d5',eyeColor:'#23263e'},
- moon:{hair:2,accessory:9,hairColor:'#8886a5',accessoryColor:'#514975',eyeColor:'#23263e',mouth:true},
+ moon:{hair:2,accessory:9,hairColor:'#8886a5',accessoryColor:'#514975',eyeColor:'#23263e',mouth:true,mouthStyle:1},
  white:{hair:5,accessory:15,hairColor:'#f5f3f2',accessoryColor:'#41404c',eyeColor:'#85b7cd'},
  lilac:{hair:6,ears:1,accessory:11,hairColor:'#d2bce6',accessoryColor:'#fafaff',eyeColor:'#9875bd'},
  dark:{hair:0,ears:1,accessory:4,hairColor:'#464352',accessoryColor:'#b84e59',eyeColor:'#dd815e'},
@@ -38,7 +44,7 @@ let lang='en',state={...DEFAULT},tab='hair',size=1024,history=[],storageBlocked=
 try{const saved=localStorage.getItem('gaze-zako-avatar.language');lang=TEXT[saved]?saved:((navigator.language||'en').startsWith('zh')?'zh':(navigator.language||'en').startsWith('ja')?'ja':'en');}catch{}
 const t=k=>TEXT[lang][k];
 const icon=(name)=>{const paths={download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',reset:'<path d="M3 11a9 9 0 1 1 2.6 6.4M3 3v8h8"/>',random:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 7.5h.01M16.5 7.5h.01M12 12h.01M7.5 16.5h.01M16.5 16.5h.01"/>',trash:'<path d="M3 6h18M9 6V4h6v2M5 6l1 14h12l1-14M10 10v6M14 10v6"/>',spark:'<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/>'};return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;};
-function validConfig(raw){if(!raw||typeof raw!=='object')return null;const s={...DEFAULT};for(const [k,n]of Object.entries(LIMITS)){if(!Number.isInteger(raw[k])||raw[k]<0||raw[k]>=n)return null;s[k]=raw[k];}for(const k of ['hairColor','skinColor','eyeColor','rightEye','accessoryColor','faceColor']){if(!/^#[0-9a-f]{6}$/i.test(raw[k]))return null;s[k]=raw[k].toLowerCase();}s.hetero=raw.hetero===true;s.mouth=raw.mouth===true;s.side=raw.side==='right'?'right':'left';return s;}
+function validConfig(raw){if(!raw||typeof raw!=='object')return null;const s={...DEFAULT};for(const [k,n]of Object.entries(LIMITS)){if(!Number.isInteger(raw[k])||raw[k]<0||raw[k]>=n)return null;s[k]=raw[k];}for(const k of ['hairColor','skinColor','eyeColor','rightEye','accessoryColor','faceColor']){if(!/^#[0-9a-f]{6}$/i.test(raw[k]))return null;s[k]=raw[k].toLowerCase();}for(const [k,n]of Object.entries(EXPRESSION_LIMITS)){const value=raw[k]===undefined?(k==='mouthStyle'&&raw.mouth===true?1:0):raw[k];if(!Number.isInteger(value)||value<0||value>=n)return null;s[k]=value;}s.hetero=raw.hetero===true;s.mouth=s.mouthStyle>0;s.side=raw.side==='right'?'right':'left';return s;}
 function loadHistory(){try{const raw=JSON.parse(localStorage.getItem(STORAGE)||'[]');if(!Array.isArray(raw))throw Error();history=raw.map(x=>{const config=validConfig(x.config);return config&&typeof x.id==='string'&&/^[a-z0-9-]+$/i.test(x.id)&&typeof x.at==='string'?{id:x.id,at:x.at,config}:null;}).filter(Boolean);if(history.length!==raw.length)throw Error();}catch{storageBlocked=true;setTimeout(()=>toast('corrupt'),100);}}
 function persist(next){if(storageBlocked){toast('corrupt');return false;}try{localStorage.setItem(STORAGE,JSON.stringify(next));history=next;return true;}catch{toast('storageError');return false;}}
 function tone(hex,amount){return '#'+hex.slice(1).match(/../g).map(x=>Math.max(0,Math.min(255,parseInt(x,16)+amount)).toString(16).padStart(2,'0')).join('');}
@@ -47,11 +53,30 @@ function ellipse(x,y,rx,ry,fill,extra=''){return `<ellipse cx="${x}" cy="${y}" r
 function background(s){const colors=['#202023','#ffffff','none','#81d8d0','#f4b5d0',null,'#f4bfd4','#b7d9ef'];if(s.background===5)return ['#5bcefa','#f5a9b8','#ffffff','#f5a9b8','#5bcefa'].map((c,i)=>`<rect y="${i*200}" width="1000" height="200" fill="${c}"/>`).join('');let out=`<rect width="1000" height="1000" fill="${colors[s.background]}"/>`;if([3,4].includes(s.background)){for(let y=45;y<1000;y+=112)for(let x=(Math.floor(y/112)%2?85:30);x<1000;x+=112)out+=ellipse(x,y,10,10,'#ffffff');}return out;}
 function bow(x,y,c,scale=1){return `<g transform="translate(${x} ${y}) scale(${scale})">${path('M0 0Q-95-80-95-28Q-112 42-16 17L0 4Q85 67 91 22Q118-48 25-15Z',c)}${ellipse(0,2,18,22,tone(c,-18))}</g>`;}
 function star(x,y,c){return `<g transform="translate(${x} ${y})">${path('M0-40 12-13 42-10 20 11 25 42 0 27-26 42-21 11-43-10-12-13Z',c)}</g>`;}
+// Expression artwork stays in the facial-detail coordinate space, below facewear.
+// Shared by option thumbnails, live preview, restored history and SVG/PNG exports.
+function eyeShape(x,y,color,style=0){
+ let out=ellipse(0,0,43,72,color);const dark=tone(color,-85);
+ if(style===2)out+=ellipse(0,4,22,40,dark);
+ if(style===3)out+=path('M0-51Q18-12 0 53Q-18 12 0-51Z',dark);
+ if(style===4)out+=`<g transform="scale(.72)">${star(0,0,'#fff7cc')}</g>`;
+ if(style===5)out+=path('M0 27C-65-12-22-47 0-19C22-47 65-12 0 27Z','#fff0f5');
+ if(style===6)out+=path('M0-39 24 0 0 39-24 0Z','#f3fcff');
+ if(style>0)out+=ellipse(-16,-37,10,15,'#ffffff','opacity=".9"')+ellipse(19,37,5,7,'#ffffff','opacity=".65"');
+ return `<g data-pupil="${style}" transform="translate(${x} ${y})">${out}</g>`;
+}
+function mouthShape(style){
+ const stroke='fill="none" stroke="#dba3a8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"';
+ const shapes=['','<path d="M462 928Q475 948 494 937Q508 929 522 940Q541 952 552 931" '+stroke+'/>','<path d="M470 925Q505 963 540 925" '+stroke+'/>','<path d="M463 931Q484 961 503 931Q521 961 542 931" '+stroke+'/>',ellipse(503,936,13,18,'#ad697c'),'<path d="M472 921Q504 932 536 921Q532 971 504 971Q476 968 472 921Z" fill="#965c70"/><path d="M485 957Q504 943 523 958Q505 977 485 957Z" fill="#efabbc"/>','<path d="M488 921 513 933 489 947" '+stroke+'/>','<path d="M478 935H530" '+stroke+'/>'];
+ return `<g data-mouth="${style}">${shapes[style]||''}</g>`;
+}
+function expressionChoices(key){const mouth=key==='mouthStyle',names=TEXT[lang][mouth?'mouthNames':'pupilNames'];return `<div class="color-section"><h3 class="color-title">${t(mouth?'mouth':'pupil')}</h3><div class="tiles">${names.map((name,i)=>`<button class="tile ${state[key]===i?'active':''}" data-expression="${key}" data-value="${i}" aria-pressed="${state[key]===i}"><div class="tile-visual"><svg viewBox="${mouth?'430 870 150 150':'-80 -85 160 170'}" aria-hidden="true"><rect x="-1000" y="-1000" width="3000" height="3000" fill="${state.skinColor}"/>${mouth?(i?mouthShape(i):'<path d="M480 915 526 961M526 915 480 961" stroke="#c8b9bf" stroke-width="4"/>'):eyeShape(0,0,state.eyeColor,i)}</svg></div><span class="tile-label">${name}</span></button>`).join('')}</div></div>`;}
 function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryColor,f=s.faceColor;
  // Transform the entire character, never the background, so every sticker and export
  // shares the lower-left peek. Hair and ear tips may crop at the top. Saved options also
  // use this composition; history contains no raster snapshots or position overrides.
- const framing=s.ears===3?'translate(-145 25) scale(1.07) rotate(17 500 700)':s.ears===2?'translate(-225 -70) scale(1.27) rotate(17 500 700)':s.ears===1?'translate(-245 -170) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -240) scale(1.38) rotate(17 500 700)':'translate(-268 -276) scale(1.25) rotate(17 500 700)';
+ // Long ears intentionally crop; changing cat/fox/rabbit never lowers or shrinks the face.
+ const framing=[1,2,3].includes(s.ears)?'translate(-245 -170) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -240) scale(1.38) rotate(17 500 700)':'translate(-268 -276) scale(1.25) rotate(17 500 700)';
  let out=background(s)+`<g data-character="lower-left" transform="${framing}">`;
  // All silhouettes share a face anchor; alternate rear/front paths keep accessories aligned.
  const rear=[
@@ -74,9 +99,9 @@ out+=ellipse(500,811,390,395,s.skinColor);
 out+=`<g transform="translate(-30 33) scale(1.06 .90)">${illustratedHair(s.hair,h)}</g>`;
 // Keep the original facewear anchors; lift the entire facial-detail group together.
 out+='<g transform="translate(0 -68)">';
-out+=ellipse(360,833,43,72,s.eyeColor)+ellipse(644,846,43,72,s.hetero?s.rightEye:s.eyeColor);
+out+=eyeShape(360,833,s.eyeColor,s.pupil)+eyeShape(644,846,s.hetero?s.rightEye:s.eyeColor,s.pupil);
 out+=ellipse(275,920,50,29,'#f7b9c2','opacity=".65"')+ellipse(683,938,44,29,'#f7b9c2','opacity=".65"');
-if(s.mouth)out+='<path d="M462 928Q475 948 494 937Q508 929 522 940Q541 952 552 931" fill="none" stroke="#dba3a8" stroke-width="5" stroke-linecap="round"/>';
+out+=mouthShape(s.mouthStyle??(s.mouth?1:0));
 const frame='fill="none" stroke="'+f+'" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"';
 if(s.face>0&&s.face<6){out+=`<g ${frame}>`;if(s.face===1)out+='<circle cx="357" cy="835" r="87"/><circle cx="646" cy="846" r="87"/>';if(s.face===2)out+='<ellipse cx="357" cy="835" rx="96" ry="71"/><ellipse cx="646" cy="846" rx="96" ry="71"/>';if(s.face===3)out+='<rect x="268" y="761" width="178" height="149" rx="25"/><rect x="557" y="772" width="178" height="149" rx="25"/>';if(s.face===4)out+='<path d="M256 751Q366 769 444 801Q449 924 350 918Q273 912 256 751ZM748 762Q638 780 560 812Q555 935 654 929Q731 923 748 762Z"/>';if(s.face===5)out+='<path d="M358 777C294 697 221 814 358 921C495 814 422 697 358 777ZM646 788C582 708 509 825 646 932C783 825 710 708 646 788Z"/>';out+='<path d="M446 827Q501 798 557 836M269 813 233 793M733 830 767 810"/></g>';}
 if(s.face===6){const x=s.side==='left'?360:644,y=s.side==='left'?833:846;out+=`<path d="M240 731 772 917" stroke="${f}" stroke-width="15"/>`+path(`M${x-74} ${y-69}Q${x} ${y-87} ${x+74} ${y-69}L${x+69} ${y+30}Q${x} ${y+114} ${x-69} ${y+30}Z`,f);}
@@ -97,7 +122,8 @@ function renderPanel(){document.querySelector('#reference-presets').innerHTML=Ob
 if(LIMITS[tab])html+=`<div class="tiles">${TEXT[lang][listKey].map((name,i)=>{let sample={...state,[tab]:i};if(tab==='hair')sample={...sample,accessory:0,ears:0,face:0};if(tab==='ears')sample.accessory=0;return `<button class="tile ${state[tab]===i?'active':''}" data-option="${i}" aria-pressed="${state[tab]===i}"><div class="tile-visual">${tab==='background'?`<svg viewBox="0 0 1000 1000" aria-hidden="true">${i===2?'<defs><pattern id="checker" width="200" height="200" patternUnits="userSpaceOnUse"><rect width="200" height="200" fill="white"/><path d="M0 0H100V100H0ZM100 100H200V200H100Z" fill="#e9e4e8"/></pattern></defs><rect width="1000" height="1000" fill="url(#checker)"/>':background(sample)}</svg>`:renderAvatar(sample)}</div><span class="tile-label">${name}</span></button>`;}).join('')}</div>`;
 if(tab==='hair')html+=swatches('hairColor',t('hairColor'));
 if(tab==='skin')html+=swatches('skinColor',t('skinColor'));
-if(tab==='face')html+=`<label class="check-row"><input id="mouth" type="checkbox" ${state.mouth?'checked':''}>${t('mouth')}</label>`;
+if(tab==='face')html+=expressionChoices('mouthStyle');
+if(tab==='eyes')html+=expressionChoices('pupil');
 if(tab==='eyes'){html+=swatches('eyeColor',state.hetero?t('leftEye'):t('eyeColor'))+`<label class="check-row"><input id="hetero" type="checkbox" ${state.hetero?'checked':''}>${t('hetero')}</label>`;if(state.hetero)html+=swatches('rightEye',t('rightEye'));}
 if(tab==='accessory'&&state.accessory)html+=swatches('accessoryColor',t('color'));
 if(tab==='face'&&state.face){html+=swatches('faceColor',t('color'));if(state.face===6)html+=`<div class="color-section"><span class="color-title">${t('side')}</span><div class="segmented">${['left','right'].map(x=>`<button data-side="${x}" aria-pressed="${state.side===x}" class="${state.side===x?'active':''}">${t(x)}</button>`).join('')}</div></div>`;}
@@ -113,7 +139,8 @@ async function download(config,format){try{const svg=renderAvatar(config);if(for
 document.querySelector('#language').addEventListener('change',e=>{lang=e.target.value;try{localStorage.setItem('gaze-zako-avatar.language',lang);}catch{}render();});
 document.querySelector('#app').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;if(d.tab){tab=d.tab;render();document.querySelector(`[data-tab="${tab}"]`).focus({preventScroll:true});}else if(d.option!==undefined){state[tab]=Number(d.option);update();}else if(d.color){state[d.colorKey]=d.color;update();}else if(d.side){state.side=d.side;update();}else if(d.download){download({...state},d.download);}else if(d.restore){const item=history.find(x=>x.id===d.restore);if(item){state={...item.config};update();document.querySelector('.preview-column').scrollIntoView({behavior:'smooth',block:'start'});toast('restored');}}else if(d.remove){if(persist(history.filter(x=>x.id!==d.remove)))renderHistory();}else if(d.historyDownload){const item=history.find(x=>x.id===d.historyDownload);if(item)download(item.config,d.format);}else if(b.id==='generate')save();else if(b.id==='clear')document.querySelector('#confirm').showModal();else if(b.id==='reset'){state={...DEFAULT};update();}else if(b.id==='random'){for(const [key,count]of Object.entries(LIMITS))state[key]=Math.floor(Math.random()*count);for(const [key,colors]of Object.entries(PALETTES))state[key]=colors[Math.floor(Math.random()*colors.length)];state.rightEye=PALETTES.eyeColor[Math.floor(Math.random()*PALETTES.eyeColor.length)];update();}});
 document.querySelector('#app').addEventListener('input',e=>{const key=e.target.dataset.custom;if(key){state[key]=e.target.value;document.querySelector('#preview').innerHTML=renderAvatar(state);e.target.nextElementSibling.textContent=e.target.value.toUpperCase();document.querySelectorAll(`[data-color-key="${key}"]`).forEach(b=>{b.classList.toggle('active',b.dataset.color===state[key]);b.setAttribute('aria-pressed',b.dataset.color===state[key]);});}});
-document.querySelector('#app').addEventListener('change',e=>{if(['hetero','mouth'].includes(e.target.id)){state[e.target.id]=e.target.checked;update();}if(e.target.id==='size')size=Number(e.target.value);});
+document.querySelector('#app').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.expression){const key=b.dataset.expression;if(!(key in EXPRESSION_LIMITS))return;state[key]=Number(b.dataset.value);state.mouth=state.mouthStyle>0;update();}else if(b.id==='random'){for(const [key,count]of Object.entries(EXPRESSION_LIMITS))state[key]=Math.floor(Math.random()*count);state.mouth=state.mouthStyle>0;update();}});
+document.querySelector('#app').addEventListener('change',e=>{if(e.target.id==='hetero'){state.hetero=e.target.checked;update();}if(e.target.id==='size')size=Number(e.target.value);});
 document.querySelector('#confirm').addEventListener('close',()=>{if(document.querySelector('#confirm').returnValue==='confirm'&&persist([])){renderHistory();toast('cleared');}});
 document.querySelector('#reference-presets').addEventListener('click',e=>{const preset=e.target.closest('[data-preset]')?.dataset.preset;if(!PRESETS[preset])return;state={...DEFAULT,...PRESETS[preset]};update();});
 loadHistory();render();

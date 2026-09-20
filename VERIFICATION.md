@@ -23,6 +23,10 @@ Face enlargement revision: face radii changed to 355/375, with slightly wider fr
 
 Scope limits: Cloudflare publication, remote CI, real Safari/iOS and Firefox were not tested. History depends on the browser origin and is not a backup service. Artwork is an original geometric interpretation of the provided visual reference, not a copy of its rendered characters.
 
+## Expressions and ear framing - 2026-09-20
+
+Offline build and `node scripts/check-expressions.cjs` passed: legacy optional-field migration, invalid-value rejection, distinct artwork for all choices, moon preset compatibility, heterochromia and equal cat/fox/rabbit transforms. Edge browser checks selected and restored all eight mouth and seven pupil options after reload, restored a legacy boolean-only mouth record, downloaded actual 1024 PNG and SVG with the selected expression, and checked Chinese/English/Japanese at 320/390/1440 widths without overflow or page errors. Visually inspected the expression contact sheet and editor screenshot. Longer ears crop while faces retain cat framing. Local revision only; no new push or deployment performed.
+
 ## Reference ensemble revision - 2026-09-20
 
 Offline build produces nine assets. Full Edge regression passed for all ten accessory choices, existing options, history, three languages, SVG/PNG dimensions and transparency, and mobile widths 320/390. Additional checks downloaded both new ensembles as actual SVG and 1024 PNG, restored their accessory and mouth flags after reload, verified the mouth toggle and legacy missing-mouth normalization, and checked each preset at 320px in all three languages. Exported images were visually inspected: top ahoge and pleats are visible, 17-degree eyes follow the references, and rear ribbons/crystals do not cover the face. Hair contours, shading, ruffle shapes and embroidery remain visibly different from the source rasters; exact visual equality is not claimed. Local revision only, no push/deployment performed.
