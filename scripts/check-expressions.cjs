@@ -10,10 +10,17 @@ for(const name of ['hair.js','accessories.js','app.js']){
  vm.runInContext(name==='app.js'?source.split("document.querySelector('#language').addEventListener")[0]:source,context);
 }
 const run=code=>vm.runInContext(code,context);
+for(const [key,count]of Object.entries(run('LIMITS'))){
+ for(let i=0;i<count;i++)assert.ok(!/undefined|NaN/.test(run(`renderAvatar({...DEFAULT,${key}:${i}})`)),`${key}:${i}`);
+}
+assert.equal(run('PRESETS.white.pupil'),0);
+assert.equal(run('PRESETS.white.mouthStyle'),0);
+assert.equal(run('DEFAULT.background'),5);
+assert.equal(run('DEFAULT.accessory'),8);
 assert.equal(run('validConfig({...DEFAULT,mouth:true,mouthStyle:undefined,pupil:undefined}).mouthStyle'),1);
 assert.equal(run('validConfig({...DEFAULT,mouthStyle:undefined,pupil:undefined}).pupil'),0);
 assert.equal(run('validConfig({...DEFAULT,mouthStyle:undefined,mouth:undefined}).mouthStyle'),0);
-for(const [key,count]of [['mouthStyle',8],['pupil',7]]){
+for(const [key,count]of [['mouthStyle',11],['pupil',10]]){
  for(const value of [-1,count,1.5,'1',null])assert.equal(run(`validConfig({...DEFAULT,${key}:${JSON.stringify(value)}})`),null);
  for(let i=0;i<count;i++)assert.equal(run(`validConfig({...DEFAULT,${key}:${i}}).${key}`),i);
  assert.equal(run(`new Set(Array.from({length:${count}},(_,i)=>renderAvatar({...DEFAULT,${key}:i}))).size`),count);

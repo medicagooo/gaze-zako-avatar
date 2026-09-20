@@ -2,6 +2,15 @@
 // Front-hair artwork shares the existing face and accessory anchors. Each lock is
 // a closed vector shape, so palette changes and standalone SVG export stay exact.
 function illustratedHair(style, color) {
+  if(style>=8){
+    const baseStyle=[0,3,6,4][style-8],shade=tone(color,-24);
+    let out=illustratedHair(baseStyle,color);
+    if(style===8)out+=path('M678 347Q367 260 164 614Q382 633 539 428Q468 591 384 646Q619 615 678 347Z',color)+path('M607 366Q384 388 238 555Q453 446 607 366Z',tone(color,14));
+    if(style===9)out+=path('M190 553 294 566 296 805 182 805ZM711 570 811 552 838 805 721 805Z',color)+path('M200 581V783M739 597 754 783','none',`stroke="${shade}" stroke-width="9"`);
+    if(style===10)for(const side of [185,825]){for(let i=0;i<7;i++)out+=ellipse(side+(i%2?13:-13),700+i*51,43,38,i%2?shade:color);out+=bow(side,1040,tone(color,-45),.4);}
+    if(style===11)for(const side of [183,822])for(let i=0;i<6;i++){out+=ellipse(side+(i%2?20:-10),595+i*74,57,61,color);out+=path(`M${side-20} ${575+i*74}q-35 40 10 55`,'none',`stroke="${shade}" stroke-width="8" stroke-linecap="round"`);}
+    return out;
+  }
   const base = color, shade = tone(color, -22), deep = tone(color, -38), shine = tone(color, 14);
   let art = path('M156 793C110 602 135 410 340 334C553 249 776 350 832 532C929 678 917 825 879 951L804 975C859 808 767 654 716 570C594 465 334 471 258 625C221 713 216 793 230 851Z', shade);
   // Move side locks progressively outward below the crown; bangs/eyes retain their anchors.

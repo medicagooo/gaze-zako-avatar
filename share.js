@@ -1,0 +1,16 @@
+'use strict';
+// Canonical URL is intentional: local previews and Pages aliases share the public site.
+// This opens composition UI only; the visitor chooses recipients and confirms sending.
+const SITE_URL='https://zako.medicago.top';
+function shareControls(){return `<div class="share-controls" aria-label="${t('share')}">${[['wechat','微信'],['qq','QQ'],['x','X / Twitter'],['whatsapp','WhatsApp'],['telegram','Telegram']].map(([id,label])=>`<button data-share="${id}">${label}</button>`).join('')}</div>`;}
+function shareTarget(platform){const text='gaze zako avatar',url=encodeURIComponent(SITE_URL),message=encodeURIComponent(`${text} ${SITE_URL}`);return {x:`https://twitter.com/intent/tweet?text=${message}`,whatsapp:`https://wa.me/?text=${message}`,telegram:`https://t.me/share/url?url=${url}&text=${encodeURIComponent(text)}`}[platform];}
+async function shareImage(){
+ const svg=renderAvatar(state),url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+ try{const image=new Image();await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;image.src=url;});const canvas=document.createElement('canvas');canvas.width=canvas.height=1024;canvas.getContext('2d').drawImage(image,0,0,1024,1024);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('png');const file=new File([blob],'gaze-zako-avatar.png',{type:'image/png'});const data={files:[file],title:'gaze zako avatar',text:`gaze zako avatar ${SITE_URL}`};if(navigator.canShare?.(data))await navigator.share(data);else toast('shareFallback');}finally{URL.revokeObjectURL(url);}
+}
+function showShare(platform){
+ const names={wechat:'微信',qq:'QQ',x:'X / Twitter',whatsapp:'WhatsApp',telegram:'Telegram'};
+ document.querySelector('#share-dialog')?.remove();const dialog=document.createElement('dialog');dialog.id='share-dialog';dialog.innerHTML=`<h2>${names[platform]}</h2><div class="share-preview">${renderAvatar(state)}</div><p>${t('shareHint')}</p><input class="share-url" readonly value="${SITE_URL}" aria-label="URL"><div class="share-actions"><button data-share-action="native">${t('shareImage')}</button>${shareTarget(platform)?`<button data-share-action="open">${t('share')} ${names[platform]}</button>`:''}<button data-share-action="download">${t('download')} PNG</button><button data-share-action="copy">${t('copyLink')}</button><button data-share-action="close">${t('close')}</button></div>`;document.body.append(dialog);dialog.showModal();
+ dialog.addEventListener('click',async e=>{const action=e.target.closest('[data-share-action]')?.dataset.shareAction;try{if(action==='close')dialog.close();if(action==='open')window.open(shareTarget(platform),'_blank','noopener,noreferrer');if(action==='download')await download({...state},'png');if(action==='native')await shareImage();if(action==='copy'){const input=dialog.querySelector('input');input.select();if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(SITE_URL);else if(!document.execCommand('copy'))throw Error('copy');toast('copied');}}catch(error){if(error.name!=='AbortError')toast('shareFallback');}});
+}
+document.addEventListener('click',e=>{const platform=e.target.closest('[data-share]')?.dataset.share;if(platform)showShare(platform);});

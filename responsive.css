@@ -1,4 +1,6 @@
 .brand-mark{flex-shrink:0;font-size:25px}
+.share-preview{width:140px;aspect-ratio:1;margin:auto}.share-preview svg{width:100%;height:100%}
+.share-controls{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.share-controls button{font-size:12px;padding:8px 10px}.share-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.share-url{width:100%;padding:10px;box-sizing:border-box}#share-dialog{max-width:min(420px,calc(100vw - 40px));border:1px solid #edcad8;border-radius:8px;padding:22px}#share-dialog p{line-height:1.6}
 .reference-presets{display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px!important}
 .reference-presets button{padding:5px;min-width:0;border-radius:8px;display:flex;flex-direction:column;gap:5px;align-items:center}
 .reference-presets button svg{width:100%;height:auto;aspect-ratio:1;display:block;border-radius:5px}

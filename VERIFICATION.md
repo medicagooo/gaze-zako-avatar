@@ -23,7 +23,9 @@ Face enlargement revision: face radii changed to 355/375, with slightly wider fr
 
 Scope limits: Cloudflare publication, remote CI, real Safari/iOS and Firefox were not tested. History depends on the browser origin and is not a backup service. Artwork is an original geometric interpretation of the provided visual reference, not a copy of its rendered characters.
 
-## Expressions and ear framing - 2026-09-20
+## Expanded library and sharing - 2026-09-20
+
+Verified the new editable default renders pixel-identically to the supplied SVG at 1000x1000 in Edge. Selected all 12 hair, 8 ear, 20 accessory, 10 facewear, 11 mouth and 10 pupil choices; no undefined paths or page errors. Verified seven skin avatar thumbnails and custom controls, new configuration persistence/reload, real PNG/SVG downloads, and Chinese/English/Japanese layouts at 320/390/1327 widths. Sharing tests intercept external navigation and mock native sharing: all platform payloads contain the canonical site address; native payload contains a nonempty PNG. No messages sent and no recipient apps tested. Browser support and installed share targets determine native availability. Inspected material contact sheet and desktop editor screenshots. Offline build includes ten assets, including share.js. Local only, not pushed/deployed.
 
 Offline build and `node scripts/check-expressions.cjs` passed: legacy optional-field migration, invalid-value rejection, distinct artwork for all choices, moon preset compatibility, heterochromia and equal cat/fox/rabbit transforms. Edge browser checks selected and restored all eight mouth and seven pupil options after reload, restored a legacy boolean-only mouth record, downloaded actual 1024 PNG and SVG with the selected expression, and checked Chinese/English/Japanese at 320/390/1440 widths without overflow or page errors. Visually inspected the expression contact sheet and editor screenshot. Longer ears crop while faces retain cat framing. Local revision only; no new push or deployment performed.
 

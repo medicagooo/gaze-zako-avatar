@@ -48,6 +48,10 @@ function referenceAccessory(s, layer) {
 // IDs append to existing choices so saved avatars retain their original accessories.
 function sampleAccessory(s) {
   const c=s.accessoryColor;
+  if(s.accessory===16)return `<g transform="translate(275 510) rotate(-15)">${path('M20-53C-57-53-73 41-6 55Q31 58 49 28C-13 46-41-17 20-53Z',c)}</g>`;
+  if(s.accessory===17)return path('M266 494Q273 440 321 461M321 461 334 509','none','stroke="#779875" stroke-width="8"')+ellipse(263,513,25,27,c)+ellipse(334,524,25,27,c)+path('M313 461Q320 425 356 448Q343 473 313 461Z','#88ad84');
+  if(s.accessory===18){let out='';for(let i=0;i<11;i++){const x=240+i*51,y=385+Math.pow(i-5,2)*4;out+=ellipse(x,y,19,21,c)+ellipse(x-5,y-6,5,6,'#ffffff');}return out;}
+  if(s.accessory===19)return path('M272 540Q183 541 186 468L229 499Q187 436 211 413L249 479Q226 418 252 408L297 513Q307 534 272 540Z',c)+ellipse(290,529,16,19,tone(c,-24));
   if(s.accessory===10) return bow(288,511,c,.4)+bow(302,564,c,.4);
   if(s.accessory===11) return bow(246,431,c,.55)+`<g stroke="${c}" stroke-width="10" stroke-linecap="round"><path d="M234 485 283 490M240 513 288 518"/></g>`;
   if(s.accessory===12) return `<g transform="translate(278 513) rotate(-14)">${path('M-37-16Q-55-36-61-13Q-73 8-47 13L-21 11 21 11 47 13Q73 8 61-13Q55-36 37-16Z',c)}</g>`;
