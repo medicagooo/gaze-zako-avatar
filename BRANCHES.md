@@ -15,7 +15,8 @@
     "publish-materials-readme:push-main-face-20260920",
     "special-pig:push-special-pig-20260920",
     "pig-hair:push-pig-hair-20260920",
-    "pig-hair:push-pages-cache-20260920"
+    "pig-hair:push-pages-cache-20260920",
+    "pig-hair:push-pig-adaptation-20260920"
   ],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
