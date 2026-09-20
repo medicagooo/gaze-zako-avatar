@@ -1,0 +1,9 @@
+{
+ "purpose":"Document the project in Chinese by default, with English and Japanese editions.",
+ "requirements":["Avatar, project name, then introduction at the top.","Equivalent features, local build and GitHub-connected Cloudflare Pages deployment instructions in all three editions."],
+ "constraints":["Documentation only; application language defaults unchanged.","No push or deployment."],
+ "acceptance":["Local links resolve; feature counts and build settings match code."],
+ "status":"complete","integration":"not_applicable",
+ "evidence":{"paths":["README.md","README.en.md","README.ja.md","app.js","scripts/build.cjs"],"verification":"All local documentation links resolve; avatar precedes project heading in every edition; feature counts and build settings match source; registry validation and git diff --check passed.","publication":"Local documentation only; no push or deployment."},
+ "next":"No remaining documentation work."
+}

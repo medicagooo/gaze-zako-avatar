@@ -1,7 +1,7 @@
 {
   "format": ".branch-records/FORMAT.md",
   "timezone": "Asia/Tokyo",
-  "records": [".branch-records/avatar-v1/state.json", ".branch-records/reference-five/state.json"],
+  "records": [".branch-records/avatar-v1/state.json", ".branch-records/reference-five/state.json", ".branch-records/readme-i18n/state.json"],
   "active": [],
   "pending": [],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
