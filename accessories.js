@@ -48,6 +48,10 @@ function referenceAccessory(s, layer) {
 // IDs append to existing choices so saved avatars retain their original accessories.
 function sampleAccessory(s) {
   const c=s.accessoryColor;
+  if(s.accessory===20){
+    const ribbon=(x,y,scale)=>`<g transform="translate(${x} ${y}) scale(${scale})">${path('M-8-5Q-75-93-98-65L-113-32Q-112-21-19 9L-52 93Q-8 88 29 101Q42 32 12 3Z',c)}${ellipse(0,0,15,17,tone(c,-8))}</g>`;
+    return ribbon(227,420,.85)+ribbon(809,638,.7)+`<g transform="rotate(-3 280 552)">${path('M245 519Q263 525 325 521L326 547Q288 541 242 545Z',c)}${path('M247 560Q281 570 326 563L329 589Q281 580 244 584Z',c)}</g>`;
+  }
   if(s.accessory===16)return `<g transform="translate(275 510) rotate(-15)">${path('M20-53C-57-53-73 41-6 55Q31 58 49 28C-13 46-41-17 20-53Z',c)}</g>`;
   if(s.accessory===17)return path('M266 494Q273 440 321 461M321 461 334 509','none','stroke="#779875" stroke-width="8"')+ellipse(263,513,25,27,c)+ellipse(334,524,25,27,c)+path('M313 461Q320 425 356 448Q343 473 313 461Z','#88ad84');
   if(s.accessory===18){let out='';for(let i=0;i<11;i++){const x=240+i*51,y=385+Math.pow(i-5,2)*4;out+=ellipse(x,y,19,21,c)+ellipse(x-5,y-6,5,6,'#ffffff');}return out;}

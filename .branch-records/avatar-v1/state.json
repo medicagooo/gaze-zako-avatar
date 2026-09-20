@@ -1,6 +1,7 @@
 {
   "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
   "requirements": [
+    "V14: append a thirteenth localized preset, lavender twin tails/cat ears/white bows and paired clips/violet solid eyes/no mouth/black background. New accessory ID 20 remains editable; preserve all existing IDs and default. Reference is interpreted in the existing vector style.",
     "V12: expand six categories without renumbering; avatar skin thumbnails; sharing controls for WeChat/QQ/X/WhatsApp/Telegram with https://zako.medicago.top. Default matches supplied gaze-zako-avatar-1789870427847.svg as editable crystal/pink-dots/slit/smile config. No messages sent automatically; no push authorized.",
     "V11: mouth choices use a dedicated top-level Mouth tab after Eyes. Pupil styles remain first in Eyes. Supersedes V10 Facewear placement only; options and history schema stay unchanged.",
     "Expressions: mouth offers none, wavy, smile, cat smile, small O, open smile, pout, straight, fang, tongue out, frown. Eyes offer solid, shine, round, slit, star, heart, diamond, cross sparkle, ring, closed smile. Missing legacy fields still map to original wavy/none mouth and solid eyes. All render through eyeShape/mouthShape.",
@@ -8,7 +9,7 @@
     "Close-up lower-left composition rotates 17 degrees. Default now matches user SVG: blue shoulder-length hair, crystal accessory, slit eyes, smile, pink dotted background. No nose. Cat/fox/rabbit share framing; long ears crop. Original SVG artwork, no generative API; saved choices retained.",
     "Hair: twelve choices, adding side part, hime cut, braids and fluffy curls to the original eight. Existing IDs retained. illustratedHair maps new styles to bases and adds distinguishing vector locks.",
     "Ears: none, cat, fox, rabbit, bear, floppy, elf, mouse. One choice; outer follows hair except elf uses skin. New choices use normal framing, never lower than cat.",
-    "Accessories: twenty choices including none; IDs 16-19 append crescent, cherry, pearl band and wing clip through sampleAccessory. Twelve gallery presets retain their original backgrounds and expressions independently of DEFAULT.",
+    "Accessories: twenty-one choices including none; IDs 16-19 append crescent, cherry, pearl band and wing clip, ID 20 ribbon bows/clips through sampleAccessory. Thirteen gallery presets retain independent backgrounds and expressions.",
     "Facewear: ten choices including none, adding rimless, sunglasses and bandage; shared lifted facial group. Frame/patch colors remain editable.",
     "Preset and custom hair/skin/eye/accessory colors; optional different eye colors.",
     "Backgrounds: black, white, transparent, Tiffany blue with white dots, pink with white dots, transgender flag, pink, blue.",
@@ -22,5 +23,5 @@
   "status": "active",
   "integration": "not_applicable",
   "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
-  "next": "V13 default updated; verify against supplied SVG, refresh local preview and commit; no new push authorized. Last verified remote main is 7018b72f525f1046373cab043b68c03063cc12a3. Native recipient delivery and deployment remain unverified."
+  "next": "V14 preset verified by offline build, expression checks and browser selection/history/export/trilingual/mobile checks. Local preview synchronized; no new push authorized. Last verified remote main is 7018b72f525f1046373cab043b68c03063cc12a3. Native recipient delivery and deployment remain unverified."
 }

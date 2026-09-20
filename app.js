@@ -20,12 +20,15 @@ TEXT.ja.accessoryNames.push('氷晶リボンセット','月と薔薇のメイド
 TEXT.zh.accessoryNames.push('同侧双蝴蝶结','侧边丝带发夹','骨形发夹','蝴蝶结与波浪夹','交叠长发夹','荷叶发带与交叉夹');
 TEXT.en.accessoryNames.push('Stacked bows','Side ribbon clips','Bone clip','Bows and wave clips','Crossed bar clips','Ruffled band and pins');
 TEXT.ja.accessoryNames.push('重ねリボン','サイドリボンピン','ボーンピン','リボンと波形ピン','クロスバーピン','フリルバンドとピン');
-const LIMITS={hair:12,ears:8,accessory:20,face:10,background:8};
+const LIMITS={hair:12,ears:8,accessory:21,face:10,background:8};
 // Optional schema additions: missing fields migrate without rejecting v1 history.
 const EXPRESSION_LIMITS={mouthStyle:11,pupil:10};
 const EXTRA_NAMES={zh:{hairNames:['侧分短发','姬发式','双辫子','蓬松卷发'],earNames:['垂耳','精灵耳','圆鼠耳'],accessoryNames:['月牙发夹','樱桃发夹','珍珠发箍','翅膀发夹'],faceNames:['无框眼镜','墨镜','创可贴'],mouthNames:['小虎牙','吐舌','不开心'],pupilNames:['十字星瞳','环形瞳','闭眼微笑'],skinNames:['瓷白','浅杏','暖蜜','小麦','焦糖','古铜','深棕'],share:'分享',copyLink:'复制本站链接',shareImage:'系统分享图片',shareHint:'下载头像后，在聊天中选择图片并粘贴本站链接。',copied:'本站链接已复制',shareFallback:'可下载图片并复制链接后分享',close:'关闭'},en:{hairNames:['Side part','Hime cut','Braids','Fluffy curls'],earNames:['Floppy','Elf','Mouse'],accessoryNames:['Crescent clip','Cherry clip','Pearl band','Wing clip'],faceNames:['Rimless glasses','Sunglasses','Bandage'],mouthNames:['Fang','Tongue out','Frown'],pupilNames:['Cross sparkle','Ring','Closed smile'],skinNames:['Porcelain','Light peach','Honey','Wheat','Caramel','Bronze','Deep brown'],share:'Share',copyLink:'Copy site link',shareImage:'Share image',shareHint:'Download your avatar, then attach it in chat and paste the site link.',copied:'Site link copied',shareFallback:'Download the image and copy the link to share',close:'Close'},ja:{hairNames:['横分け','姫カット','三つ編み','ふわふわカール'],earNames:['垂れ耳','エルフ耳','丸い耳'],accessoryNames:['三日月ピン','さくらんぼ','パールバンド','羽のピン'],faceNames:['縁なしメガネ','サングラス','ばんそうこう'],mouthNames:['八重歯','舌出し','への字'],pupilNames:['十字の瞳','リング','笑顔の閉じ目'],skinNames:['陶器色','薄桃色','はちみつ','小麦色','キャラメル','ブロンズ','深い茶色'],share:'シェア',copyLink:'サイトリンクをコピー',shareImage:'画像を共有',shareHint:'アバターをダウンロードしてチャットに添付し、サイトリンクを貼り付けてください。',copied:'リンクをコピーしました',shareFallback:'画像の保存とリンクのコピーで共有できます',close:'閉じる'}};
 for(const [language,extra]of Object.entries(EXTRA_NAMES))for(const [key,value]of Object.entries(extra)){if(Array.isArray(TEXT[language][key]))TEXT[language][key].push(...value);else TEXT[language][key]=value;}
 // Reconstruct the user's exported SVG as editable options, not a static overlay.
+TEXT.zh.accessoryNames.push('白缎双结与发夹');
+TEXT.en.accessoryNames.push('Ribbon bows and clips');
+TEXT.ja.accessoryNames.push('リボンとダブルピン');
 Object.assign(DEFAULT,{hair:2,hairColor:'#acd2f2',accessory:8,accessoryColor:'#6998d5',eyeColor:'#23263e',background:4,mouth:true,mouthStyle:2,pupil:3});
 const PRESETS={
  crystal:{hair:2,accessory:8,hairColor:'#acd2f2',accessoryColor:'#6998d5',eyeColor:'#23263e'},
@@ -43,6 +46,9 @@ const PRESETS={
 };
 const PRESET_NAMES={zh:['冰晶','月亮女仆','白发发带','紫发猫耳','黑发猫耳','白发眼镜','粉发熊耳','蓝发双结','紫发波浪夹','金发女仆','黑发兔耳','银发长夹'],en:['Crystal','Moon maid','White band','Lilac cat','Dark cat','White glasses','Pink bear','Blue bows','Purple clips','Blonde maid','Dark rabbit','Silver clips'],ja:['氷晶','月メイド','白髪バンド','紫髪猫耳','黒髪猫耳','白髪メガネ','桃髪くま耳','青髪リボン','紫髪ピン','金髪メイド','黒髪うさ耳','銀髪ピン']};
 // Gallery presets retain their original expressions/background despite the new default.
+// Appended IDs/configs keep existing saved selections and the initial avatar stable.
+PRESETS.lilacRibbon={hair:6,ears:1,accessory:20,hairColor:'#d9c2e3',skinColor:'#fff1e8',accessoryColor:'#f3f2ff',eyeColor:'#ac8ac6',face:0,hetero:false};
+PRESET_NAMES.zh.push('紫猫白缎');PRESET_NAMES.en.push('Lilac ribbons');PRESET_NAMES.ja.push('紫猫リボン');
 for(const key of Object.keys(PRESETS))PRESETS[key]={mouth:false,mouthStyle:0,pupil:0,background:0,...PRESETS[key]};
 const PALETTES={hairColor:['#f5f1ed','#e7dff0','#b6c9e4','#efbfd0','#efd7a0','#bb8d6b','#846172','#484250','#262732'],skinColor:['#fff0e5','#f8dfcb','#efc7aa','#d7a27f','#b67e5d','#885940','#593d32'],eyeColor:['#6ca9c5','#8b73ac','#75a18c','#d18163','#dba345','#a36383','#635364','#343844'],accessoryColor:['#fff9fc','#f0abc8','#a9cde5','#c3b5df','#f0d18c','#8cbcb2','#635364'],faceColor:['#635364','#c49a7c','#d393ad','#a6bdcc','#f3dfb3','#fff9fc','#25252c']};
 const STORAGE='gaze-zako-avatar.history.v1';
