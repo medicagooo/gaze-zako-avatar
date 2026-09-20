@@ -1,16 +1,17 @@
 {
   "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
   "requirements": [
+    "V15: append hair 12 side-swept layered fringe, facewear 10 lower rectangular rims, pupil 10 two-tone oval without shine, accessory 21 outlined bow/double bars. Add editable brown/sage/white-background preset with no mouth or ears. Preserve default and all prior IDs; three languages, history and SVG/PNG use shared rendering.",
     "V14: append a thirteenth localized preset, lavender twin tails/cat ears/white bows and paired clips/violet solid eyes/no mouth/black background. New accessory ID 20 remains editable; preserve all existing IDs and default. Reference is interpreted in the existing vector style.",
     "V12: expand six categories without renumbering; avatar skin thumbnails; sharing controls for WeChat/QQ/X/WhatsApp/Telegram with https://zako.medicago.top. Default matches supplied gaze-zako-avatar-1789870427847.svg as editable crystal/pink-dots/slit/smile config. No messages sent automatically; no push authorized.",
     "V11: mouth choices use a dedicated top-level Mouth tab after Eyes. Pupil styles remain first in Eyes. Supersedes V10 Facewear placement only; options and history schema stay unchanged.",
-    "Expressions: mouth offers none, wavy, smile, cat smile, small O, open smile, pout, straight, fang, tongue out, frown. Eyes offer solid, shine, round, slit, star, heart, diamond, cross sparkle, ring, closed smile. Missing legacy fields still map to original wavy/none mouth and solid eyes. All render through eyeShape/mouthShape.",
+    "Expressions: eleven mouth choices and eleven eye styles, now including two-tone oval (ID 10, lighter lower fill derived from selected eye color without shine). Missing legacy fields still map to original wavy/none mouth and solid eyes. All render through eyeShape/mouthShape.",
     "Face silhouette radii are 390 by 395 at center 500,811. Framing is 20 canvas units lower than v8; default translate(-268,-276), scale 1.25, rotation 17. Facial details use local y offset -68. Front hair uses translate(-30,33) scale(1.06,.90), exposing more forehead. Right locks move outward below the crown through illustratedHair:openCheek and the cap contour. Hair/ear tips may crop at the top. Applies to preview/history/exports; reference equality remains unverified.",
     "Close-up lower-left composition rotates 17 degrees. Default now matches user SVG: blue shoulder-length hair, crystal accessory, slit eyes, smile, pink dotted background. No nose. Cat/fox/rabbit share framing; long ears crop. Original SVG artwork, no generative API; saved choices retained.",
-    "Hair: twelve choices, adding side part, hime cut, braids and fluffy curls to the original eight. Existing IDs retained. illustratedHair maps new styles to bases and adds distinguishing vector locks.",
+    "Hair: thirteen choices. ID 12 layered side fringe uses long-straight rear silhouette, custom continuous fringe and existing ornament anchors. Existing IDs retained; illustratedHair supplies front artwork.",
     "Ears: none, cat, fox, rabbit, bear, floppy, elf, mouse. One choice; outer follows hair except elf uses skin. New choices use normal framing, never lower than cat.",
-    "Accessories: twenty-one choices including none; IDs 16-19 append crescent, cherry, pearl band and wing clip, ID 20 ribbon bows/clips through sampleAccessory. Thirteen gallery presets retain independent backgrounds and expressions.",
-    "Facewear: ten choices including none, adding rimless, sunglasses and bandage; shared lifted facial group. Frame/patch colors remain editable.",
+    "Accessories: twenty-two choices including none; ID 20 ribbon bows/clips and ID 21 outlined bow/double bars use sampleAccessory. Fourteen gallery presets retain independent backgrounds and expressions.",
+    "Facewear: eleven choices including none; ID 10 lower rectangular rims joins existing facewear in the shared lifted facial group. Frame/patch colors remain editable.",
     "Preset and custom hair/skin/eye/accessory colors; optional different eye colors.",
     "Backgrounds: black, white, transparent, Tiffany blue with white dots, pink with white dots, transgender flag, pink, blue.",
     "Real-time preview; explicit generation saves options in local browser history; identical visible configurations deduplicated; restore, download, delete, confirmed clear.",
@@ -23,5 +24,5 @@
   "status": "active",
   "integration": "not_applicable",
   "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
-  "next": "User authorized push of five local updates plus registry commit to origin main. Execute predeclared push-library-v14-20260920 and verify remote SHA equals local HEAD. V14 browser checks passed; native recipient delivery and deployment remain unverified."
+  "next": "V15 implementation verified and synchronized to local preview; commit locally. No push authorized for V15. Previous push verified main a53d02a0ed237334ce7f6c6092b0147a08371aa6. Deployment remains unverified."
 }

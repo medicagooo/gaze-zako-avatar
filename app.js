@@ -20,15 +20,19 @@ TEXT.ja.accessoryNames.push('氷晶リボンセット','月と薔薇のメイド
 TEXT.zh.accessoryNames.push('同侧双蝴蝶结','侧边丝带发夹','骨形发夹','蝴蝶结与波浪夹','交叠长发夹','荷叶发带与交叉夹');
 TEXT.en.accessoryNames.push('Stacked bows','Side ribbon clips','Bone clip','Bows and wave clips','Crossed bar clips','Ruffled band and pins');
 TEXT.ja.accessoryNames.push('重ねリボン','サイドリボンピン','ボーンピン','リボンと波形ピン','クロスバーピン','フリルバンドとピン');
-const LIMITS={hair:12,ears:8,accessory:21,face:10,background:8};
+const LIMITS={hair:13,ears:8,accessory:22,face:11,background:8};
 // Optional schema additions: missing fields migrate without rejecting v1 history.
-const EXPRESSION_LIMITS={mouthStyle:11,pupil:10};
+const EXPRESSION_LIMITS={mouthStyle:11,pupil:11};
 const EXTRA_NAMES={zh:{hairNames:['侧分短发','姬发式','双辫子','蓬松卷发'],earNames:['垂耳','精灵耳','圆鼠耳'],accessoryNames:['月牙发夹','樱桃发夹','珍珠发箍','翅膀发夹'],faceNames:['无框眼镜','墨镜','创可贴'],mouthNames:['小虎牙','吐舌','不开心'],pupilNames:['十字星瞳','环形瞳','闭眼微笑'],skinNames:['瓷白','浅杏','暖蜜','小麦','焦糖','古铜','深棕'],share:'分享',copyLink:'复制本站链接',shareImage:'系统分享图片',shareHint:'下载头像后，在聊天中选择图片并粘贴本站链接。',copied:'本站链接已复制',shareFallback:'可下载图片并复制链接后分享',close:'关闭'},en:{hairNames:['Side part','Hime cut','Braids','Fluffy curls'],earNames:['Floppy','Elf','Mouse'],accessoryNames:['Crescent clip','Cherry clip','Pearl band','Wing clip'],faceNames:['Rimless glasses','Sunglasses','Bandage'],mouthNames:['Fang','Tongue out','Frown'],pupilNames:['Cross sparkle','Ring','Closed smile'],skinNames:['Porcelain','Light peach','Honey','Wheat','Caramel','Bronze','Deep brown'],share:'Share',copyLink:'Copy site link',shareImage:'Share image',shareHint:'Download your avatar, then attach it in chat and paste the site link.',copied:'Site link copied',shareFallback:'Download the image and copy the link to share',close:'Close'},ja:{hairNames:['横分け','姫カット','三つ編み','ふわふわカール'],earNames:['垂れ耳','エルフ耳','丸い耳'],accessoryNames:['三日月ピン','さくらんぼ','パールバンド','羽のピン'],faceNames:['縁なしメガネ','サングラス','ばんそうこう'],mouthNames:['八重歯','舌出し','への字'],pupilNames:['十字の瞳','リング','笑顔の閉じ目'],skinNames:['陶器色','薄桃色','はちみつ','小麦色','キャラメル','ブロンズ','深い茶色'],share:'シェア',copyLink:'サイトリンクをコピー',shareImage:'画像を共有',shareHint:'アバターをダウンロードしてチャットに添付し、サイトリンクを貼り付けてください。',copied:'リンクをコピーしました',shareFallback:'画像の保存とリンクのコピーで共有できます',close:'閉じる'}};
 for(const [language,extra]of Object.entries(EXTRA_NAMES))for(const [key,value]of Object.entries(extra)){if(Array.isArray(TEXT[language][key]))TEXT[language][key].push(...value);else TEXT[language][key]=value;}
 // Reconstruct the user's exported SVG as editable options, not a static overlay.
 TEXT.zh.accessoryNames.push('白缎双结与发夹');
 TEXT.en.accessoryNames.push('Ribbon bows and clips');
 TEXT.ja.accessoryNames.push('リボンとダブルピン');
+// Append material IDs: saved configurations keep their existing artwork mappings.
+for(const [language,names]of Object.entries({zh:['侧分碎齐刘海','下半框方镜','双色椭圆','描边蝴蝶结与双夹'],en:['Layered side fringe','Lower-rim glasses','Two-tone oval','Outlined bow and bars'],ja:['流しぱっつん','アンダーリム眼鏡','ツートーン楕円','縁取りリボンとピン']})){
+ ['hairNames','faceNames','pupilNames','accessoryNames'].forEach((key,i)=>TEXT[language][key].push(names[i]));
+}
 Object.assign(DEFAULT,{hair:2,hairColor:'#acd2f2',accessory:8,accessoryColor:'#6998d5',eyeColor:'#23263e',background:4,mouth:true,mouthStyle:2,pupil:3});
 const PRESETS={
  crystal:{hair:2,accessory:8,hairColor:'#acd2f2',accessoryColor:'#6998d5',eyeColor:'#23263e'},
@@ -49,6 +53,8 @@ const PRESET_NAMES={zh:['冰晶','月亮女仆','白发发带','紫发猫耳','�
 // Appended IDs/configs keep existing saved selections and the initial avatar stable.
 PRESETS.lilacRibbon={hair:6,ears:1,accessory:20,hairColor:'#d9c2e3',skinColor:'#fff1e8',accessoryColor:'#f3f2ff',eyeColor:'#ac8ac6',face:0,hetero:false};
 PRESET_NAMES.zh.push('紫猫白缎');PRESET_NAMES.en.push('Lilac ribbons');PRESET_NAMES.ja.push('紫猫リボン');
+PRESETS.sageGlasses={hair:12,ears:0,accessory:21,face:10,hairColor:'#c9ada1',skinColor:'#ffede4',eyeColor:'#858d71',accessoryColor:'#faf8ff',faceColor:'#303d60',pupil:10,background:1,hetero:false};
+PRESET_NAMES.zh.push('茶发青瞳');PRESET_NAMES.en.push('Sage glasses');PRESET_NAMES.ja.push('茶髪セージアイ');
 for(const key of Object.keys(PRESETS))PRESETS[key]={mouth:false,mouthStyle:0,pupil:0,background:0,...PRESETS[key]};
 const PALETTES={hairColor:['#f5f1ed','#e7dff0','#b6c9e4','#efbfd0','#efd7a0','#bb8d6b','#846172','#484250','#262732'],skinColor:['#fff0e5','#f8dfcb','#efc7aa','#d7a27f','#b67e5d','#885940','#593d32'],eyeColor:['#6ca9c5','#8b73ac','#75a18c','#d18163','#dba345','#a36383','#635364','#343844'],accessoryColor:['#fff9fc','#f0abc8','#a9cde5','#c3b5df','#f0d18c','#8cbcb2','#635364'],faceColor:['#635364','#c49a7c','#d393ad','#a6bdcc','#f3dfb3','#fff9fc','#25252c']};
 const STORAGE='gaze-zako-avatar.history.v1';
@@ -68,6 +74,8 @@ function star(x,y,c){return `<g transform="translate(${x} ${y})">${path('M0-40 1
 // Expression artwork stays in the facial-detail coordinate space, below facewear.
 // Shared by option thumbnails, live preview, restored history and SVG/PNG exports.
 function eyeShape(x,y,color,style=0){
+ // Two closed paths meet at a curved seam; no clip IDs to collide in thumbnail grids.
+ if(style===10)return `<g data-pupil="10" transform="translate(${x} ${y})">${ellipse(0,0,43,72,color)}${path('M-43 0C-43-24 43-24 43 0A43 72 0 0 1-43 0Z',tone(color,43))}</g>`;
  if(style===9)return `<g data-pupil="9" transform="translate(${x} ${y})"><path d="M-34 13Q0-35 34 13" fill="none" stroke="${color}" stroke-width="12" stroke-linecap="round"/></g>`;
  let out=ellipse(0,0,43,72,color);const dark=tone(color,-85);
  if(style===2)out+=ellipse(0,4,22,40,dark);
@@ -105,7 +113,7 @@ function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryCol
  'M243 537Q120 360 57 533Q-1 689 58 812L17 1000H194L266 662M742 530Q881 361 947 537Q1004 729 952 845L988 1000H820L727 656M154 1000 160 634Q168 334 477 313Q803 304 844 620L844 1000Z',
  'M230 466C-13 491 86 191 254 294Q365 310 314 460M743 464C1020 465 892 194 742 293Q640 319 692 459M149 1000 170 594Q196 307 506 316Q786 317 836 610L851 1000Z'];
 out+=referenceAccessory(s,'rear');
-out+=path(rear[s.hair]||rear[[0,3,6,4][s.hair-8]],shadow);
+out+=path(rear[s.hair]||rear[[0,3,6,4,3][s.hair-8]],shadow);
 if(s.ears===1||s.ears===2){const tall=s.ears===2;out+=path(`M194 581Q136 410 ${tall?'115 163':'139 276'}Q305 300 357 437Z`,h)+path(`M806 581Q864 410 ${tall?'885 163':'861 276'}Q695 300 643 437Z`,h);out+=path(`M207 505  ${tall?'157 225':'177 328'} 299 432Z`,'#e9a7b9')+path(`M793 505 ${tall?'843 225':'823 328'} 701 432Z`,'#e9a7b9');}
 if(s.ears===3){out+=path('M260 463Q129 161 213 52Q297 16 339 415Z',h)+path('M650 419Q696 7 782 60Q877 137 742 468Z',h)+path('M266 380Q198 132 224 98Q259 84 296 376Z','#e9a7b9')+path('M694 381Q729 98 766 103Q805 137 738 382Z','#e9a7b9');}
 if(s.ears===4){out+=ellipse(222,373,110,113,h)+ellipse(778,373,110,113,h)+ellipse(222,374, 60,65,'#e9a7b9')+ellipse(778,374,60,65,'#e9a7b9');}
@@ -127,7 +135,8 @@ if(s.face===6){const x=s.side==='left'?360:644,y=s.side==='left'?833:846;out+=`<
 if(s.face===7)out+=`<g fill="none" stroke="${f}" stroke-width="5"><ellipse cx="360" cy="835" rx="86" ry="67"/><ellipse cx="644" cy="846" rx="86" ry="67"/><path d="M446 830Q502 805 558 841"/></g>`;
 if(s.face===8)out+=path('M267 779H443L431 879Q356 931 281 865ZM557 790H733L719 888Q643 942 571 876Z',f)+path('M442 812 558 823','none',`stroke="${f}" stroke-width="13"`)+path('M294 800 344 800 306 856ZM584 811 634 811 596 867Z',tone(f,45));
 if(s.face===9)out+=`<g transform="translate(676 924) rotate(-12)"><rect x="-48" y="-20" width="96" height="40" rx="12" fill="${f}"/><rect x="-17" y="-17" width="34" height="34" rx="5" fill="${tone(f,25)}"/>${[-31,31].map(x=>ellipse(x,0,3,3,tone(f,-40))).join('')}</g>`;
-const ax=[300,288,285,284,287,295,265,293,300,284,265,287][s.hair];
+if(s.face===10)out+=`<g ${frame}><path d="M257 840V893Q257 909 273 909H438Q454 909 454 893V840M549 853V906Q549 922 565 922H730Q746 922 746 906V853M454 861Q502 831 549 873"/></g>`;
+const ax=[300,288,285,284,287,295,265,293,300,284,265,287,284][s.hair];
 out+='</g>';
 if(s.accessory===1)out+=`<g stroke="${a}" stroke-width="17" stroke-linecap="round"><path d="M${ax-40} 566l81 51m-77 5 75-69"/></g>`;
 if(s.accessory===2)out+=star(ax,575,a);

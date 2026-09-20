@@ -48,6 +48,10 @@ function referenceAccessory(s, layer) {
 // IDs append to existing choices so saved avatars retain their original accessories.
 function sampleAccessory(s) {
   const c=s.accessoryColor;
+  if(s.accessory===21){
+    const edge=tone(c,-95);
+    return `<g transform="translate(280 486) rotate(-4)" stroke="${edge}" stroke-width="4" stroke-linejoin="round">${path('M-7 4-58 52Q-72 56-78 38L-88 7-22-13ZM12 3 71 20 76 47Q75 57 56 59L15 24Z',c)}${path('M-12-5Q-90-72-87-29L-85 3Q-82 20-18 7ZM12-5Q80-57 83-16Q90 22 56 34Q43 39 13 8Z',c)}<rect x="-15" y="-17" width="30" height="34" rx="7" fill="${c}"/>${path('M-72 68H77V77H-72ZM-73 104H76V113H-73Z',c)}</g>`;
+  }
   if(s.accessory===20){
     const ribbon=(x,y,scale)=>`<g transform="translate(${x} ${y}) scale(${scale})">${path('M-8-5Q-75-93-98-65L-113-32Q-112-21-19 9L-52 93Q-8 88 29 101Q42 32 12 3Z',c)}${ellipse(0,0,15,17,tone(c,-8))}</g>`;
     return ribbon(227,420,.85)+ribbon(809,638,.7)+`<g transform="rotate(-3 280 552)">${path('M245 519Q263 525 325 521L326 547Q288 541 242 545Z',c)}${path('M247 560Q281 570 326 563L329 589Q281 580 244 584Z',c)}</g>`;

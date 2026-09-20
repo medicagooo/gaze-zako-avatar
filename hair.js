@@ -2,6 +2,16 @@
 // Front-hair artwork shares the existing face and accessory anchors. Each lock is
 // a closed vector shape, so palette changes and standalone SVG export stay exact.
 function illustratedHair(style, color) {
+  // Reference fringe has blunt separated tips and a long swept left section.
+  // It uses the same face/accessory anchors and rear silhouette as long straight hair.
+  if(style===12){
+    const edge=tone(color,-35),shade=tone(color,-19);
+    let out=path('M164 780C109 615 119 414 325 337C556 247 781 341 835 546Q903 765 844 1000L783 1067Q821 859 769 657Q492 466 251 638L235 920Q155 862 164 780Z',shade);
+    out+=path('M392 333C680 275 795 429 786 654L719 693L666 691L608 687L550 680L488 673L428 673L420 467Q358 602 229 697L247 498Z',color);
+    out+=path('M171 705C126 509 212 360 405 323C605 278 783 367 827 559Q859 698 802 885Q786 933 739 956Q792 860 766 634L731 703L690 705Q711 608 688 533Q702 650 674 700L631 702Q660 589 635 488Q651 621 614 695L573 697Q616 568 586 437Q607 590 551 691L507 693Q553 537 524 395Q510 547 469 676L428 679Q478 526 448 409Q371 588 229 697Q203 812 245 887Q169 844 171 705Z',color,`stroke="${edge}" stroke-width="3" stroke-linejoin="round"`);
+    out+=path('M402 342Q261 433 205 629M492 337Q340 409 279 557M668 374Q797 505 808 699','none',`stroke="${edge}" stroke-width="4" stroke-linecap="round"`);
+    return out;
+  }
   if(style>=8){
     const baseStyle=[0,3,6,4][style-8],shade=tone(color,-24);
     let out=illustratedHair(baseStyle,color);
