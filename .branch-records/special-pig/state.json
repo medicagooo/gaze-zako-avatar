@@ -1,0 +1,32 @@
+{
+  "purpose": "Add the first generated peach pig illustration as a temporary special preset without adding editable materials.",
+  "requirements": [
+    "Expose the first generated pig image in the preset gallery as a localized special preset.",
+    "Keep the image static and do not add hair, ear, accessory, facewear or background material IDs.",
+    "Selecting the special preset shows the image in the main preview; normal editor actions return to the editable vector avatar."
+  ],
+  "constraints": [
+    "Use the existing generated first preview as the image asset.",
+    "No push or deployment requested."
+  ],
+  "acceptance": [
+    "Special preset is visible in the gallery in Chinese, English and Japanese.",
+    "Selecting it displays the pig image and normal editing remains available.",
+    "Existing expression/material validation and offline build pass."
+  ],
+  "status": "complete",
+  "integration": "unmerged",
+  "evidence": {
+    "implementation_date": "2026-09-20",
+    "main_integration_date": null,
+    "deployment_date": null,
+    "paths": [
+      "app.js",
+      "index.html",
+      "responsive.css",
+      "scripts/build.cjs",
+      "special-pig-avatar.png"
+    ]
+  },
+  "next": "No further action; publish only if separately requested."
+}
