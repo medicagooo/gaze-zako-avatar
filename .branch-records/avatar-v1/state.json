@@ -25,5 +25,5 @@
   "status": "active",
   "integration": "not_applicable",
   "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
-  "next": "V16 header/favicon correction verified locally and preview synchronized. Commit correction locally; new push requires user instruction. V15 push and Pages deployment verified at 362f2f6b2c728fc2d4365be2970f5f6b49a80d81."
+  "next": "V16 committed cbf3eaf; user authorized push/deployment. Execute push-brand-v16-20260920, verify remote SHA and automatic Pages check, then inspect live header/favicon and exact SVG asset."
 }

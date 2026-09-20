@@ -3,7 +3,7 @@
   "timezone": "Asia/Tokyo",
   "records": [".branch-records/avatar-v1/state.json"],
   "active": [],
-  "pending": [],
+  "pending": ["avatar-v1:push-brand-v16-20260920"],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
     {"id":"avatar-brand-v16","date":"2026-09-20","implementation_date":"2026-09-20","domain":"site-brand","business_change":"Correct website avatar interpretation: replace header gz. mark and favicon with the user's last supplied SVG, independent of editor selections.","status":"implemented","result":"Original SVG byte equality, offline build and browser checks at 320/804/1327 widths passed. Local only; not pushed.","request":".branch-records/avatar-v1/events.jsonl#request-brand-v16","evidence":["index.html","site-avatar.svg","scripts/build.cjs"],"details":".branch-records/avatar-v1/state.json"},
