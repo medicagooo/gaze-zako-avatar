@@ -123,7 +123,7 @@ function renderAvatar(s){const h=s.hairColor,shadow=tone(h,-24),a=s.accessoryCol
  // shares the lower-left peek. Hair and ear tips may crop at the top. Saved options also
  // use this composition; history contains no raster snapshots or position overrides.
  // Long ears intentionally crop; changing cat/fox/rabbit never lowers or shrinks the face.
- const framing=[1,2,3].includes(s.ears)?'translate(-245 -170) scale(1.3) rotate(17 500 700)':s.accessory===7?'translate(-245 -240) scale(1.38) rotate(17 500 700)':'translate(-268 -276) scale(1.25) rotate(17 500 700)';
+ const framing=[1,2,3].includes(s.ears)?'translate(-245 -170) scale(1.3) rotate(17 500 700)':s.accessory===7?`translate(-245 ${s.ears===0?-150:-240}) scale(1.38) rotate(17 500 700)`:`translate(-268 ${s.ears===0?-186:-276}) scale(1.25) rotate(17 500 700)`;
  let out=background(s)+`<g data-character="lower-left" transform="${framing}">`;
  // All silhouettes share a face anchor; alternate rear/front paths keep accessories aligned.
  const rear=[
@@ -143,8 +143,10 @@ if(s.ears===4){out+=ellipse(222,373,110,113,h)+ellipse(778,373,110,113,h)+ellips
 if(s.ears===5){out+=path('M294 440Q154 235 109 472L127 720Q218 771 242 591ZM707 440Q858 235 902 472L882 720Q793 771 759 591Z',h)+path('M199 411Q129 432 162 664Q204 616 199 411ZM804 411Q872 432 841 664Q800 616 804 411Z','#e9a7b9');}
 if(s.ears===6){out+=path('M243 684 47 436Q64 726 260 775ZM754 684 953 436Q935 726 737 775Z',s.skinColor)+path('M211 687 91 503Q122 678 211 714ZM788 687 909 503Q878 678 788 714Z','#e9a7b9');}
 if(s.ears===7){out+=ellipse(203,338,140,142,h)+ellipse(797,338,140,142,h)+ellipse(203,338,95,99,'#e9a7b9')+ellipse(797,338,95,99,'#e9a7b9');}
-// Enlarge cheeks independently of facial details; all previews and exports share this contour.
-out+=ellipse(500,811,390,395,s.skinColor);
+ // Keep crown and cheek width while shortening the chin; facial details are not scaled.
+ // Earless framing moves the whole character down 90 canvas units for a cropped peek.
+ // Preview, history and both export formats share this geometry.
+ out+=ellipse(500,746,390,330,s.skinColor);
 // Shorten locks around the crown to expose more forehead while retaining accessory anchors.
 out+=`<g transform="translate(-30 33) scale(1.06 .90)">${illustratedHair(s.hair,h)}</g>`;
 // Keep the original facewear anchors; lift the entire facial-detail group together.
