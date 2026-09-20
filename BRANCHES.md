@@ -9,7 +9,8 @@
     ".branch-records/round-face/state.json",
     ".branch-records/special-pig/state.json",
     ".branch-records/pig-hair/state.json",
-    ".branch-records/pig-adaptive/state.json"
+    ".branch-records/pig-adaptive/state.json",
+    ".branch-records/pig-adaptive-v2/state.json"
   ],
   "active": [],
   "pending": [
@@ -383,6 +384,19 @@
         "app.js",
         "pig-reference.png",
         ".branch-records/pig-adaptive/events.jsonl"
+      ]
+    },
+    {
+      "id": "pig-adaptive-v2-20260920",
+      "date": "2026-09-20",
+      "business_change": "小猪改为身体基础层与可编辑面部层分离，消除重复眼睛、腮红和嘴巴，并让肤色、耳朵、发饰、面饰跟随小猪倾斜结构。",
+      "status": "implemented-local",
+      "request": "pig-adaptive-v2:request-pig-adaptive-v2-20260920",
+      "details": ".branch-records/pig-adaptive-v2/state.json",
+      "evidence": [
+        "app.js",
+        "pig-body.png",
+        ".branch-records/pig-adaptive-v2/events.jsonl"
       ]
     }
   ]
