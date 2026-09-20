@@ -1,30 +1,347 @@
 {
   "format": ".branch-records/FORMAT.md",
   "timezone": "Asia/Tokyo",
-  "records": [".branch-records/avatar-v1/state.json", ".branch-records/reference-five/state.json", ".branch-records/readme-i18n/state.json", ".branch-records/publish-materials-readme/state.json", ".branch-records/round-face/state.json", ".branch-records/special-pig/state.json"],
+  "records": [
+    ".branch-records/avatar-v1/state.json",
+    ".branch-records/reference-five/state.json",
+    ".branch-records/readme-i18n/state.json",
+    ".branch-records/publish-materials-readme/state.json",
+    ".branch-records/round-face/state.json",
+    ".branch-records/special-pig/state.json"
+  ],
   "active": [],
-  "pending": ["publish-materials-readme:push-main-face-20260920"],
+  "pending": [
+    "publish-materials-readme:push-main-face-20260920",
+    "special-pig:push-special-pig-20260920"
+  ],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
-    {"id":"special-pig","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-presets","business_change":"Add the first generated peach pig illustration as a temporary static special preset card; selecting it replaces the main preview image without adding editable avatar materials.","status":"implemented","result":"Local only; no push or deployment.","request":".branch-records/special-pig/events.jsonl#request-special-pig-20260920","evidence":["index.html","responsive.css","scripts/build.cjs","special-pig-avatar.png"],"details":".branch-records/special-pig/state.json"},
-    {"id":"mouth-down","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Move all mouth shapes 18 local SVG units toward the chin independently of eyes and facewear; shared preview and exports use the same offset.","status":"implemented","result":"Local only; no push.","request":".branch-records/round-face/events.jsonl#request-mouth-down","evidence":["app.js"],"details":".branch-records/round-face/state.json"},
-    {"id":"round-face","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Shorten face ellipse while preserving cheek width and crown; lower earless characters 90 canvas units to expose less face. Eyes and ornaments keep original geometry; all previews/history/exports share rendering.","status":"implemented","result":"Local implementation; no push.","request":".branch-records/round-face/events.jsonl#request-face","evidence":["app.js"],"details":".branch-records/round-face/state.json"},
-    {"id":"reference-five","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-materials","business_change":"Add five editable presets: blue bonnet, sakura ribbons, gem circlet elf, shrine ribbon and mint sailor. Append hair 13-14, ornaments 22-28, compass eyepatch 11 with left/right selection and backgrounds 8-9. Totals: 19 presets, 15 hair, 29 ornaments, 12 facewear, 10 backgrounds; old IDs and default retained.","status":"implemented","result":"Local main implementation; offline build, material composition, three languages, real downloads, history and desktop/mobile passed. Original vector interpretations; not pushed or deployed.","request":".branch-records/reference-five/events.jsonl#request-five","evidence":["app.js","hair.js","accessories.js","VERIFICATION.md"],"details":".branch-records/reference-five/state.json"},
-    {"id":"avatar-brand-v16","date":"2026-09-20","implementation_date":"2026-09-20","domain":"site-brand","business_change":"Correct website avatar interpretation: replace header gz. mark and favicon with the user's last supplied SVG, independent of editor selections.","status":"implemented","result":"Original SVG byte equality, offline build and browser checks at 320/804/1327 widths passed. Local only; not pushed.","request":".branch-records/avatar-v1/events.jsonl#request-brand-v16","evidence":["index.html","site-avatar.svg","scripts/build.cjs"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-sage-v15","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-materials","business_change":"Add reference-inspired brown layered side-bang preset, lower-rim rectangular glasses, two-tone oval eyes and outlined white bow/double-bar accessory as independently selectable materials.","status":"implemented","result":"14 presets; new materials selectable in three languages. Offline build, new-hair/accessory combinations, history, SVG/PNG and 320/390 layouts verified. Original vector interpretation; local only.","request":".branch-records/avatar-v1/events.jsonl#request-sage-v15","evidence":["app.js","hair.js","accessories.js","scripts/check-expressions.cjs"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-lilac-v14","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-presets","business_change":"Add editable lavender twin-tail cat preset with white side bows and paired ribbon clips, violet solid eyes, no mouth and black background; append accessory ID 20.","status":"implemented","result":"Offline build, expression checks and browser selection/history/SVG/PNG/trilingual/mobile checks passed; original vector interpretation, not exact raster reproduction. Local only.","request":".branch-records/avatar-v1/events.jsonl#request-lilac-v14","evidence":["app.js","accessories.js"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-default-v13","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-editor","business_change":"Replace initial/reset avatar flag background with pink dots to match supplied gaze-zako-avatar-1789870427847.svg; retain editable crystal/slit/smile options.","status":"implemented","result":"Default SVG string exactly matches supplied file; offline build and expression checks passed. Local only.","supersedes":"avatar-library-v12 default only","request":".branch-records/avatar-v1/events.jsonl#request-default-v13","evidence":["app.js"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-library-v12","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-editor","business_change":"Expand hair/eyes/ears/accessories/facewear/mouth to 12/10/8/20/10/11 choices; skin avatar tiles; five share targets with canonical domain; supplied SVG as editable default.","status":"implemented","result":"Default pixel match, history/downloads, trilingual mobile and mocked sharing verified locally. Native PNG+URL sharing or download/copy fallback; platform web links share text/URL. No messages sent or push performed.","request":".branch-records/avatar-v1/events.jsonl#request-library-v12","evidence":["app.js","share.js","hair.js","accessories.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-mouth-tab-v11","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-editor","business_change":"Expose mouth choices in their own top-level tab after Eyes, because the Facewear placement was hard to find.","status":"implemented","result":"Local preview copy verified with eight mouth choices and seven pupil styles, all three languages at 320/1327 widths; not pushed.","request":".branch-records/avatar-v1/events.jsonl#request-mouth-tab-v11","evidence":["app.js"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-expression-v10","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Add eight mouth choices including none and seven pupil styles with legacy history migration; fox and rabbit use cat framing, allowing ear cropping.","previous":"Boolean mouth and solid oval eyes; fox/rabbit faces lower than cat.","result":"Verified local options, history migration/restore, SVG/PNG export and trilingual responsive layouts. Not pushed. Previous push verified at 7018b72f525f1046373cab043b68c03063cc12a3.","status":"implemented","request":".branch-records/avatar-v1/events.jsonl#request-expression-v10","evidence":["app.js","scripts/check-expressions.cjs","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-samples-v9","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-materials","business_change":"Lower framing 20 units. Append six accessories (stacked bows, ribbon clips, bone clip, wave/bow clips, crossed bars, ruffled band/pins). Add ten reference-sheet presets alongside the existing two, with localized thumbnail selection. Presets remain editable and use shared history/SVG/PNG rendering.","previous":"Ten accessories and two reference presets.","result":"16 choices and 12 presets verified locally; reference combinations supported by original vector approximations. Not pushed or deployed.","status":"implemented","request":".branch-records/avatar-v1/events.jsonl#request-samples-v9","evidence":["app.js","accessories.js","responsive.css","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-height-v8","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Lower v7 framing by 55 canvas units and restore facial offset -68, approaching reference eye height while retaining wider cheeks and shortened locks.","previous":"V7 face was too high per user feedback.","result":"Local corrected composition; no push or deployment.","status":"implemented","supersedes":"avatar-face-up-v7 vertical placement only","request":".branch-records/avatar-v1/events.jsonl#request-height-v8","evidence":["app.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-face-up-v7","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Raise all character variants 70 canvas units and facial details another 20 local units; increase face height and shorten front locks around crown. More forehead and cheek visible, with intentional top cropping of hair/ear tips. Width and 17-degree tilt retained.","previous":"Lower face and longer front locks; emphasis on top clearance.","result":"Shared preview/history/SVG/PNG renderer updated locally; no push or deployment.","status":"implemented","request":".branch-records/avatar-v1/events.jsonl#request-face-up-v7","evidence":["app.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-face-width-v6","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Further widen face radius to 390, retain height 375, and move lower right hair outward to expose a broader cheek matching the reference direction. Eyes and tilt stay fixed; shared previews and exports update.","previous":"Radius 355 and narrower cheek opening after v5.","result":"Both ensemble exports and persistence/mobile checks passed locally. Exact reference width equivalence not measured; not pushed.","status":"implemented","supersedes":"avatar-face-v5 width only","request":".branch-records/avatar-v1/events.jsonl#request-face-width-v6","evidence":["app.js","hair.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-face-v5","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Increase face ellipse radii from 321/348 to 355/375 and widen/lift front-hair framing slightly to expose fuller cheeks. Eye positions, tilt and accessory selections remain unchanged. Shared preview/history/SVG/PNG renderer uses this contour.","previous":"Narrower face silhouette and hair opening.","result":"Verified locally with both reference presets, actual downloads, history and mobile layouts. Not pushed or deployed.","status":"implemented","request":".branch-records/avatar-v1/events.jsonl#request-face-v5","evidence":["app.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-detail-v4","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Calibrate clockwise tilt to 17 degrees and eye anchors; add blue bow/crystal and moon/rose maid ensembles with rear/front layers, localized one-click presets and optional small mouth. Preserve old choice IDs and history, with missing mouth defaulting false. All preview and export paths share the artwork.","previous":"Eight accessories without the two complete reference ensembles; no mouth option.","result":"Local implementation and export/history/mobile tests passed; exact visual identity to the supplied raster images remains unachieved. Not pushed or deployed.","status":"implemented_with_visual_gap","request":".branch-records/avatar-v1/events.jsonl#request-detail-v4","evidence":["app.js","hair.js","accessories.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-artwork-v3","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Refine close-up artwork with curved layered bangs, side locks, vector highlights/shadows, larger dark oval eyes and blush, pleated maid headband, and coordinated facewear placement. Default blue hair on black; stored selections preserved. All previews/history/exports use updated artwork.","previous":"Coarse flat front-hair silhouettes and smaller eyes.","result":"Original editable vector illustration; local implementation only, pending explicit push.","status":"implemented","supersedes":"avatar-corner-v2 artwork and framing refinement","request":".branch-records/avatar-v1/events.jsonl#request-artwork-20260920","evidence":["hair.js","app.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-v1","date":"2026-09-20","domain":"avatar-editor","business_change":"New gaze zako avatar static website: original fixed-position vector stickers, eight hairstyles, configurable colors and heterochromia, five ear choices, eight hair-accessory choices, seven facewear choices, eight backgrounds, local editable history, SVG and three PNG export sizes, Chinese/English/Japanese, responsive pale-pink rounded UI.","previous":"No project existed.","result":"Offline-built static application verified locally; no login, synchronization or cloud deployment.","status":"implemented","request":".branch-records/avatar-v1/events.jsonl#request-implementation","evidence":["app.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
-    {"id":"avatar-corner-v2","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Replace centered upright framing with a larger clockwise-tilted head peeking from the lower-left; backgrounds remain fixed and all sticker layers stay aligned. Rabbit ears use reduced scale for clearance. Existing history options re-render in the new composition.","previous":"Centered upright half-head.","result":"Updated shared renderer used by preview, options, history, SVG and PNG; local only pending explicit push.","status":"implemented","supersedes":"avatar-v1 framing only","request":".branch-records/avatar-v1/events.jsonl#request-corner-20260920","evidence":["app.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"}
+    {
+      "id": "special-pig",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-presets",
+      "business_change": "Add the first generated peach pig illustration as a temporary static special preset card; selecting it replaces the main preview image without adding editable avatar materials.",
+      "status": "implemented",
+      "result": "Local only; no push or deployment.",
+      "request": ".branch-records/special-pig/events.jsonl#request-special-pig-20260920",
+      "evidence": [
+        "index.html",
+        "responsive.css",
+        "scripts/build.cjs",
+        "special-pig-avatar.png"
+      ],
+      "details": ".branch-records/special-pig/state.json"
+    },
+    {
+      "id": "mouth-down",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Move all mouth shapes 18 local SVG units toward the chin independently of eyes and facewear; shared preview and exports use the same offset.",
+      "status": "implemented",
+      "result": "Local only; no push.",
+      "request": ".branch-records/round-face/events.jsonl#request-mouth-down",
+      "evidence": [
+        "app.js"
+      ],
+      "details": ".branch-records/round-face/state.json"
+    },
+    {
+      "id": "round-face",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Shorten face ellipse while preserving cheek width and crown; lower earless characters 90 canvas units to expose less face. Eyes and ornaments keep original geometry; all previews/history/exports share rendering.",
+      "status": "implemented",
+      "result": "Local implementation; no push.",
+      "request": ".branch-records/round-face/events.jsonl#request-face",
+      "evidence": [
+        "app.js"
+      ],
+      "details": ".branch-records/round-face/state.json"
+    },
+    {
+      "id": "reference-five",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-materials",
+      "business_change": "Add five editable presets: blue bonnet, sakura ribbons, gem circlet elf, shrine ribbon and mint sailor. Append hair 13-14, ornaments 22-28, compass eyepatch 11 with left/right selection and backgrounds 8-9. Totals: 19 presets, 15 hair, 29 ornaments, 12 facewear, 10 backgrounds; old IDs and default retained.",
+      "status": "implemented",
+      "result": "Local main implementation; offline build, material composition, three languages, real downloads, history and desktop/mobile passed. Original vector interpretations; not pushed or deployed.",
+      "request": ".branch-records/reference-five/events.jsonl#request-five",
+      "evidence": [
+        "app.js",
+        "hair.js",
+        "accessories.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/reference-five/state.json"
+    },
+    {
+      "id": "avatar-brand-v16",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "site-brand",
+      "business_change": "Correct website avatar interpretation: replace header gz. mark and favicon with the user's last supplied SVG, independent of editor selections.",
+      "status": "implemented",
+      "result": "Original SVG byte equality, offline build and browser checks at 320/804/1327 widths passed. Local only; not pushed.",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-brand-v16",
+      "evidence": [
+        "index.html",
+        "site-avatar.svg",
+        "scripts/build.cjs"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-sage-v15",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-materials",
+      "business_change": "Add reference-inspired brown layered side-bang preset, lower-rim rectangular glasses, two-tone oval eyes and outlined white bow/double-bar accessory as independently selectable materials.",
+      "status": "implemented",
+      "result": "14 presets; new materials selectable in three languages. Offline build, new-hair/accessory combinations, history, SVG/PNG and 320/390 layouts verified. Original vector interpretation; local only.",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-sage-v15",
+      "evidence": [
+        "app.js",
+        "hair.js",
+        "accessories.js",
+        "scripts/check-expressions.cjs"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-lilac-v14",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-presets",
+      "business_change": "Add editable lavender twin-tail cat preset with white side bows and paired ribbon clips, violet solid eyes, no mouth and black background; append accessory ID 20.",
+      "status": "implemented",
+      "result": "Offline build, expression checks and browser selection/history/SVG/PNG/trilingual/mobile checks passed; original vector interpretation, not exact raster reproduction. Local only.",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-lilac-v14",
+      "evidence": [
+        "app.js",
+        "accessories.js"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-default-v13",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-editor",
+      "business_change": "Replace initial/reset avatar flag background with pink dots to match supplied gaze-zako-avatar-1789870427847.svg; retain editable crystal/slit/smile options.",
+      "status": "implemented",
+      "result": "Default SVG string exactly matches supplied file; offline build and expression checks passed. Local only.",
+      "supersedes": "avatar-library-v12 default only",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-default-v13",
+      "evidence": [
+        "app.js"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-library-v12",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-editor",
+      "business_change": "Expand hair/eyes/ears/accessories/facewear/mouth to 12/10/8/20/10/11 choices; skin avatar tiles; five share targets with canonical domain; supplied SVG as editable default.",
+      "status": "implemented",
+      "result": "Default pixel match, history/downloads, trilingual mobile and mocked sharing verified locally. Native PNG+URL sharing or download/copy fallback; platform web links share text/URL. No messages sent or push performed.",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-library-v12",
+      "evidence": [
+        "app.js",
+        "share.js",
+        "hair.js",
+        "accessories.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-mouth-tab-v11",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-editor",
+      "business_change": "Expose mouth choices in their own top-level tab after Eyes, because the Facewear placement was hard to find.",
+      "status": "implemented",
+      "result": "Local preview copy verified with eight mouth choices and seven pupil styles, all three languages at 320/1327 widths; not pushed.",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-mouth-tab-v11",
+      "evidence": [
+        "app.js"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-expression-v10",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Add eight mouth choices including none and seven pupil styles with legacy history migration; fox and rabbit use cat framing, allowing ear cropping.",
+      "previous": "Boolean mouth and solid oval eyes; fox/rabbit faces lower than cat.",
+      "result": "Verified local options, history migration/restore, SVG/PNG export and trilingual responsive layouts. Not pushed. Previous push verified at 7018b72f525f1046373cab043b68c03063cc12a3.",
+      "status": "implemented",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-expression-v10",
+      "evidence": [
+        "app.js",
+        "scripts/check-expressions.cjs",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-samples-v9",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-materials",
+      "business_change": "Lower framing 20 units. Append six accessories (stacked bows, ribbon clips, bone clip, wave/bow clips, crossed bars, ruffled band/pins). Add ten reference-sheet presets alongside the existing two, with localized thumbnail selection. Presets remain editable and use shared history/SVG/PNG rendering.",
+      "previous": "Ten accessories and two reference presets.",
+      "result": "16 choices and 12 presets verified locally; reference combinations supported by original vector approximations. Not pushed or deployed.",
+      "status": "implemented",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-samples-v9",
+      "evidence": [
+        "app.js",
+        "accessories.js",
+        "responsive.css",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-height-v8",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Lower v7 framing by 55 canvas units and restore facial offset -68, approaching reference eye height while retaining wider cheeks and shortened locks.",
+      "previous": "V7 face was too high per user feedback.",
+      "result": "Local corrected composition; no push or deployment.",
+      "status": "implemented",
+      "supersedes": "avatar-face-up-v7 vertical placement only",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-height-v8",
+      "evidence": [
+        "app.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-face-up-v7",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Raise all character variants 70 canvas units and facial details another 20 local units; increase face height and shorten front locks around crown. More forehead and cheek visible, with intentional top cropping of hair/ear tips. Width and 17-degree tilt retained.",
+      "previous": "Lower face and longer front locks; emphasis on top clearance.",
+      "result": "Shared preview/history/SVG/PNG renderer updated locally; no push or deployment.",
+      "status": "implemented",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-face-up-v7",
+      "evidence": [
+        "app.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-face-width-v6",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Further widen face radius to 390, retain height 375, and move lower right hair outward to expose a broader cheek matching the reference direction. Eyes and tilt stay fixed; shared previews and exports update.",
+      "previous": "Radius 355 and narrower cheek opening after v5.",
+      "result": "Both ensemble exports and persistence/mobile checks passed locally. Exact reference width equivalence not measured; not pushed.",
+      "status": "implemented",
+      "supersedes": "avatar-face-v5 width only",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-face-width-v6",
+      "evidence": [
+        "app.js",
+        "hair.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-face-v5",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Increase face ellipse radii from 321/348 to 355/375 and widen/lift front-hair framing slightly to expose fuller cheeks. Eye positions, tilt and accessory selections remain unchanged. Shared preview/history/SVG/PNG renderer uses this contour.",
+      "previous": "Narrower face silhouette and hair opening.",
+      "result": "Verified locally with both reference presets, actual downloads, history and mobile layouts. Not pushed or deployed.",
+      "status": "implemented",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-face-v5",
+      "evidence": [
+        "app.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-detail-v4",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Calibrate clockwise tilt to 17 degrees and eye anchors; add blue bow/crystal and moon/rose maid ensembles with rear/front layers, localized one-click presets and optional small mouth. Preserve old choice IDs and history, with missing mouth defaulting false. All preview and export paths share the artwork.",
+      "previous": "Eight accessories without the two complete reference ensembles; no mouth option.",
+      "result": "Local implementation and export/history/mobile tests passed; exact visual identity to the supplied raster images remains unachieved. Not pushed or deployed.",
+      "status": "implemented_with_visual_gap",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-detail-v4",
+      "evidence": [
+        "app.js",
+        "hair.js",
+        "accessories.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-artwork-v3",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Refine close-up artwork with curved layered bangs, side locks, vector highlights/shadows, larger dark oval eyes and blush, pleated maid headband, and coordinated facewear placement. Default blue hair on black; stored selections preserved. All previews/history/exports use updated artwork.",
+      "previous": "Coarse flat front-hair silhouettes and smaller eyes.",
+      "result": "Original editable vector illustration; local implementation only, pending explicit push.",
+      "status": "implemented",
+      "supersedes": "avatar-corner-v2 artwork and framing refinement",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-artwork-20260920",
+      "evidence": [
+        "hair.js",
+        "app.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-v1",
+      "date": "2026-09-20",
+      "domain": "avatar-editor",
+      "business_change": "New gaze zako avatar static website: original fixed-position vector stickers, eight hairstyles, configurable colors and heterochromia, five ear choices, eight hair-accessory choices, seven facewear choices, eight backgrounds, local editable history, SVG and three PNG export sizes, Chinese/English/Japanese, responsive pale-pink rounded UI.",
+      "previous": "No project existed.",
+      "result": "Offline-built static application verified locally; no login, synchronization or cloud deployment.",
+      "status": "implemented",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-implementation",
+      "evidence": [
+        "app.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    },
+    {
+      "id": "avatar-corner-v2",
+      "date": "2026-09-20",
+      "implementation_date": "2026-09-20",
+      "domain": "avatar-rendering",
+      "business_change": "Replace centered upright framing with a larger clockwise-tilted head peeking from the lower-left; backgrounds remain fixed and all sticker layers stay aligned. Rabbit ears use reduced scale for clearance. Existing history options re-render in the new composition.",
+      "previous": "Centered upright half-head.",
+      "result": "Updated shared renderer used by preview, options, history, SVG and PNG; local only pending explicit push.",
+      "status": "implemented",
+      "supersedes": "avatar-v1 framing only",
+      "request": ".branch-records/avatar-v1/events.jsonl#request-corner-20260920",
+      "evidence": [
+        "app.js",
+        "VERIFICATION.md"
+      ],
+      "details": ".branch-records/avatar-v1/state.json"
+    }
   ]
 }
