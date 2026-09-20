@@ -1,10 +1,10 @@
 {
   "purpose": "Push all completed avatar materials and multilingual README changes to origin/main.",
-  "requirements": ["Publish commits d62a554 and 29a05e2 and this required registry record with a normal CI-enabled push."],
+  "requirements": ["Publish the completed avatar materials, multilingual README, round-face framing and mouth-position changes with a normal CI-enabled push."],
   "constraints": ["No force push; preserve all history; no manual cloud administration or workflow dispatch."],
   "acceptance": ["Offline build and existing checks pass; remote refs/heads/main equals local HEAD after push."],
   "status": "active",
   "integration": "unknown",
-  "evidence": {"paths": ["README.md", "README.en.md", "README.ja.md", "VERIFICATION.md"], "verification": "Offline build and expression checks passed on 2026-09-20.", "repository": "D:/proj/gaze-zako-avatar", "starting_head": "29a05e2f2fe407ae1f7d16487e3b6716146cb93f", "starting_remote": "652e64e84c8e609c7e973911c32a4c1bea5ad867", "worktree": "Clean main; remote is an ancestor."},
+  "evidence": {"paths": ["README.md", "README.en.md", "README.ja.md", "VERIFICATION.md", "app.js"], "verification": "Offline build and expression checks passed on 2026-09-20; face comparison and mobile preview passed.", "repository": "D:/proj/gaze-zako-avatar", "starting_head": "9eba3196a6d79866015621af3891e9dff44e7218", "starting_remote": "f41218985ccb86e6046e2329ef96e12751b5895c", "worktree": "Clean main; remote is an ancestor."},
   "next": "Validate, commit registry, push HEAD to origin refs/heads/main and verify remote SHA."
 }

@@ -3,7 +3,7 @@
   "timezone": "Asia/Tokyo",
   "records": [".branch-records/avatar-v1/state.json", ".branch-records/reference-five/state.json", ".branch-records/readme-i18n/state.json", ".branch-records/publish-materials-readme/state.json", ".branch-records/round-face/state.json"],
   "active": [],
-  "pending": ["publish-materials-readme:push-main-20260920"],
+  "pending": ["publish-materials-readme:push-main-face-20260920"],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
     {"id":"mouth-down","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Move all mouth shapes 18 local SVG units toward the chin independently of eyes and facewear; shared preview and exports use the same offset.","status":"implemented","result":"Local only; no push.","request":".branch-records/round-face/events.jsonl#request-mouth-down","evidence":["app.js"],"details":".branch-records/round-face/state.json"},
