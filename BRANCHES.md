@@ -3,8 +3,8 @@
   "timezone": "Asia/Tokyo",
   "records": [".branch-records/avatar-v1/state.json"],
   "active": [],
-  "pending": [],
-  "read": "Resolve pending intent against live Git state before retrying. Implementation is local only; no deployment or remote integration is claimed.",
+  "pending": ["avatar-v1:push-samples-20260920"],
+  "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
     {"id":"avatar-samples-v9","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-materials","business_change":"Lower framing 20 units. Append six accessories (stacked bows, ribbon clips, bone clip, wave/bow clips, crossed bars, ruffled band/pins). Add ten reference-sheet presets alongside the existing two, with localized thumbnail selection. Presets remain editable and use shared history/SVG/PNG rendering.","previous":"Ten accessories and two reference presets.","result":"16 choices and 12 presets verified locally; reference combinations supported by original vector approximations. Not pushed or deployed.","status":"implemented","request":".branch-records/avatar-v1/events.jsonl#request-samples-v9","evidence":["app.js","accessories.js","responsive.css","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},
     {"id":"avatar-height-v8","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-rendering","business_change":"Lower v7 framing by 55 canvas units and restore facial offset -68, approaching reference eye height while retaining wider cheeks and shortened locks.","previous":"V7 face was too high per user feedback.","result":"Local corrected composition; no push or deployment.","status":"implemented","supersedes":"avatar-face-up-v7 vertical placement only","request":".branch-records/avatar-v1/events.jsonl#request-height-v8","evidence":["app.js","VERIFICATION.md"],"details":".branch-records/avatar-v1/state.json"},

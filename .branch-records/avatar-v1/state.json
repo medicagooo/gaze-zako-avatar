@@ -19,5 +19,5 @@
   "status": "active",
   "integration": "not_applicable",
   "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
-  "next": "Compare the crystal and moon presets with the supplied references and refine hair.js:illustratedHair and accessories.js:referenceAccessory contours. Current local work is not published; no new push is authorized."
+  "next": "User authorized pushing accumulated local main changes to origin/main. Validate build and registry, commit this predeclaration, push normally, and verify remote SHA. Deployment is not yet verified. Visual contour refinements remain possible future work."
 }
