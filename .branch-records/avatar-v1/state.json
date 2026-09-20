@@ -1,6 +1,7 @@
 {
   "purpose": "Create gaze zako avatar in D:/proj/gaze-zako-avatar as an original vector sticker avatar creator suitable for Cloudflare Pages.",
   "requirements": [
+    "V16 correction: website avatar means header brand mark; use exact supplied gaze-zako-avatar-1789870427847.svg as bundled site-avatar.svg for header and favicon. Independent of editor state. Preserve existing editable default unless separately requested.",
     "V15: append hair 12 side-swept layered fringe, facewear 10 lower rectangular rims, pupil 10 two-tone oval without shine, accessory 21 outlined bow/double bars. Add editable brown/sage/white-background preset with no mouth or ears. Preserve default and all prior IDs; three languages, history and SVG/PNG use shared rendering.",
     "V14: append a thirteenth localized preset, lavender twin tails/cat ears/white bows and paired clips/violet solid eyes/no mouth/black background. New accessory ID 20 remains editable; preserve all existing IDs and default. Reference is interpreted in the existing vector style.",
     "V12: expand six categories without renumbering; avatar skin thumbnails; sharing controls for WeChat/QQ/X/WhatsApp/Telegram with https://zako.medicago.top. Default matches supplied gaze-zako-avatar-1789870427847.svg as editable crystal/pink-dots/slit/smile config. No messages sent automatically; no push authorized.",
@@ -24,5 +25,5 @@
   "status": "active",
   "integration": "not_applicable",
   "evidence": {"implementation_date":"2026-09-20","main_integration_date":null,"deployment_date":null,"paths":["app.js","hair.js","accessories.js","styles.css","responsive.css","index.html","VERIFICATION.md","README.md"],"visual_gap":"New ensembles and 17-degree framing verified locally, but hair contours, pleats and embroidery remain approximations; exact reference identity is not achieved."},
-  "next": "V15 committed at 81338a3. User authorized push and Pages inspection: execute push-sage-v15-20260920, verify remote SHA and inspect deployment/live assets without manual workflow dispatch."
+  "next": "V16 header/favicon correction verified locally and preview synchronized. Commit correction locally; new push requires user instruction. V15 push and Pages deployment verified at 362f2f6b2c728fc2d4365be2970f5f6b49a80d81."
 }

@@ -1,5 +1,7 @@
 # gaze zako avatar
 
+The header brand image and SVG favicon use bundled `site-avatar.svg`, copied unchanged from the user's `gaze-zako-avatar-1789870427847.svg`. `scripts/build.cjs` includes it in Pages output. This site identity is independent of editable avatar state.
+
 Original fixed-position vector sticker avatar creator. Simplified Chinese, English and Japanese. No account, backend, external fonts or runtime network dependencies.
 
 ## Run
