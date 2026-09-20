@@ -1,9 +1,9 @@
 {
   "format": ".branch-records/FORMAT.md",
   "timezone": "Asia/Tokyo",
-  "records": [".branch-records/avatar-v1/state.json", ".branch-records/reference-five/state.json", ".branch-records/readme-i18n/state.json"],
+  "records": [".branch-records/avatar-v1/state.json", ".branch-records/reference-five/state.json", ".branch-records/readme-i18n/state.json", ".branch-records/publish-materials-readme/state.json"],
   "active": [],
-  "pending": [],
+  "pending": ["publish-materials-readme:push-main-20260920"],
   "read": "Resolve pending intent against live Git state before retrying. Historical business entries describe evidence at their implementation checkpoints. Current push intent is recorded in avatar-v1 events; deployment must be verified separately.",
   "changes": [
     {"id":"reference-five","date":"2026-09-20","implementation_date":"2026-09-20","domain":"avatar-materials","business_change":"Add five editable presets: blue bonnet, sakura ribbons, gem circlet elf, shrine ribbon and mint sailor. Append hair 13-14, ornaments 22-28, compass eyepatch 11 with left/right selection and backgrounds 8-9. Totals: 19 presets, 15 hair, 29 ornaments, 12 facewear, 10 backgrounds; old IDs and default retained.","status":"implemented","result":"Local main implementation; offline build, material composition, three languages, real downloads, history and desktop/mobile passed. Original vector interpretations; not pushed or deployed.","request":".branch-records/reference-five/events.jsonl#request-five","evidence":["app.js","hair.js","accessories.js","VERIFICATION.md"],"details":".branch-records/reference-five/state.json"},
